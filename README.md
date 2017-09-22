@@ -16,6 +16,6 @@
 ### Como usar
 
 1. Peça para ser incluído no grupo de usuários.
-2. Vá até a pasta <a target="_blank" href="https://drive.google.com/drive/folders/0B2B1B7RRK5HmS0I2clRTTTJiMXc">Distribuição</a>.
+2. Vá até a pasta **<a href="https://drive.google.com/drive/folders/0B2B1B7RRK5HmS0I2clRTTTJiMXc" target="_blank">Distribuição</a>**.
 3. Abra a planilha.
-4. Selecione `Arquivo > Fazer uma cópia...`.
+4. Selecione `Arquivo > Fazer uma cópia...`
