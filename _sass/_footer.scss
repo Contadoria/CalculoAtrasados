@@ -1,0 +1,28 @@
+.footer {
+	background: transparent;
+	color: #fff;
+	border-top: 1px solid rgba(0, 0, 0, 0.075);
+	padding: 20px;
+	font-size: 0.7em;
+	font-family: "Open Sans", sans-serif;
+	position: relative;
+	bottom: 0;
+
+	.copyright {
+		color: #666;
+		text-align: left;
+	}
+
+	a {
+		color: #666;
+		text-decoration: none;
+		line-height: 1.5em!important;
+		display: block;
+		
+
+		&:hover {
+			color: black;
+			text-decoration: underline;
+		}
+	}
+}
