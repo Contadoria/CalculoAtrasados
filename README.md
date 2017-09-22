@@ -2,7 +2,7 @@
 
 Este repositório hospeda o site com a documentação da planilha *CalculoAtrasados* desenvolvida em *Google Sheets* pela **Contadoria**, organização criada no *Github* para o desenvolvimento de ferramentas de cálculo de benefícios previdenciários.
 
-### Características
+### Características da planilha
 
 * Opção para Resolução 134 ou 267
 * Atualização de índices sem precisar de nova planilha
