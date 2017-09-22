@@ -1,6 +1,6 @@
-# Planilha de cálculo de tempo de contribuição.
+## Planilha de cálculo de tempo de contribuição.
 
-## Características
+### Características
 
 * Ordem cronológica automática
 * Eliminação automática de concomitância
@@ -13,7 +13,7 @@
 * Preenchimento automático, com uso de complemento
 * Adaptação do cálculo a qualquer entendimento, com o uso de modificadores
 
-## Como usar
+### Como usar
 
 1. Peça para ser incluído no grupo de usuários.
 2. Vá até a pasta [Distribuição](https://drive.google.com/drive/folders/0B2B1B7RRK5HmS0I2clRTTTJiMXc){:target="_blank"}.
