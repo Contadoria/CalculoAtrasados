@@ -11,8 +11,16 @@ $content-max-width: 800px;
 $content-color: #222;
 $content-background-color: #fff;
 
-$brand-colour: #3583d6;
+$brand-colour: #1e5799;
 $brand-colour-light: mix($brand-colour, $content-background-color, 10%);
+
+@mixin header-gradient() {
+    background: #1e5799;
+    background: -moz-linear-gradient(top, #1e5799 0%, #207cca 71%, #207cca 98%, #207cca 100%, #3f51b5 100%, #7db9e8 100%, #207cca 100%, #207cca 102%);
+    background: -webkit-linear-gradient(top, #1e5799 0%,#207cca 71%,#207cca 98%,#207cca 100%,#3f51b5 100%,#7db9e8 100%,#207cca 100%,#207cca 102%);
+    background: linear-gradient(to bottom, #1e5799 0%,#207cca 71%,#207cca 98%,#207cca 100%,#3f51b5 100%,#7db9e8 100%,#207cca 100%,#207cca 102%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#1e5799', endColorstr='#207cca',GradientType=0 );
+}
 
 $nav-header-background-color: $brand-colour;
 $nav-header-height: 60px;
