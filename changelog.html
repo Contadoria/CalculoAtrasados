@@ -5,9 +5,10 @@ title: Histórico de Versões
 <div class="changelog">
 	{% for change in site.posts %}
 		<div class="changelog-item">
-			<h3>{{ change.title }}</h3>
+			<h4>{{ change.title }}</h4>
 			<p><span class="date">{{ change.timestamp }}</span> <span class="badge {{ change.type }}">{{ change.type }}</span></p>
 			{{ change.content }}
 		</div>
+		<hr>
 	{% endfor %}
 </div>

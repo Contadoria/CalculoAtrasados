@@ -409,8 +409,13 @@ h4 svg {
 		color: #fff;
 	}
 
+	&.minor {
+		background: grey;
+		color: #fff;
+	}
+	
 	&.patch {
-		background: transparent;
+		background: lightgray;
 		border: 1px solid #eee;
 	}
 	

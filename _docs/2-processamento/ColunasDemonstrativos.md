@@ -5,10 +5,9 @@ order: 2
 ---
 
 ##### **DemonstrativoAbono** `B:B`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoAbono)=1;"Linhas Abono";IF(ROW(DemonstrativoAbono)<=TotalCompetencias+1;IF(Competencia<(EOMONTH(MarcoPrescricional;-1)+1);FALSE();LinhasAbono>0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 0;0;-
 ~~~
@@ -19,10 +18,9 @@ order: 2
 * * *
 
 ##### **DemonstrativoAbonoAlcada** `X:X`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoAbonoAlcada)=1;"Linhas Alçada";IF(ROW(DemonstrativoAbonoAlcada)<=TotalCompetencias+1;IF(Competencia>=Protocolo;FALSE();IF(DemonstrativoAbono=TRUE();TRUE();FALSE()));""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00);-
 mm"/"yyyy
@@ -34,10 +32,9 @@ mm"/"yyyy
 * * *
 
 ##### **DemonstrativoAbonoCompetencias** `N:N`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoAbonoCompetencias)=1;"Competências Abono";IF(ROW(DemonstrativoAbonoCompetencias)<=TotalCompetencias+1;IF(DemonstrativoAbono;Competencia;FALSE());""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 mm/yyyy
 ~~~
@@ -48,10 +45,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoAbonoDescontos** `Q:Q`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoAbonoDescontos)=1;"Desconto Abono";IF(ROW(DemonstrativoAbonoDescontos)<=TotalCompetencias+1;IF(DemonstrativoDiferencas;DescontoAbono;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00);-
 ~~~
@@ -62,10 +58,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoAbonoJuros** `T:T`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoAbonoJuros)=1;"Juros Abono";IF(ROW(DemonstrativoAbonoJuros)<=TotalCompetencias+1;IF(DemonstrativoDiferencas;JurosAbono;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00);-
 ~~~
@@ -76,10 +71,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoAbonoJurosAlcada** `AD:AD`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoAbonoJurosAlcada)=1;"Juros Abono Alçada";IF(ROW(DemonstrativoAbonoJurosAlcada)<=TotalCompetencias + 1;IF(DemonstrativoDiferencas;0;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 mm/yyyy
 #,##0.00;(#,##0.00);-
@@ -91,10 +85,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoAbonoPrincipal** `R:R`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoAbonoPrincipal)=1;"Principal Abono";IF(ROW(DemonstrativoAbonoPrincipal)<=TotalCompetencias+1;IF(DemonstrativoDiferencas;PrincipalAbono;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00);-
 ~~~
@@ -105,10 +98,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoAbonoPrincipalAtualizado** `S:S`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoAbonoPrincipalAtualizado)=1;"Principal Abono Atualizado";IF(ROW(DemonstrativoAbonoPrincipalAtualizado)<=TotalCompetencias+1;IF(DemonstrativoDiferencas;PrincipalAbonoAtualizado;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00);-
 ~~~
@@ -119,10 +111,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoAbonoPrincipalAtualizadoAlcada** `AC:AC`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoAbonoPrincipalAtualizadoAlcada)=1;"Principal Abono Atualizado Alçada";IF(ROW(DemonstrativoAbonoPrincipalAtualizadoAlcada)<=TotalCompetencias + 1;IF(DemonstrativoAlcada;TotalAbonoAlcada;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 mm/yyyy
 #,##0.00;(#,##0.00);-
@@ -134,10 +125,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoAbonoProporcao** `O:O`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoAbonoProporcao)=1;"Proporção Abono";IF(ROW(DemonstrativoAbonoProporcao)<=TotalCompetencias+1;IF(DemonstrativoAbono;IF(ProporcaoAbono=1;"Integral";ProporcaoAbono);0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00);-
 ~~~
@@ -149,10 +139,9 @@ Proporção igual a "1" assume "integral".
 * * *
 
 ##### **DemonstrativoAbonoTotal** `U:U`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoAbonoTotal)=1;"Total Abono";IF(ROW(DemonstrativoAbonoTotal)<=TotalCompetencias+1;IF(DemonstrativoDiferencas;TotalAbono;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00);-
 ~~~
@@ -163,10 +152,9 @@ Proporção igual a "1" assume "integral".
 * * *
 
 ##### **DemonstrativoAbonoValor** `P:P`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoAbonoValor)=1;"Valor Abono";IF(ROW(DemonstrativoAbonoValor)<=TotalCompetencias+1;IF(DemonstrativoDiferencas;Abono;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00);-
 ~~~
@@ -177,10 +165,9 @@ Proporção igual a "1" assume "integral".
 * * *
 
 ##### **DemonstrativoAlcada** `W:W`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoAlcada)=1;"Linhas Alçada";IF(ROW(DemonstrativoAlcada)<=TotalCompetencias+1;IF(Competencia>=Protocolo;FALSE();IF(DemonstrativoRenda=TRUE();TRUE();FALSE()));""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00);-
 mm"/"yyyy
@@ -192,10 +179,9 @@ mm"/"yyyy
 * * *
 
 ##### **DemonstrativoDiferencas** `C:C`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoDiferencas)=1;"Linhas Diferenças";IF(ROW(DemonstrativoDiferencas)<=TotalCompetencias+1;IF(Competencia>DataFinalDiferencas;FALSE();IF(DemonstrativoRenda=TRUE();TRUE();FALSE()));""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00);-
 ~~~
@@ -206,10 +192,9 @@ mm"/"yyyy
 * * *
 
 ##### **DemonstrativoFatorAtualizacao** `I:I`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoFatorAtualizacao)=1;"Fator Atualização";IF(ROW(DemonstrativoFatorAtualizacao)<=TotalCompetencias+1;IF(DemonstrativoDiferencas;FatorAtualizacao;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.0000000000;(#,##0.0000000000);-
 ~~~
@@ -220,10 +205,9 @@ mm"/"yyyy
 * * *
 
 ##### **DemonstrativoFatorAtualizacaoAlcada** `Y:Y`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoFatorAtualizacaoAlcada)=1;"Fator Atualização Alçada";IF(ROW(DemonstrativoFatorAtualizacaoAlcada)<=TotalCompetencias + 1;IF(DemonstrativoAlcada;FatorAtualizacaoAlcada;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 mm/yyyy
 #,##0.00000000;(#,##0.00000000);-
@@ -235,10 +219,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoFatorReajuste** `E:E`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoFatorReajuste)=1;"Reajuste";IF(ROW(DemonstrativoFatorReajuste)<=TotalCompetencias+1;IF(DemonstrativoRenda;IF(FatorReajuste<>1;FatorReajuste;0));""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.0000000000;(#,##0.0000000000)[Red];-
 #,##0.0000
@@ -250,10 +233,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoJurosPercentual** `K:K`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoJurosPercentual)=1;"Percentual Juros de Mora";IF(ROW(DemonstrativoJurosPercentual)<=TotalCompetencias+1;IF(DemonstrativoDiferencas;JurosAcumulados;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 0.00%
 ~~~
@@ -264,10 +246,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoJurosPercentualAlcada** `AA:AA`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoJurosPercentualAlcada)=1;"Percentual Juros de Mora Alçada";IF(ROW(DemonstrativoJurosPercentualAlcada)<=TotalCompetencias + 1;IF(DemonstrativoAlcada;0;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 mm/yyyy
 #,##0.00;(#,##0.00);-
@@ -279,10 +260,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoRenda** `A:A`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoRenda)=1;"Linhas Renda";IF(ROW(DemonstrativoRenda)<=TotalCompetencias+1;IF(ROW(DemonstrativoRenda)=2;TRUE();IF(ISNUMBER(RendaAtualArt58);IF(Competencia=DATE(1991;12;1);TRUE();IF(Competencia<DATE(1992;1;1);FALSE();IF(Competencia<(EOMONTH(MarcoPrescricional;-1)+1);Reajustar;TRUE())));IF(Competencia<(EOMONTH(MAX(MarcoPrescricional;DataInicioDiferencas);-1)+1);Reajustar;TRUE())));""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.0000000000;(#,##0.0000000000)[Red];-
 ~~~
@@ -296,10 +276,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoRendaCompetencias** `D:D`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoRendaCompetencias)=1;"Competências Renda";IF(ROW(DemonstrativoRendaCompetencias)<=TotalCompetencias+1;IF(DemonstrativoRenda;Competencia;FALSE());""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 mm/yyyy
 ~~~
@@ -311,10 +290,9 @@ buscando as competências correspondentes na planilha "evolução" coluna A.
 * * *
 
 ##### **DemonstrativoRendaDescontos** `G:G`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoRendaDescontos)=1;"Desconto Renda";IF(ROW(DemonstrativoRendaDescontos)<=TotalCompetencias+1;IF(DemonstrativoDiferencas;DescontoRenda;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00);-
 ~~~
@@ -325,10 +303,9 @@ buscando as competências correspondentes na planilha "evolução" coluna A.
 * * *
 
 ##### **DemonstrativoRendaJuros** `L:L`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoRendaJuros)=1;"Juros Renda";IF(ROW(DemonstrativoRendaJuros)<=TotalCompetencias+1;IF(DemonstrativoDiferencas;JurosRenda;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00);-
 ~~~
@@ -339,10 +316,9 @@ buscando as competências correspondentes na planilha "evolução" coluna A.
 * * *
 
 ##### **DemonstrativoRendaJurosAlcada** `AB:AB`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoRendaJurosAlcada)=1;"Juros Renda Alçada";IF(ROW(DemonstrativoRendaJurosAlcada)<=TotalCompetencias +1;IF(DemonstrativoAlcada;0;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 mm/yyyy
 #,##0.00;(#,##0.00);-
@@ -354,10 +330,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoRendaMensal** `F:F`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoRendaMensal)=1;"Renda Mensal";IF(ROW(DemonstrativoRendaMensal)<=TotalCompetencias+1;IF(DemonstrativoRenda;RendaMensalEfetiva;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00);-
 ~~~
@@ -368,10 +343,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoRendaPrincipal** `H:H`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoRendaPrincipal)=1;"Principal Renda";IF(ROW(DemonstrativoRendaPrincipal)<=TotalCompetencias+1;IF(DemonstrativoDiferencas;PrincipalRenda;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00);-
 ~~~
@@ -382,10 +356,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoRendaPrincipalAtualizado** `J:J`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoRendaPrincipalAtualizado)=1;"Principal Renda Atualizado";IF(ROW(DemonstrativoRendaPrincipalAtualizado)<=TotalCompetencias+1;IF(DemonstrativoDiferencas;PrincipalRendaAtualizado;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00);-
 ~~~
@@ -396,10 +369,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoRendaPrincipalAtualizadoAlcada** `Z:Z`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoRendaPrincipalAtualizadoAlcada)=1;"Principal Renda Atualizado Alçada";IF(ROW(DemonstrativoRendaPrincipalAtualizadoAlcada)<=TotalCompetencias + 1;IF(DemonstrativoAlcada;TotalRendaAlcada;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 mm/yyyy
 #,##0.00;(#,##0.00);-
@@ -411,10 +383,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoRendaTotal** `M:M`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoRendaTotal)=1;"Total Renda";IF(ROW(DemonstrativoRendaTotal)<=TotalCompetencias+1;IF(DemonstrativoDiferencas;TotalRenda;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -425,10 +396,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoTotalMes** `V:V`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoTotalMes)=1;"Total Mês";IF(ROW(DemonstrativoTotalMes)<=TotalCompetencias+1;IF(DemonstrativoDiferencas;TotalMes;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00);-
 ~~~
@@ -439,10 +409,9 @@ mm/yyyy
 * * *
 
 ##### **DemonstrativoTotalMesAlcada** `AE:AE`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoTotalMesAlcada)=1;"Total Mês Alçada";IF(ROW(DemonstrativoTotalMesAlcada)<=TotalCompetencias + 1;IF(DemonstrativoAlcada;PrincipalAlcada;0);""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 mm/yyyy
 #,##0.00;(#,##0.00);-

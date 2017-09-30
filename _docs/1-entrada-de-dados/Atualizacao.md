@@ -6,12 +6,12 @@ order: 1
 
 ##### **CriterioCorrecao** `D9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.###############
 ~~~
 
-+ **Regra de validação**:
+
 ~~~
 VALUE_IN_RANGE OpcoesCorrecao!A:A
 ~~~
@@ -22,12 +22,12 @@ VALUE_IN_RANGE OpcoesCorrecao!A:A
 
 ##### **CriterioJuros** `D10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.###############
 ~~~
 
-+ **Regra de validação**:
+
 ~~~
 VALUE_IN_RANGE OpcoesJuros!A:A
 ~~~
@@ -38,12 +38,12 @@ VALUE_IN_RANGE OpcoesJuros!A:A
 
 ##### **CriterioReajuste** `D5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.###############
 ~~~
 
-+ **Regra de validação**:
+
 ~~~
 VALUE_IN_RANGE OpcoesReajuste!A:A
 ~~~
@@ -54,12 +54,12 @@ VALUE_IN_RANGE OpcoesReajuste!A:A
 
 ##### **DataAtualizacao** `D11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 d/m/yyyy
 ~~~
 
-+ **Regra de validação**:
+
 ~~~
 DATE_IS_VALID_DATE 
 ~~~
@@ -69,10 +69,9 @@ DATE_IS_VALID_DATE
 * * *
 
 ##### **HonorariosContratuaisBaseJuros** `I14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(HonorariosContratuaisBaseJurosModificada);HonorariosContratuaisBaseJurosModificada;SUMIFS(TotalJuros;Competencia;"<"&EOMONTH(HonorariosContratuaisDataApuracao;-1)+1)){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -85,7 +84,7 @@ A função "FIMMÊS(HonorariosContratuaisDataApuração;-1)" permite apurar valo
 
 ##### **HonorariosContratuaisBaseJurosModificada** `J14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -96,10 +95,9 @@ A função "FIMMÊS(HonorariosContratuaisDataApuração;-1)" permite apurar valo
 * * *
 
 ##### **HonorariosContratuaisBasePrincipal** `I13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(HonorariosContratuaisBasePrincipalModificada);HonorariosContratuaisBasePrincipalModificada;SUMIFS(PrincipalTotalAtualizado;Competencia;"<"&EOMONTH(HonorariosContratuaisDataApuracao;-1)+1)){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -113,7 +111,7 @@ A função "FIMMÊS(HonorariosContratuaisDataApuração;-1)" permite apurar valo
 
 ##### **HonorariosContratuaisBasePrincipalModificada** `J13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -124,10 +122,9 @@ A função "FIMMÊS(HonorariosContratuaisDataApuração;-1)" permite apurar valo
 * * *
 
 ##### **HonorariosContratuaisDataApuracao** `I12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(HonorariosContratuaisDataApuracaoModificada);HonorariosContratuaisDataApuracaoModificada;DataAtualizacao){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -139,12 +136,12 @@ dd/MM/yyyy
 
 ##### **HonorariosContratuaisDataApuracaoModificada** `J12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
 
-+ **Regra de validação**:
+
 ~~~
 DATE_IS_VALID_DATE 
 ~~~
@@ -154,10 +151,9 @@ DATE_IS_VALID_DATE
 * * *
 
 ##### **HonorariosContratuaisLimite** `I15`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(HonorariosContratuaisLimiteModificado);HonorariosContratuaisLimiteModificado;0){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -169,7 +165,7 @@ DATE_IS_VALID_DATE
 
 ##### **HonorariosContratuaisLimiteModificado** `J15`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -180,10 +176,9 @@ DATE_IS_VALID_DATE
 * * *
 
 ##### **HonorariosContratuaisPercentual** `I11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(HonorariosContratuaisPercentualModificado);HonorariosContratuaisPercentualModificado;0){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 0.00%;(0.00%)[Red];-
 ~~~
@@ -196,7 +191,7 @@ DATE_IS_VALID_DATE
 
 ##### **HonorariosContratuaisPercentualModificado** `J11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.00%
 ~~~
@@ -207,10 +202,9 @@ DATE_IS_VALID_DATE
 * * *
 
 ##### **HonorariosSucumbenciaisBaseIncidencia** `I7`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(HonorariosSucumbenciaisBaseIncidenciaModificada);HonorariosSucumbenciaisBaseIncidenciaModificada;SUMIFS(TotalMes;Competencia;"<"&EOMONTH(HonorariosSucumbenciaisDataApuracao;-1)+1)){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -224,7 +218,7 @@ A função "FIMMÊS(HonorariosSucumbenciaisDataApuração;-1)" permite apurar va
 
 ##### **HonorariosSucumbenciaisBaseIncidenciaModificada** `J7`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -235,10 +229,9 @@ A função "FIMMÊS(HonorariosSucumbenciaisDataApuração;-1)" permite apurar va
 * * *
 
 ##### **HonorariosSucumbenciaisDataApuracao** `I6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(HonorariosSucumbenciaisDataApuracaoModificada);HonorariosSucumbenciaisDataApuracaoModificada;DataAtualizacao){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -250,12 +243,12 @@ dd/MM/yyyy
 
 ##### **HonorariosSucumbenciaisDataApuracaoModificada** `J6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
 
-+ **Regra de validação**:
+
 ~~~
 DATE_IS_VALID_DATE 
 ~~~
@@ -265,10 +258,9 @@ DATE_IS_VALID_DATE
 * * *
 
 ##### **HonorariosSucumbenciaisLimite** `I8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(HonorariosSucumbenciaisLimiteModificado);HonorariosSucumbenciaisLimiteModificado;0){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -280,7 +272,7 @@ DATE_IS_VALID_DATE
 
 ##### **HonorariosSucumbenciaisLimiteModificado** `J8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -291,10 +283,9 @@ DATE_IS_VALID_DATE
 * * *
 
 ##### **HonorariosSucumbenciaisPercentual** `I5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(HonorariosSucumbenciaisPercentualModificado);HonorariosSucumbenciaisPercentualModificado;0){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 0.00%;(0.00%)[Red];-
 ~~~
@@ -306,7 +297,7 @@ DATE_IS_VALID_DATE
 
 ##### **HonorariosSucumbenciaisPercentualModificado** `J5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.00%
 ~~~
@@ -318,7 +309,7 @@ DATE_IS_VALID_DATE
 
 ##### **IndiceTeto** `D6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.###############
 ~~~

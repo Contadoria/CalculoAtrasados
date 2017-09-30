@@ -5,10 +5,9 @@ order: 4
 ---
 
 ##### **CompetenciaModificadores** `C:C`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(CompetenciaIndices)=1;"Competência";CompetenciaIndices)){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 mm/yyyy
 0.###############
@@ -21,7 +20,7 @@ mm/yyyy
 
 ##### **ModificadoresCoeficiente** `G:G`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00%;(#,##0.00%);-
 0.###############
@@ -34,7 +33,7 @@ mm/yyyy
 
 ##### **ModificadoresFatorReajuste** `H:H`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00000000;(#,##0.00000000)[Red];-
 0.###############
@@ -47,7 +46,7 @@ mm/yyyy
 
 ##### **ModificadoresIndiceMensalAtualizacao** `I:I`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00000000;(#,##0.00000000)[Red];-
 0.###############
@@ -60,7 +59,7 @@ mm/yyyy
 
 ##### **ModificadoresJuros** `J:J`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00%;(#,##0.00%);-
 0%
@@ -73,7 +72,7 @@ mm/yyyy
 
 ##### **ModificadoresObservacoes** `K:K`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.00%
 0.###############
@@ -86,7 +85,7 @@ mm/yyyy
 
 ##### **ModificadoresPiso** `E:E`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 00,000.00;(00,000.00)[Red];-
 0.###############
@@ -99,7 +98,7 @@ mm/yyyy
 
 ##### **ModificadoresQuotaRendaMensal** `D:D`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.00%
 0.###############
@@ -112,7 +111,7 @@ mm/yyyy
 
 ##### **ModificadoresTeto** `F:F`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 00,000.00;(00,000.00)[Red];-
 0.###############

@@ -6,7 +6,7 @@ order: 0
 
 ##### **Autor** `D6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.###############
 ~~~
@@ -18,7 +18,7 @@ order: 0
 
 ##### **Citacao** `D9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -30,12 +30,12 @@ dd/MM/yyyy
 
 ##### **CriterioAlcada** `D15`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.###############
 ~~~
 
-+ **Regra de validação**:
+
 ~~~
 VALUE_IN_RANGE OpcoesAlcada!A:A
 ~~~
@@ -48,7 +48,7 @@ VALUE_IN_RANGE OpcoesAlcada!A:A
 
 ##### **DER** `D10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 dd/mm/yyyy
 ~~~
@@ -60,12 +60,12 @@ dd/mm/yyyy
 
 ##### **NaturezaAcao** `D11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.###############
 ~~~
 
-+ **Regra de validação**:
+
 ~~~
 VALUE_IN_RANGE OpcoesAcao!A:A
 ~~~
@@ -77,7 +77,7 @@ VALUE_IN_RANGE OpcoesAcao!A:A
 
 ##### **Processo** `D5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.###############
 ~~~
@@ -89,7 +89,7 @@ VALUE_IN_RANGE OpcoesAcao!A:A
 
 ##### **Protocolo** `D8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -100,9 +100,25 @@ Normalmente utilizado para contagem de prescrição.
 
 * * *
 
+##### **RenunciaOpcao** `D16`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+0.###############
+~~~
+
+
+~~~
+VALUE_IN_LIST Sim,Não
+~~~
+
+
+
+* * *
+
 ##### **Reu** `D7`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.###############
 ~~~

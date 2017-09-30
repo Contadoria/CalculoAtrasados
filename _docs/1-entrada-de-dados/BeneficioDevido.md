@@ -5,10 +5,9 @@ order: 2
 ---
 
 ##### **CoeficienteDerivado** `I9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(SBModificado);IF(ISNUMBER(CoeficienteDerivadoModificado);CoeficienteDerivadoModificado;1);1){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 0.00%
 ~~~
@@ -20,7 +19,7 @@ order: 2
 
 ##### **CoeficienteDerivadoModificado** `J9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.00%
 ~~~
@@ -31,10 +30,9 @@ order: 2
 * * *
 
 ##### **CoeficienteOriginario** `I8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(SBModificado);IF(ISNUMBER(CoeficienteOriginarioModificado);CoeficienteOriginarioModificado;1);1){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 0.00%
 ~~~
@@ -46,7 +44,7 @@ order: 2
 
 ##### **CoeficienteOriginarioModificado** `J8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.00%
 ~~~
@@ -58,7 +56,7 @@ order: 2
 
 ##### **DCBDerivado** `D20`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -70,12 +68,12 @@ dd/MM/yyyy
 
 ##### **DCBOriginario** `D9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 d/m/yyyy
 ~~~
 
-+ **Regra de validação**:
+
 ~~~
 DATE_IS_VALID_DATE 
 ~~~
@@ -86,12 +84,12 @@ DATE_IS_VALID_DATE
 
 ##### **DDA** `D13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
 
-+ **Regra de validação**:
+
 ~~~
 DATE_IS_VALID_DATE 
 ~~~
@@ -101,10 +99,9 @@ DATE_IS_VALID_DATE
 * * *
 
 ##### **DIBArt58** `I12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(DIBArt58Modificada);DIBArt58Modificada;IF(AND(ISNUMBER(DIBDerivado);DIBDerivado<DATE(1988;10;5));DIBDerivado;IF(DIBOriginario<DATE(1988;10;5);DIBOriginario;""))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -116,7 +113,7 @@ dd/MM/yyyy
 
 ##### **DIBArt58Modificada** `J12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -128,7 +125,7 @@ dd/MM/yyyy
 
 ##### **DIBDerivado** `D19`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -140,12 +137,12 @@ dd/MM/yyyy
 
 ##### **DIBOriginario** `D7`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
 
-+ **Regra de validação**:
+
 ~~~
 DATE_IS_VALID_DATE 
 ~~~
@@ -155,10 +152,9 @@ DATE_IS_VALID_DATE
 * * *
 
 ##### **DataFinalDiferencas** `I6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(DataFinalDiferencasModificada);DataFinalDiferencasModificada;IF(DIBDerivado;IF(ISNUMBER(DCBDerivado);DCBDerivado;EOMONTH(DataAtualizacao;-1));IF(ISNUMBER(DCBOriginario);DCBOriginario;EOMONTH(DataAtualizacao;-1)))){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -170,7 +166,7 @@ dd/MM/yyyy
 
 ##### **DataFinalDiferencasModificada** `J6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -181,10 +177,9 @@ dd/MM/yyyy
 * * *
 
 ##### **DataInicioDiferencas** `I5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(DataInicioDiferencasModificada);DataInicioDiferencasModificada;IF(ISNUMBER(DIBOriginario);DIBOriginario)){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -196,7 +191,7 @@ dd/MM/yyyy
 
 ##### **DataInicioDiferencasModificada** `J5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -207,10 +202,9 @@ dd/MM/yyyy
 * * *
 
 ##### **EquivalenciaArt58** `I14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(EquivalenciaArt58Modificada);EquivalenciaArt58Modificada;IF(ISNUMBER(RMIArt58);RMIArt58/INDEX(SalarioMinimo;MATCH(EOMONTH(DIBArt58;-1)+1;CompetenciaIndices;0));"")){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)
 ~~~
@@ -222,7 +216,7 @@ dd/MM/yyyy
 
 ##### **EquivalenciaArt58Modificada** `J14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -234,12 +228,12 @@ dd/MM/yyyy
 
 ##### **EspecieDerivado** `D18`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.###############
 ~~~
 
-+ **Regra de validação**:
+
 ~~~
 VALUE_IN_RANGE ListaBeneficios!A:A
 ~~~
@@ -250,12 +244,12 @@ VALUE_IN_RANGE ListaBeneficios!A:A
 
 ##### **EspecieOriginario** `D6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.###############
 ~~~
 
-+ **Regra de validação**:
+
 ~~~
 VALUE_IN_RANGE ListaBeneficios!A:A
 ~~~
@@ -265,10 +259,9 @@ VALUE_IN_RANGE ListaBeneficios!A:A
 * * *
 
 ##### **MarcoPrescricional** `I11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(MarcoPrescricionalModificado);MarcoPrescricionalModificado;IF(ISNUMBER(Protocolo);EDATE(Protocolo;-60);)){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -280,7 +273,7 @@ dd/MM/yyyy
 
 ##### **MarcoPrescricionalModificado** `J11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -292,7 +285,7 @@ dd/MM/yyyy
 
 ##### **NBDerivado** `D17`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.###############
 ~~~
@@ -304,7 +297,7 @@ dd/MM/yyyy
 
 ##### **NBOriginario** `D5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.###############
 ~~~
@@ -316,7 +309,7 @@ dd/MM/yyyy
 
 ##### **RMDDA** `D14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)
 ~~~
@@ -327,10 +320,9 @@ dd/MM/yyyy
 * * *
 
 ##### **RMIArt58** `I13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(RMIArt58Modificada);RMIArt58Modificada;IF(DIBOriginario<DATE(1988;10;5);RMIInformada;"")){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00
 ~~~
@@ -342,7 +334,7 @@ dd/MM/yyyy
 
 ##### **RMIArt58Modificada** `J13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -354,7 +346,7 @@ dd/MM/yyyy
 
 ##### **RMIInformada** `D8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -365,10 +357,9 @@ dd/MM/yyyy
 * * *
 
 ##### **RendaInformada** `I10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(RendaInformadaModificada);RendaInformadaModificada;IF(ISNUMBER(RMDDA);RMDDA;RMIInformada)){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)
 ~~~
@@ -380,7 +371,7 @@ dd/MM/yyyy
 
 ##### **RendaInformadaModificada** `J10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -391,10 +382,9 @@ dd/MM/yyyy
 * * *
 
 ##### **SalarioBeneficio** `I7`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(SalarioBeneficioModificado);SalarioBeneficioModificado;IF(ISNUMBER(RMDDA);RMDDA;RMIInformada)){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)
 ~~~
@@ -406,7 +396,7 @@ dd/MM/yyyy
 
 ##### **SalarioBeneficioModificado** `J7`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~

@@ -6,7 +6,7 @@ order: 3
 
 ##### **CoeficienteDerivadoModificadoNBPago** `J7`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -17,10 +17,9 @@ dd/MM/yyyy
 * * *
 
 ##### **CoeficienteDerivadoNBPago** `I7`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(SalarioBeneficioModificadoNBPago);IF(ISNUMBER(CoeficienteDerivadoModificadoNBPago);CoeficienteDerivadoModificadoNBPago;1);1){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 0.00%
 ~~~
@@ -32,7 +31,7 @@ dd/MM/yyyy
 
 ##### **CoeficienteOriginarioModificadoNBPago** `J6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -43,10 +42,9 @@ dd/MM/yyyy
 * * *
 
 ##### **CoeficienteOriginarioNBPago** `I6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(SalarioBeneficioModificadoNBPago);IF(ISNUMBER(CoeficienteOriginarioModificadoNBPago);CoeficienteOriginarioModificadoNBPago;1);1){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 0.00%
 ~~~
@@ -58,7 +56,7 @@ dd/MM/yyyy
 
 ##### **EquivalenciaArt58ModificadaNBPago** `J10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -69,10 +67,9 @@ dd/MM/yyyy
 * * *
 
 ##### **EquivalenciaArt58NBPago** `I10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(EquivalenciaArt58ModificadaNBPago);EquivalenciaArt58ModificadaNBPago;IF(ISNUMBER(RMIArt58NBPago);RMIArt58NBPago/INDEX(SalarioMinimo;MATCH(EOMONTH(DIBArt58;-1)+1;CompetenciaIndices;0));"")){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)
 ~~~
@@ -84,12 +81,12 @@ dd/MM/yyyy
 
 ##### **IndiceTetoNBPago** `D6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 0.###############
 ~~~
 
-+ **Regra de validação**:
+
 ~~~
 DATE_IS_VALID_DATE 
 ~~~
@@ -100,7 +97,7 @@ DATE_IS_VALID_DATE
 
 ##### **RMDDANBPago** `D9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)
 ~~~
@@ -112,7 +109,7 @@ DATE_IS_VALID_DATE
 
 ##### **RMIArt58ModificadaNBPago** `J9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00;(#,##0.00)[Red];-
 ~~~
@@ -123,10 +120,9 @@ DATE_IS_VALID_DATE
 * * *
 
 ##### **RMIArt58NBPago** `I9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(RMIArt58ModificadaNBPago);RMIArt58ModificadaNBPago;IF(DIBOriginario<DATE(1988;10;5);RMIInformadaNBPago;"")){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -138,7 +134,7 @@ dd/MM/yyyy
 
 ##### **RMIInformadaNBPago** `D5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00
 ~~~
@@ -150,7 +146,7 @@ dd/MM/yyyy
 
 ##### **RendaInformadaModificadaNBPago** `J8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 dd/MM/yyyy
 ~~~
@@ -161,10 +157,9 @@ dd/MM/yyyy
 * * *
 
 ##### **RendaInformadaNBPago** `I8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(RendaInformadaModificadaNBPago);RendaInformadaModificadaNBPago;IF(ISNUMBER(RMDDANBPago);RMDDANBPago;RMIInformadaNBPago)){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00
 ~~~
@@ -176,7 +171,7 @@ dd/MM/yyyy
 
 ##### **SalarioBeneficioModificadoNBPago** `J5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
-+ **Formato**:
+
 ~~~
 #,##0.00
 ~~~
@@ -187,10 +182,9 @@ dd/MM/yyyy
 * * *
 
 ##### **SalarioBeneficioNBPago** `I5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-+ **Fórmula**:
 {% highlight erlang %}=IF(ISNUMBER(SalarioBeneficioModificadoNBPago);SalarioBeneficioModificadoNBPago;IF(ISNUMBER(RMDDANBPago);RMDDANBPago;RMIInformadaNBPago)){% endhighlight %}
 
-+ **Formato**:
+
 ~~~
 #,##0.00
 ~~~
