@@ -44,7 +44,7 @@ order: 0
 * * *
 
 ##### **CoeficienteModificado** `AA:AA`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(CoeficienteModificado)=1;"Modificador";IF(ROW(CoeficienteModificado)<=TotalCompetencias+1;OFFSET(ModificadoresCoeficiente;LinhaInicialTabelaModificadores-2;0;TotalCompetencias+1);""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(CoeficienteModificado)=1;"Modificador";IF(ROW(CoeficienteModificado)<=TotalCompetencias+1;{"";OFFSET(ModificadoresCoeficiente;LinhaInicialTabelaModificadores-1;0;TotalCompetencias+1)};""))){% endhighlight %}
 
 
 
@@ -53,7 +53,7 @@ order: 0
 * * *
 
 ##### **CoeficienteModificadoNBPago** `AC:AC`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(CoeficienteModificadoNBPago)=1;"Modificador";IF(ROW(CoeficienteModificadoNBPago)<=TotalCompetencias+1;OFFSET(ModificadoresCoeficiente;LinhaInicialTabelaModificadores-2;0;TotalCompetencias+1);""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(CoeficienteModificadoNBPago)=1;"Modificador";IF(ROW(CoeficienteModificadoNBPago)<=TotalCompetencias+1;{"";OFFSET(ModificadoresCoeficiente;LinhaInicialTabelaModificadores-2;0;TotalCompetencias+1)};""))){% endhighlight %}
 
 
 ~~~
@@ -159,7 +159,7 @@ mm/yyyy
 * * *
 
 ##### **FatorReajusteModificado** `R:R`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(FatorReajusteModificado)=1;"Modificador";IF(ROW(FatorReajusteModificado)<=TotalCompetencias+1;OFFSET(ModificadoresFatorReajuste;LinhaInicialTabelaModificadores-2;0;TotalCompetencias+1);""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(FatorReajusteModificado)=1;"Modificador";IF(ROW(FatorReajusteModificado)<=TotalCompetencias+1;{"";OFFSET(ModificadoresFatorReajuste;LinhaInicialTabelaModificadores-1;0;TotalCompetencias+1)};""))){% endhighlight %}
 
 
 
@@ -168,7 +168,7 @@ mm/yyyy
 * * *
 
 ##### **FatorReajusteModificadoNBPago** `T:T`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(FatorReajusteModificadoNBPago)=1;"Modificador Pago";IF(ROW(FatorReajusteModificadoNBPago)<=TotalCompetencias+1;OFFSET(ModificadoresFatorReajuste;LinhaInicialTabelaModificadores-2;0;TotalCompetencias+1);""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(FatorReajusteModificadoNBPago)=1;"Modificador Pago";IF(ROW(FatorReajusteModificadoNBPago)<=TotalCompetencias+1;{"";OFFSET(ModificadoresFatorReajuste;LinhaInicialTabelaModificadores-1;0;TotalCompetencias+1)};""))){% endhighlight %}
 
 
 
@@ -186,7 +186,7 @@ mm/yyyy
 * * *
 
 ##### **IndiceMensalAtualizacao** `AX:AX`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(IndiceMensalAtualizacao)=1;"Índice";IF(ROW(IndiceMensalAtualizacao)<=TotalCompetencias+1;IF(ISNUMBER(IndiceMensalAtualizacaoModificado);IndiceMensalAtualizacaoModificado; IF(MID(CriterioCorrecao;1;1)="2";OFFSET(IndiceRes134;LinhaInicialTabelaIndices-2;0;TotalCompetencias+1);OFFSET(IndiceAtualizacao;LinhaInicialTabelaIndices-2;0;TotalCompetencias+1)));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(IndiceMensalAtualizacao)=1;"Índice";IF(ROW(IndiceMensalAtualizacao)<=TotalCompetencias+1;IF(ISNUMBER(IndiceMensalAtualizacaoModificado);IndiceMensalAtualizacaoModificado; IF(MID(CriterioCorrecao;1;1)="2";{"";OFFSET(IndiceRes134;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)};{"";OFFSET(IndiceAtualizacao;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)}));""))){% endhighlight %}
 
 
 ~~~
@@ -200,7 +200,7 @@ de atualização mensais conforme opção escolhida
 * * *
 
 ##### **IndiceMensalAtualizacaoAjustado** `AZ:AZ`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(IndiceMensalAtualizacaoAjustado)=1;"Índice Ajustado";IF(ROW(IndiceMensalAtualizacaoAjustado)<=TotalCompetencias+1;OFFSET(AjusteMoeda;LinhaInicialTabelaIndices-2;0;TotalCompetencias+1)*OFFSET(IndiceMensalAtualizacao;0;0;TotalCompetencias+1);""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(IndiceMensalAtualizacaoAjustado)=1;"Índice Ajustado";IF(ROW(IndiceMensalAtualizacaoAjustado)<=TotalCompetencias+1;{"";OFFSET(AjusteMoeda;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)}*OFFSET(IndiceMensalAtualizacao;0;0;TotalCompetencias+1);""))){% endhighlight %}
 
 
 ~~~
@@ -227,7 +227,7 @@ de atualização mensais, considerando os ajustes de moeda
 * * *
 
 ##### **IndiceMensalAtualizacaoModificado** `AY:AY`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(IndiceMensalAtualizacaoModificado)=1;"Modificador";IF(ROW(IndiceMensalAtualizacaoModificado)<=TotalCompetencias+1;OFFSET(ModificadoresIndiceMensalAtualizacao;LinhaInicialTabelaModificadores-2;0;TotalCompetencias+1);""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(IndiceMensalAtualizacaoModificado)=1;"Modificador";IF(ROW(IndiceMensalAtualizacaoModificado)<=TotalCompetencias+1;{"";OFFSET(ModificadoresIndiceMensalAtualizacao;LinhaInicialTabelaModificadores-1;0;TotalCompetencias+1)};""))){% endhighlight %}
 
 
 ~~~
@@ -241,7 +241,7 @@ de atualização mensais
 * * *
 
 ##### **IndicesReajuste** `P:P`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(IndicesReajuste)=1;"Índices";IF(ROW(IndicesReajuste)<=TotalCompetencias+1;IF(ROW(IndicesReajuste)=LinhaPrimeiraDataBase;1+INDEX(FatorProporcional;LinhaInicialTabelaIndices);1+(OFFSET(FatorIntegral;LinhaInicialTabelaIndices-2;0;TotalCompetencias+1)*Reajustar));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(IndicesReajuste)=1;"Índices";IF(ROW(IndicesReajuste)<=TotalCompetencias+1;IF(ROW(IndicesReajuste)=LinhaPrimeiraDataBase;1+INDEX(FatorProporcional;LinhaInicialTabelaIndices);1+({"";OFFSET(FatorIntegral;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)}*Reajustar));""))){% endhighlight %}
 
 
 ~~~
@@ -319,7 +319,7 @@ de atualização mensais
 * * *
 
 ##### **JurosTaxaMensal** `BE:BE`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(JurosTaxaMensal)=1;"Taxa de Juros";IF(ROW(JurosTaxaMensal)<=TotalCompetencias+1;IF(ISNUMBER(JurosTaxaMensalModificada);JurosTaxaMensalModificada;(ROW(JurosTaxaMensal)>=LinhaCitacao)*IF(MID(CriterioJuros;1;1)="3";0,01;IF(MID(CriterioJuros;1;1)="2";0,005;OFFSET(Juros;LinhaInicialTabelaIndices-2;0;TotalCompetencias+1))));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(JurosTaxaMensal)=1;"Taxa de Juros";IF(ROW(JurosTaxaMensal)<=TotalCompetencias+1;IF(ISNUMBER(JurosTaxaMensalModificada);JurosTaxaMensalModificada;(ROW(JurosTaxaMensal)>=LinhaCitacao)*IF(MID(CriterioJuros;1;1)="3";0,01;IF(MID(CriterioJuros;1;1)="2";0,005;{"";OFFSET(Juros;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)})));""))){% endhighlight %}
 
 
 ~~~
@@ -332,7 +332,7 @@ de atualização mensais
 * * *
 
 ##### **JurosTaxaMensalModificada** `BF:BF`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(JurosTaxaMensalModificada)=1;"Modificador";IF(ROW(JurosTaxaMensalModificada)<=TotalCompetencias+1;OFFSET(ModificadoresJuros;LinhaInicialTabelaModificadores-2;0;TotalCompetencias+1);""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(JurosTaxaMensalModificada)=1;"Modificador";IF(ROW(JurosTaxaMensalModificada)<=TotalCompetencias+1;{"";OFFSET(ModificadoresJuros;LinhaInicialTabelaModificadores-1;0;TotalCompetencias+1)};""))){% endhighlight %}
 
 
 ~~~
@@ -358,7 +358,7 @@ de atualização mensais
 * * *
 
 ##### **Piso** `C:C`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Piso)=1;"Piso";IF(ROW(Piso)<=TotalCompetencias+1;IF(ISNUMBER(PisoModificado);PisoModificado;OFFSET(SalarioMinimo;LinhaInicialTabelaIndices-2;0;TotalCompetencias+1));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Piso)=1;"Piso";IF(ROW(Piso)<=TotalCompetencias+1;IF(ISNUMBER(PisoModificado);PisoModificado;{"";OFFSET(SalarioMinimo;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)});""))){% endhighlight %}
 
 
 ~~~
@@ -371,7 +371,7 @@ de atualização mensais
 * * *
 
 ##### **PisoModificado** `D:D`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(PisoModificado)=1;"Modificador";IF(ROW(PisoModificado)<=TotalCompetencias+1;OFFSET(ModificadoresPiso;LinhaInicialTabelaModificadores-2;0;TotalCompetencias+1);""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(PisoModificado)=1;"Modificador";IF(ROW(PisoModificado)<=TotalCompetencias+1;{"";OFFSET(ModificadoresPiso;LinhaInicialTabelaModificadores-1;0;TotalCompetencias+1)};""))){% endhighlight %}
 
 
 ~~~
@@ -515,7 +515,7 @@ de atualização mensais
 * * *
 
 ##### **Reajustar** `I:I`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Reajustar)=1;"Reajustar";IF(ROW(Reajustar)<=TotalCompetencias+1;IF(ROW(Reajustar)=LinhaPrimeiraCompetencia;FALSE();IF(ROW(Reajustar)=LinhaReajusteLei8870;TRUE();OFFSET(DataBase;LinhaInicialTabelaIndices-2;0;TotalCompetencias+1)<>DataBase));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Reajustar)=1;"Reajustar";IF(ROW(Reajustar)<=TotalCompetencias+1;IF(ROW(Reajustar)=LinhaPrimeiraCompetencia;FALSE();IF(ROW(Reajustar)=LinhaReajusteLei8870;TRUE();{"";OFFSET(DataBase;LinhaInicialTabelaIndices-1;0;TotalCompetencias)}));""))){% endhighlight %}
 
 
 
@@ -794,7 +794,7 @@ de atualização mensais
 * * *
 
 ##### **Teto** `E:E`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Teto)=1;"Teto";IF(ROW(Teto)<=TotalCompetencias+1;IF(ISNUMBER(TetoModificado);TetoModificado;OFFSET(TetoBeneficio;LinhaInicialTabelaIndices-2;0;TotalCompetencias+1));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Teto)=1;"Teto";IF(ROW(Teto)<=TotalCompetencias+1;IF(ISNUMBER(TetoModificado);TetoModificado;{"";OFFSET(TetoBeneficio;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)});""))){% endhighlight %}
 
 
 ~~~
@@ -807,7 +807,7 @@ de atualização mensais
 * * *
 
 ##### **TetoModificado** `F:F`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(TetoModificado)=1;"Modificador";IF(ROW(TetoModificado)<=TotalCompetencias+1;OFFSET(ModificadoresTeto;LinhaInicialTabelaModificadores-2;0;TotalCompetencias+1);""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(TetoModificado)=1;"Modificador";IF(ROW(TetoModificado)<=TotalCompetencias+1;{"";OFFSET(ModificadoresTeto;LinhaInicialTabelaModificadores-1;0;TotalCompetencias+1)};""))){% endhighlight %}
 
 
 ~~~
