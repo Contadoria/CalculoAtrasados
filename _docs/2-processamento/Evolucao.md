@@ -418,7 +418,7 @@ de atualização mensais
 ~~~
 
 
-> Matriz correspondente aos valores mensais atualizados até a data do ajuizamento da ação
+
 
 * * *
 
@@ -475,6 +475,19 @@ de atualização mensais
 
 * * *
 
+##### **PrincipalTotalAtualizadoAposRenuncia** `BV:BV`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(PrincipalTotalAtualizadoAposRenuncia)=1;"Principal Total Atual com Renúncia";IF(ROW(PrincipalTotalAtualizadoAposRenuncia)<=TotalCompetencias+1;PrincipalTotalAtualizado*ProporcaoAposRenuncia;""))){% endhighlight %}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
 ##### **ProporcaoAbono** `H:H`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(ProporcaoAbono)=1;"Proporção Abono";IF(ROW(ProporcaoAbono)<=TotalCompetencias+1;IF(ROW(ProporcaoAbono)=LinhaPrimeiroAbono;ProporcaoPrimeiroAbono;IF(ROW(ProporcaoAbono)=UltimaLinhaAbono;ProporcaoUltimoAbono;IF(LinhasAbono<>0;1;0)));""))){% endhighlight %}
 
@@ -485,6 +498,19 @@ de atualização mensais
 
 
 > Matriz referente às proporções  consideradas para apuração dos valores dos abonos
+
+* * *
+
+##### **ProporcaoAposRenuncia** `BU:BU`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(ProporcaoAposRenuncia)=1;"Proporção Após Renúncia";IF(ROW(ProporcaoAposRenuncia)<=TotalCompetencias+1; IF(EOMONTH(Competencia;0)<EOMONTH(Protocolo;0);PercentualVencidasAposRenuncia;1);""))){% endhighlight %}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
 
 * * *
 
@@ -858,6 +884,19 @@ de atualização mensais
 
 * * *
 
+##### **TotalJurosAposRenuncia** `BW:BW`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalJurosAposRenuncia)=1;"Juros Total Atualizado com Renúncia";IF(ROW(TotalJurosAposRenuncia)<=TotalCompetencias+1;TotalJuros*ProporcaoAposRenuncia;""))){% endhighlight %}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
 ##### **TotalMes** `BM:BM`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalMes)=1;"Total Mês";IF(ROW(TotalMes)<=TotalCompetencias+1;TotalRenda+TotalAbono;""))){% endhighlight %}
 
@@ -868,6 +907,19 @@ de atualização mensais
 
 
 > Matriz correspondente aos valores de principal e juros sobre parcelas de rendas mensais e abonos
+
+* * *
+
+##### **TotalMesAposRenuncia** `BX:BX`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalMesAposRenuncia)=1;"Total Mês Após Renúncia";IF(ROW(TotalMesAposRenuncia)<=TotalCompetencias+1;PrincipalTotalAtualizadoAposRenuncia+TotalJurosAposRenuncia;""))){% endhighlight %}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+> Matriz correspondente aos valores mensais atualizados até a data do ajuizamento da ação
 
 * * *
 
