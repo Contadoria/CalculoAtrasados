@@ -73,6 +73,10 @@ mm"/"yyyy
 {% highlight erlang %}=DATEDIF(DataInicioDiferencas;DataFinalDiferencas;"M")+1{% endhighlight %}
 
 
+~~~
+0.###############
+~~~
+
 
 > Número de meses (competências)  entre a data de início das diferenças (DataInicioDiferencas) e final das diferenças (DataFinalDiferencas)
 
@@ -694,19 +698,6 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **RMIDerivadoNBPago** `E43`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(ISNUMBER(DIBDerivado);INDEX(RendaApuradaNBPago;MATCH(EOMONTH(DIBDerivado;-1)+1;Competencia;0));""){% endhighlight %}
-
-
-~~~
-0.###############
-~~~
-
-
-> Renda mensal inicial apurada do benefício derivado com base na evolução do salário-de-benefício e aplicado coeficiente de cálculo (benefício pago)
-
-* * *
-
 ##### **RMIOriginario** `B28`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=INDEX(RendaMensalEfetiva;MATCH(EOMONTH(DIBOriginario;-1)+1;Competencia;0)){% endhighlight %}
 
@@ -717,21 +708,6 @@ dd"/"mm"/"yyyy
 
 
 > Renda mensal inicial do benefício originário, observados limites mínimo e máximo
-
-* * *
-
-##### **RMIOriginarioNBPago** `E42`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=INDEX(RendaMensalEfetivaNBPago;MATCH(EOMONTH(DIBOriginario;-1)+1;Competencia;0)){% endhighlight %}
-
-
-~~~
-0.###############
-~~~
-
-
-> Renda mensal inicial do benefício originário, observados limites mínimo e máximo (benefício pago)
-
-
 
 * * *
 
@@ -748,19 +724,6 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **RendaAtualArt58NBPago** `E41`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(ISNUMBER(EquivalenciaArt58NBPago);EquivalenciaArt58NBPago*INDEX(SalarioMinimo;MATCH(DATE(1991;12;1);CompetenciaIndices;0));""){% endhighlight %}
-
-
-~~~
-#,##0.00;(#,##0.00)[Red];-
-~~~
-
-
-> Valor da renda em dezembro/91, observada a equivalência salarial e o valor do salário-mínimo (benefício pago)
-
-* * *
-
 ##### **RendaNaConversao** `B30`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(DIBDerivado);(((INDEX(RendaInformadaLimitada;MATCH(EOMONTH(DIBDerivado;-1)+1;Competencia;0)))/30)*DAY(DCBOriginario))+((RMIDerivado/30)*MAX(30-DAY(DIBDerivado)+1;1));""){% endhighlight %}
 
@@ -771,19 +734,6 @@ dd"/"mm"/"yyyy
 
 
 > Valor da renda mensal no mês da conversão de benefício, consideradas as proporções
-
-* * *
-
-##### **RendaNaConversaoNBPago** `E44`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(ISNUMBER(DIBDerivado);(((INDEX(RendaInformadaLimitadaNBPago;MATCH(EOMONTH(DIBDerivado;-1)+1;Competencia;0)))/30)*DAY(DCBOriginario))+((RMIDerivadoNBPago/30)*MAX(30-DAY(DIBDerivado)+1;1));""){% endhighlight %}
-
-
-~~~
-0.###############
-~~~
-
-
-> Valor da renda mensal paga no mês da conversão de benefício, consideradas as proporções
 
 * * *
 
@@ -826,6 +776,10 @@ dd"/"mm"/"yyyy
 {% highlight erlang %}=DATEDIF(DataInicioDiferencas;DataFinalDiferencas;"M")+1{% endhighlight %}
 
 
+~~~
+0.###############
+~~~
+
 
 > Número de meses (competências)  entre a data de início das diferenças (DataInicioDiferencas) e final das diferenças (DataFinalDiferencas)
 
@@ -847,6 +801,10 @@ dd"/"mm"/"yyyy
 ##### **TotalCompetenciasJuros** `B6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=DATEDIF(Citacao;DataAtualizacao;"M")+1{% endhighlight %}
 
+
+~~~
+0.###############
+~~~
 
 
 > Total de meses entre data da citação e data da atualização

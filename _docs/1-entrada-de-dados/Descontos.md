@@ -1,7 +1,7 @@
 ---
 title: Descontos
 category: Entrada
-order: 5
+order: 4
 ---
 
 ##### **CompetenciaDescontos** `C:C`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
@@ -17,8 +17,7 @@ mm/yyyy
 
 * * *
 
-##### **DescontosBeneficioPagoAbono** `E:E`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(CompetenciaIndices)=1;"Abono";IF(ROW(CompetenciaIndices)<MATCH(CompetenciaInicial;CompetenciaIndices;0);0;IF(ROW(CompetenciaIndices)>MATCH(CompetenciaFinal;CompetenciaIndices;0);0;IF(MID(NaturezaAcao;1;1)="2";IFERROR(VLOOKUP(OFFSET(CompetenciaDescontos;4;0);OFFSET(Competencia;0;0;ROWS(Competencia);COLUMN(AbonoNBPago));COLUMN(AbonoNBPago);TRUE);0);0))))){% endhighlight %}
+##### **DescontosBeneficioRevisadoAbono** `E:E`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -31,8 +30,8 @@ mm/yyyy
 
 * * *
 
-##### **DescontosBeneficioPagoRenda** `D:D`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(CompetenciaIndices)=1;"Renda";IF(ROW(CompetenciaIndices)<MATCH(CompetenciaInicial;CompetenciaIndices;0);0;IF(ROW(CompetenciaIndices)>MATCH(CompetenciaFinal;CompetenciaIndices;0);0;IF(MID(NaturezaAcao;1;1)="2";IFERROR(VLOOKUP(OFFSET(CompetenciaDescontos;4;0);OFFSET(Competencia;0;0;ROWS(Competencia);COLUMN(ValorQuotaNBPago));COLUMN(ValorQuotaNBPago);TRUE);0);0))))){% endhighlight %}
+##### **DescontosBeneficioRevisadoRenda** `D:D`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=OFFSET(BeneficioRevisado;0;0;COUNTA(CompetenciaIndices);2){% endhighlight %}
 
 
 ~~~
@@ -44,7 +43,7 @@ mm/yyyy
 
 * * *
 
-##### **DescontosConsignacao** `G:G`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosConsignacao** `I:I`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -56,7 +55,7 @@ mm/yyyy
 
 * * *
 
-##### **DescontosNB1** `M4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosNB1** `O4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -68,7 +67,7 @@ mm/yyyy
 
 * * *
 
-##### **DescontosNB1Abono** `N:N`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosNB1Abono** `P:P`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -81,7 +80,7 @@ mm/yyyy
 
 * * *
 
-##### **DescontosNB1Renda** `M:M`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosNB1Renda** `O:O`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -94,7 +93,7 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosNB2** `O4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosNB2** `Q4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -106,7 +105,7 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosNB2Abono** `P:P`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosNB2Abono** `R:R`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -119,7 +118,7 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosNB2Renda** `O:O`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosNB2Renda** `Q:Q`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -132,7 +131,7 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosNB3** `Q4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosNB3** `S4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -144,7 +143,7 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosNB3Abono** `R:R`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosNB3Abono** `T:T`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -157,46 +156,7 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosNB3Renda** `Q:Q`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-
-
-~~~
-#,##0.00;(#,##0.00)[Red];-
-0.###############
-~~~
-
-
-> Número de benefício pago inacumulável
-Renda mensal recebida por benefício inacumulável
-
-* * *
-
-##### **DescontosNB4** `S4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-
-
-~~~
-#,##0.00;(#,##0.00)[Red];-
-~~~
-
-
-> Número de benefício pago inacumulável
-
-* * *
-
-##### **DescontosNB4Abono** `T:T`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-
-
-~~~
-#,##0.00;(#,##0.00)[Red];-
-0.###############
-~~~
-
-
-> Abono recebido por benefício inacumulável
-
-* * *
-
-##### **DescontosNB4Renda** `S:S`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosNB3Renda** `S:S`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -210,7 +170,7 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosNB5** `U4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosNB4** `U4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -222,7 +182,7 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosNB5Abono** `V:V`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosNB4Abono** `V:V`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -235,7 +195,7 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosNB5Renda** `U:U`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosNB4Renda** `U:U`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -249,7 +209,46 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosOutrosAbonoPercentual** `J:J`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosNB5** `W4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+> Número de benefício pago inacumulável
+
+* * *
+
+##### **DescontosNB5Abono** `X:X`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+0.###############
+~~~
+
+
+> Abono recebido por benefício inacumulável
+
+* * *
+
+##### **DescontosNB5Renda** `W:W`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+0.###############
+~~~
+
+
+> Número de benefício pago inacumulável
+Renda mensal recebida por benefício inacumulável
+
+* * *
+
+##### **DescontosOutrosAbonoPercentual** `L:L`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -262,7 +261,7 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosOutrosAbonoValor** `K:K`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosOutrosAbonoValor** `M:M`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -275,7 +274,33 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosOutrosObservacoes** `L:L`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosOutrosBeneficiosAbono** `G:G`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+0.###############
+~~~
+
+
+
+
+* * *
+
+##### **DescontosOutrosBeneficiosRenda** `F:F`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}={"Renda"\"Abono";ARRAYFORMULA(OFFSET(OutroBeneficioPago1;1;0;COUNTA(CompetenciaIndices)-1;1)+OFFSET(OutroBeneficioPago2;1;0;COUNTA(CompetenciaIndices)-1;1)+OFFSET(OutroBeneficioPago3;1;0;COUNTA(CompetenciaIndices)-1;1)+OFFSET(OutroBeneficioPago4;1;0;COUNTA(CompetenciaIndices)-1;1)+OFFSET(OutroBeneficioPago5;1;0;COUNTA(CompetenciaIndices)-1;1))\ARRAYFORMULA(OFFSET(OutroBeneficioPago1;1;1;COUNTA(CompetenciaIndices)-1;1)+OFFSET(OutroBeneficioPago2;1;1;COUNTA(CompetenciaIndices)-1;1)+OFFSET(OutroBeneficioPago3;1;1;COUNTA(CompetenciaIndices)-1;1)+OFFSET(OutroBeneficioPago4;1;1;COUNTA(CompetenciaIndices)-1;1)+OFFSET(OutroBeneficioPago5;1;1;COUNTA(CompetenciaIndices)-1;1))}{% endhighlight %}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **DescontosOutrosObservacoes** `N:N`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -289,7 +314,7 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosOutrosRendaPercentual** `H:H`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosOutrosRendaPercentual** `J:J`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -301,7 +326,7 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosOutrosRendaValor** `I:I`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosOutrosRendaValor** `K:K`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -314,7 +339,7 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosRendaExcluida** `F:F`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosRendaExcluida** `H:H`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -326,7 +351,7 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosTotalAbonoPercentual** `Z:Z`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosTotalAbonoPercentual** `AB:AB`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(CompetenciaIndices)=1;"Perc. Abono";OFFSET(DescontosOutrosAbonoPercentual;4;0;ROWS(CompetenciaIndices))+0)){% endhighlight %}
 
 
@@ -340,8 +365,8 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosTotalAbonoValor** `X:X`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(CompetenciaIndices)=1;"Valor Abono";OFFSET(DescontosNB1Abono;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosNB2Abono;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosNB3Abono;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosNB4Abono;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosNB5Abono;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosBeneficioPagoAbono;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosOutrosAbonoValor;4;0;ROWS(CompetenciaIndices)))){% endhighlight %}
+##### **DescontosTotalAbonoValor** `Z:Z`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(CompetenciaIndices)=1;"Valor Abono";OFFSET(DescontosNB1Abono;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosNB2Abono;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosNB3Abono;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosNB4Abono;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosNB5Abono;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosBeneficioRevisadoAbono;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosOutrosBeneficiosAbono;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosOutrosAbonoValor;4;0;ROWS(CompetenciaIndices)))){% endhighlight %}
 
 
 ~~~
@@ -354,7 +379,7 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosTotalRendaPercentual** `Y:Y`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontosTotalRendaPercentual** `AA:AA`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(CompetenciaIndices)=1;"Perc. Renda";OFFSET(DescontosRendaExcluida;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosConsignacao;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosOutrosRendaPercentual;4;0;ROWS(CompetenciaIndices)))){% endhighlight %}
 
 
@@ -368,8 +393,8 @@ Renda mensal recebida por benefício inacumulável
 
 * * *
 
-##### **DescontosTotalRendaValor** `W:W`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(CompetenciaIndices)=1;"Valor Renda";OFFSET(DescontosNB1Renda;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosNB2Renda;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosNB3Renda;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosNB4Renda;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosNB5Renda;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosBeneficioPagoRenda;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosOutrosRendaValor;4;0;ROWS(CompetenciaIndices)))){% endhighlight %}
+##### **DescontosTotalRendaValor** `Y:Y`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(CompetenciaIndices)=1;"Valor Renda";OFFSET(DescontosNB1Renda;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosNB2Renda;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosNB3Renda;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosNB4Renda;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosNB5Renda;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosBeneficioRevisadoRenda;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosOutrosBeneficiosRenda;4;0;ROWS(CompetenciaIndices))+OFFSET(DescontosOutrosRendaValor;4;0;ROWS(CompetenciaIndices)))){% endhighlight %}
 
 
 ~~~

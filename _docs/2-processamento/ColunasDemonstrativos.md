@@ -5,7 +5,7 @@ order: 2
 ---
 
 ##### **DemonstrativoAbono** `B:B`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoAbono)=1;"Linhas Abono";IF(ROW(DemonstrativoAbono)<=TotalCompetencias+1;IF(Competencia<(EOMONTH(MarcoPrescricional;-1)+1);FALSE();LinhasAbono>0);""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(DemonstrativoAbono)=1;"Linhas Abono";IF(ROW(DemonstrativoAbono)<=TotalCompetencias+1;IF(Competencia<(EOMONTH(MarcoPrescricional;-1)+1);FALSE();IF(LinhasAbono>0;TRUE();IF(DescontoAbono>0;TRUE();FALSE())));""))){% endhighlight %}
 
 
 ~~~
