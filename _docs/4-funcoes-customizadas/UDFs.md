@@ -191,6 +191,41 @@ function jef_CONT_NUM_POR_LINHA(intervalo) {
 */
 function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginario, RMIDerivado, DCBDerivado, indiceReposicaoTeto, equivalenciaSalarial, calcularAbono, dataAtualizacao, tabelaReajuste) {
   
+  var Utilidades = (function(utils) {
+    
+    // https://toddmotto.com/understanding-javascript-types-and-reliable-type-checking/
+    utils.isDate = function(elem) {
+      return Object.prototype.toString.call(elem).slice(8, -1) === 'Date';
+    };
+    
+    utils.isNumber = function(elem) {
+      return Object.prototype.toString.call(elem).slice(8, -1) === 'Number';
+    };
+    
+    utils.primeiroDiaDoMes = function(d, m) {
+      m = utils.isNumber(m) ? m : 0;
+      var ano = d.getUTCFullYear();
+      var mes = d.getUTCMonth(); 
+      var dia = 1; 
+      return new Date(ano, mes + m, dia);
+    };
+    
+    utils.ultimoDiaDoMes = function(d, m) {
+      m = utils.isNumber(m) ? m : 0;
+      var ano = d.getUTCFullYear();
+      var mes = d.getUTCMonth() + 1; 
+      var dia = 0; 
+      return new Date(ano, mes + m, dia);
+    };  
+    
+    utils.dataDifMeses = function(inicial, final) {
+      return (final.getMonth() - inicial.getMonth()) + ((final.getFullYear() - inicial.getFullYear()) * 12);
+    };
+    
+    return utils;
+    
+  })(Utilidades || Object.create(null));
+
   /*
   *
   * BLOCO DE VALIDAÇÃO
@@ -255,18 +290,25 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
   * porque foi a partir de 01/01/1992 que deixou de vigorar a equivalência salarial
   **/
   var dataInicialDiferencas = aplicarArt58 ? new Date(1991, 11, 1) : new Date(DIBOriginario.getTime());
-
   var dataFinalDiferencas = temDerivado 
   ? Utilidades.isDate(DCBDerivado) ? DCBDerivado : dataAtualizacao
   : Utilidades.isDate(DCBOriginario) ? DCBOriginario : dataAtualizacao;
   
   var competenciaInicial = Utilidades.primeiroDiaDoMes(dataInicialDiferencas, 0);
   var competenciaFinal = Utilidades.primeiroDiaDoMes(dataFinalDiferencas, 0);
+  var totalCompetencias = Utilidades.dataDifMeses(competenciaInicial, competenciaFinal) + 1;
   
-  var proporcaoInicial = Utilidades.calcularProporcaoInicial(dataInicialDiferencas, dataFinalDiferencas);
-  var proporcaoFinal = Utilidades.calcularProporcaoFinal(dataInicialDiferencas, dataFinalDiferencas);
+  var proporcaoInicial = (totalCompetencias === 1)
+  ? ((Math.min(30, dataFinalDiferencas.getDate()) - Math.min(dataInicialDiferencas.getDate())) + 1) / 30
+  : Math.max(1, 30 - (dataInicialDiferencas.getDate() - 1)) / 30;
   
-  calcularAbono = calcularAbono && Utilidades.abonoMaior15Dias(dataInicialDiferencas, dataFinalDiferencas);
+  var proporcaoFinal = (totalCompetencias === 1)
+  ? ((Math.min(30, dataFinalDiferencas.getDate()) - Math.min(30, dataInicialDiferencas.getDate())) + 1) / 30
+  : dataFinalDiferencas.getMonth() === 1 && dataFinalDiferencas.getDate() > 27 ? 1 : Math.min(30, dataFinalDiferencas.getDate())/ 30;
+  
+  var abonoMaior15Dias = (totalCompetencias === 1) ? dataFinalDiferencas.getDate() - dataInicialDiferencas.getDate() + 1 >= 15 : true;
+  
+  calcularAbono = calcularAbono && abonoMaior15Dias;
   
   if (calcularAbono) {
     
@@ -282,16 +324,24 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
     } else {
       var ultimaCompetenciaAbono = null;
     }
+
+    function calcularProporcaoAbono(dataInicial, dataFinal) {
+      var totalCompetencias = Utilidades.dataDifMeses(dataInicial, dataFinal) + 1;
+      var subtrairCompetenciaInicial = dataInicial.getDate() > 16;
+      var subtrairCompetenciaFinal = dataFinal.getDate() < 15;
+      var competenciasEfetivas = totalCompetencias - (subtrairCompetenciaInicial ? 1 : 0) - (subtrairCompetenciaFinal ? 1 : 0);
+      return competenciasEfetivas / 12;
+    }
     
     if (primeiroAno === ultimoAno) {
       var primeiraCompetenciaAbono = ultimaCompetenciaAbono;
       var proporcaoPrimeiroAbono = 0;
-      var proporcaoUltimoAbono = Utilidades.calcularProporcaoAbono(dataInicialDiferencas, ultimaCompetenciaAbono);
+      var proporcaoUltimoAbono = calcularProporcaoAbono(dataInicialDiferencas, ultimaCompetenciaAbono);
     } else {
       var primeiraCompetenciaAbono = new Date(primeiroAno, 11, 1);
-      var proporcaoPrimeiroAbono = Utilidades.calcularProporcaoAbono(dataInicialDiferencas, new Date(primeiroAno, 11, 31));
+      var proporcaoPrimeiroAbono = calcularProporcaoAbono(dataInicialDiferencas, new Date(primeiroAno, 11, 31));
       if (Utilidades.isDate(ultimaCompetenciaAbono)) {
-        var proporcaoUltimoAbono = Utilidades.calcularProporcaoAbono(new Date(ultimoAno, 0, 1), ultimaCompetenciaAbono);
+        var proporcaoUltimoAbono = calcularProporcaoAbono(new Date(ultimoAno, 0, 1), ultimaCompetenciaAbono);
       } else {
         var proporcaoUltimoAbono = 0;
       }
@@ -333,11 +383,11 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
         
         if (competencia.valueOf() === primeiraDataBase.valueOf() && !aplicarArt58) {
           
-          var renda = Utilidades.arredondarParaBaixo(RMA, indiceProporcional * indiceReposicaoTeto);
+          var renda = parseFloat(RMA * indiceProporcional * indiceReposicaoTeto).toString().replace(/(\d*\.\d{2})(\d*.)/, '$1');
           
         } else {
           
-          var renda = Utilidades.arredondarParaBaixo(RMA, indiceIntegral);
+          var renda = parseFloat(RMA * indiceIntegral).toString().replace(/(\d*\.\d{2})(\d*.)/, '$1');
           
         }
         
@@ -404,6 +454,29 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
 
 
 function testarCalculoRMA() {
-  Utilidades.testarCalculoRMA();
+  try {
+    var planilha = SpreadsheetApp.getActiveSpreadsheet();
+    var pagina = planilha.getSheetByName('BeneficiosPagos');
+    var DIBOriginario = pagina.getRange('H3').getValue();
+    var RMIOriginario = pagina.getRange('H4').getValue();
+    var DCBOriginario = pagina.getRange('H5').getValue();
+    var RMIDerivado = pagina.getRange('H7').getValue();
+    var DCBDerivado = pagina.getRange('H8').getValue();
+    var indiceReposicao = pagina.getRange('H10').getValue();
+    var equivalencia = pagina.getRange('H11').getValue(); 
+    var abono = true;
+    var dataAtualizacao = planilha.getRangeByName('DataAtualizacao').getValue();
+    var tabela = pagina.getRange('A13:F13').offset(0, 0, 636).getValues();
+    try {
+      var resultado = jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario,RMIOriginario,DCBOriginario,RMIDerivado,DCBDerivado, indiceReposicao, equivalencia, abono, dataAtualizacao, tabela);
+      Logger.log(resultado)
+    } catch (e) {
+      Logger.log(e)
+    }
+    
+  } catch (e) {
+    Logger.log(e.message)
+    Logger.log(e.stack)
+  }
 }
 {% endhighlight %}

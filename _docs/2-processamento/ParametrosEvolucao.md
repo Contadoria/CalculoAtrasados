@@ -73,10 +73,6 @@ mm"/"yyyy
 {% highlight erlang %}=DATEDIF(DataInicioDiferencas;DataFinalDiferencas;"M")+1{% endhighlight %}
 
 
-~~~
-0.###############
-~~~
-
 
 > Número de meses (competências)  entre a data de início das diferenças (DataInicioDiferencas) e final das diferenças (DataFinalDiferencas)
 
@@ -776,10 +772,6 @@ dd"/"mm"/"yyyy
 {% highlight erlang %}=DATEDIF(DataInicioDiferencas;DataFinalDiferencas;"M")+1{% endhighlight %}
 
 
-~~~
-0.###############
-~~~
-
 
 > Número de meses (competências)  entre a data de início das diferenças (DataInicioDiferencas) e final das diferenças (DataFinalDiferencas)
 
@@ -801,10 +793,6 @@ dd"/"mm"/"yyyy
 ##### **TotalCompetenciasJuros** `B6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=DATEDIF(Citacao;DataAtualizacao;"M")+1{% endhighlight %}
 
-
-~~~
-0.###############
-~~~
 
 
 > Total de meses entre data da citação e data da atualização
