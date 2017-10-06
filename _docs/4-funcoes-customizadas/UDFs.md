@@ -316,13 +316,13 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
     var ultimoAno = dataFinalDiferencas.getFullYear();
     
     if (temDerivado && Utilidades.isDate(DCBDerivado)) {
-      var ultimaCompetenciaAbono = new Date(DCBDerivado.getTime());
+      var dataUltimoAbono = new Date(DCBDerivado.getTime());
     } else if (!temDerivado && Utilidades.isDate(DCBOriginario)) {
-      var ultimaCompetenciaAbono = new Date(DCBOriginario.getTime());
+      var dataUltimoAbono = new Date(DCBOriginario.getTime());
     } else if (dataFinalDiferencas.getMonth === 11 || primeiroAno === ultimoAno) {
-      var ultimaCompetenciaAbono = new Date(dataFinalDiferencas.getTime);
+      var dataUltimoAbono = new Date(dataFinalDiferencas.getTime);
     } else {
-      var ultimaCompetenciaAbono = null;
+      var dataUltimoAbono = null;
     }
 
     function calcularProporcaoAbono(dataInicial, dataFinal) {
@@ -334,16 +334,17 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
     }
     
     if (primeiroAno === ultimoAno) {
-      var primeiraCompetenciaAbono = ultimaCompetenciaAbono;
+      var dataPrimeiroAbono = dataUltimoAbono;
       var proporcaoPrimeiroAbono = 0;
-      var proporcaoUltimoAbono = calcularProporcaoAbono(dataInicialDiferencas, ultimaCompetenciaAbono);
+      var proporcaoUltimoAbono = calcularProporcaoAbono(dataInicialDiferencas, dataUltimoAbono);
     } else {
-      var primeiraCompetenciaAbono = new Date(primeiroAno, 11, 1);
+      var dataPrimeiroAbono = new Date(primeiroAno, 11, 1);
       var proporcaoPrimeiroAbono = calcularProporcaoAbono(dataInicialDiferencas, new Date(primeiroAno, 11, 31));
-      if (Utilidades.isDate(ultimaCompetenciaAbono)) {
-        var proporcaoUltimoAbono = calcularProporcaoAbono(new Date(ultimoAno, 0, 1), ultimaCompetenciaAbono);
+      if (Utilidades.isDate(dataUltimoAbono)) {
+        var proporcaoUltimoAbono = calcularProporcaoAbono(new Date(ultimoAno, 0, 1), dataUltimoAbono);
       } else {
         var proporcaoUltimoAbono = 0;
+        
       }
     }
   }
@@ -420,12 +421,12 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
         }
       }
       
-      var calcularAbonoNaCompetencia = (competencia.getMonth() === 11) || (Utilidades.isDate(ultimaCompetenciaAbono) && competencia.valueOf() === Utilidades.primeiroDiaDoMes(ultimaCompetenciaAbono, 0).valueOf());
+      var calcularAbonoNaCompetencia = (competencia.getMonth() === 11) || (Utilidades.isDate(dataUltimoAbono) && competencia.valueOf() === Utilidades.primeiroDiaDoMes(dataUltimoAbono, 0).valueOf());
       
       if (calcularAbono && calcularAbonoNaCompetencia) {
-        if (Utilidades.isDate(ultimaCompetenciaAbono) && competencia.valueOf() === ultimaCompetenciaAbono.valueOf()) {
+        if (Utilidades.isDate(dataUltimoAbono) && competencia.valueOf() === Utilidades.primeiroDiaDoMes(dataUltimoAbono).valueOf()) {
           var abono = renda * proporcaoUltimoAbono;
-        } else if (competencia.valueOf() === primeiraCompetenciaAbono.valueOf()) {
+        } else if (competencia.valueOf() === Utilidades.primeiroDiaDoMes(dataPrimeiroAbono).valueOf()) {
           var abono = renda * proporcaoPrimeiroAbono;
         } else {
           var abono = renda;
