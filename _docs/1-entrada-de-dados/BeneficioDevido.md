@@ -202,7 +202,7 @@ dd/MM/yyyy
 * * *
 
 ##### **EquivalenciaArt58** `I14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(ISNUMBER(EquivalenciaArt58Modificada);EquivalenciaArt58Modificada;IF(ISNUMBER(RMIArt58);RMIArt58/INDEX(SalarioMinimo;MATCH(EOMONTH(DIBArt58;-1)+1;CompetenciaIndices;0));"")){% endhighlight %}
+{% highlight erlang %}=IF(ISNUMBER(EquivalenciaArt58Modificada);EquivalenciaArt58Modificada;IF(ISNUMBER(RMIArt58);ROUNDDOWN(RMIArt58/INDEX(SalarioMinimo;MATCH(EOMONTH(DIBArt58;-1)+1;CompetenciaIndices;0));2);"")){% endhighlight %}
 
 
 ~~~
@@ -211,6 +211,8 @@ dd/MM/yyyy
 
 
 > Equivalência correspondente à divisão da renda mensal inicial pelo valor do salário-mínimo na data de início do benefício
+
+**17/10/2017**: Introduzido ARRED.PARA.BAIXO, com duas casas decimais, para que a precisão seja a mesma aplicada na fórmula dos benefícios pagos. 
 
 * * *
 

@@ -106,7 +106,7 @@ mm/yyyy
 * * *
 
 ##### **FatorReajuste** `N:N`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(FatorReajuste)=1;"Fator Reajuste";IF(ROW(FatorReajuste)<=TotalCompetencias+1;IF(ISNUMBER(FatorReajusteModificado);FatorReajusteModificado;IF(Reajustar;ReajusteArt58*ReajusteLei8870*ReajusteLei8880*IndicesReajuste;1));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(FatorReajuste)=1;"Fator Reajuste";IF(ROW(FatorReajuste)<=TotalCompetencias+1;IF(ISNUMBER(FatorReajusteModificado);FatorReajusteModificado;IF(Reajustar;IF(ReajusteArt58*ReajusteLei8870*ReajusteLei8880*IndicesReajuste=0;1;ReajusteArt58*ReajusteLei8870*ReajusteLei8880*IndicesReajuste);1));""))){% endhighlight %}
 
 
 ~~~
@@ -115,6 +115,8 @@ mm/yyyy
 
 
 > Matriz correspondente aos fatores de reajuste do benefício a serem aplicados (observando artigo 58 do ADCT, artigo 26 da Lei 8.870/94 e artigo 21, §3º da Lei 8.880/94)
+
+**17/10/2017**: introduzida nova condição para o caso de reajuste, a fim de transformar os "zeros" em "uns". Sem essa condição, não estava sendo possível calcular benefícios sujeitos à aplicação do art. 58 do ADCT, que ficavam todos abaixo do mínimo em virtude da multiplicação por zero.
 
 * * *
 
@@ -598,6 +600,10 @@ de atualização mensais
 ##### **RevisaoArt58** `P:P`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(RevisaoArt58)=1;"Revisão Art. 58";IF(ROW(RevisaoArt58)<=TotalCompetencias+1;IF(ISNUMBER(RendaAtualArt58);IF(Competencia=(EOMONTH(DIBArt58;-1)+1);RMIArt58;IF(Competencia=DATE(1991;12;1);RendaAtualArt58;IF(Competencia<DATE(1991;12;1);0;0))));""))){% endhighlight %}
 
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
 
 
 > Matriz correspondente aos meses em que o benefício será recuperado pela equivalência salarial (dezembro/91)
