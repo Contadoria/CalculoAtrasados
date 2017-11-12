@@ -56,7 +56,7 @@ VALUE_IN_RANGE OpcoesReajuste!A:A
 
 
 ~~~
-d/m/yyyy
+dd/MM/yyyy
 ~~~
 
 

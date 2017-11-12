@@ -4,8 +4,8 @@ category: Entrada
 order: 2
 ---
 
-##### **CoeficienteDerivado** `I9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(ISNUMBER(SBModificado);IF(ISNUMBER(CoeficienteDerivadoModificado);CoeficienteDerivadoModificado;1);1){% endhighlight %}
+##### **CoeficienteDerivado** `I12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=IF(ISNUMBER(CoeficienteDerivadoModificado);CoeficienteDerivadoModificado;1){% endhighlight %}
 
 
 ~~~
@@ -17,7 +17,7 @@ order: 2
 
 * * *
 
-##### **CoeficienteDerivadoModificado** `J9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **CoeficienteDerivadoModificado** `J12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -29,8 +29,8 @@ order: 2
 
 * * *
 
-##### **CoeficienteOriginario** `I8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(ISNUMBER(SBModificado);IF(ISNUMBER(CoeficienteOriginarioModificado);CoeficienteOriginarioModificado;1);1){% endhighlight %}
+##### **CoeficienteOriginario** `I11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=IF(ISNUMBER(CoeficienteOriginarioModificado);CoeficienteOriginarioModificado;1){% endhighlight %}
 
 
 ~~~
@@ -42,7 +42,7 @@ order: 2
 
 * * *
 
-##### **CoeficienteOriginarioModificado** `J8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **CoeficienteOriginarioModificado** `J11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -54,7 +54,7 @@ order: 2
 
 * * *
 
-##### **DCBDerivado** `D20`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DCBDerivado** `D19`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -98,8 +98,8 @@ DATE_IS_VALID_DATE
 
 * * *
 
-##### **DIBArt58** `I12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(ISNUMBER(DIBArt58Modificada);DIBArt58Modificada;IF(AND(ISNUMBER(DIBDerivado);DIBDerivado<DATE(1988;10;5));DIBDerivado;IF(DIBOriginario<DATE(1988;10;5);DIBOriginario;""))){% endhighlight %}
+##### **DIBArt58** `I15`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=IF(ISNUMBER(DIBArt58Modificada);DIBArt58Modificada;IF(AND(TemDerivado;DIBDerivado<DATE(1988;10;5));DIBDerivado;IF(DIBOriginario<DATE(1988;10;5);DIBOriginario;""))){% endhighlight %}
 
 
 ~~~
@@ -111,7 +111,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **DIBArt58Modificada** `J12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DIBArt58Modificada** `J15`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -123,7 +123,8 @@ dd/MM/yyyy
 
 * * *
 
-##### **DIBDerivado** `D19`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DIBDerivado** `J5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=IF(TemDerivado;DCBOriginario+1;""){% endhighlight %}
 
 
 ~~~
@@ -151,8 +152,8 @@ DATE_IS_VALID_DATE
 
 * * *
 
-##### **DataFinalDiferencas** `I6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(ISNUMBER(DataFinalDiferencasModificada);DataFinalDiferencasModificada;IF(DIBDerivado;IF(ISNUMBER(DCBDerivado);DCBDerivado;EOMONTH(DataAtualizacao;-1));IF(ISNUMBER(DCBOriginario);DCBOriginario;EOMONTH(DataAtualizacao;-1)))){% endhighlight %}
+##### **DataFinalDiferencas** `I9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=IF(ISNUMBER(DataFinalDiferencasModificada);DataFinalDiferencasModificada;IF(TemDerivado;IF(ISNUMBER(DCBDerivado);DCBDerivado;EOMONTH(DataAtualizacao;-1));IF(ISNUMBER(DCBOriginario);DCBOriginario;EOMONTH(DataAtualizacao;-1)))){% endhighlight %}
 
 
 ~~~
@@ -164,7 +165,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **DataFinalDiferencasModificada** `J6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DataFinalDiferencasModificada** `J9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -176,7 +177,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **DataInicioDiferencas** `I5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DataInicioDiferencas** `I8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(DataInicioDiferencasModificada);DataInicioDiferencasModificada;IF(ISNUMBER(DIBOriginario);DIBOriginario)){% endhighlight %}
 
 
@@ -189,7 +190,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **DataInicioDiferencasModificada** `J5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DataInicioDiferencasModificada** `J8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -201,7 +202,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **EquivalenciaArt58** `I14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **EquivalenciaArt58** `I17`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(EquivalenciaArt58Modificada);EquivalenciaArt58Modificada;IF(ISNUMBER(RMIArt58);ROUNDDOWN(RMIArt58/INDEX(SalarioMinimo;MATCH(EOMONTH(DIBArt58;-1)+1;CompetenciaIndices;0));2);"")){% endhighlight %}
 
 
@@ -216,7 +217,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **EquivalenciaArt58Modificada** `J14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **EquivalenciaArt58Modificada** `J17`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -260,7 +261,7 @@ VALUE_IN_RANGE ListaBeneficios!A:A
 
 * * *
 
-##### **MarcoPrescricional** `I11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **MarcoPrescricional** `I14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(MarcoPrescricionalModificado);MarcoPrescricionalModificado;IF(ISNUMBER(Protocolo);EDATE(Protocolo;-60);)){% endhighlight %}
 
 
@@ -273,7 +274,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **MarcoPrescricionalModificado** `J11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **MarcoPrescricionalModificado** `J14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -321,7 +322,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **RMIArt58** `I13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RMIArt58** `I16`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(RMIArt58Modificada);RMIArt58Modificada;IF(DIBOriginario<DATE(1988;10;5);RMIInformada;"")){% endhighlight %}
 
 
@@ -334,7 +335,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **RMIArt58Modificada** `J13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RMIArt58Modificada** `J16`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -358,7 +359,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **RendaInformada** `I10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RendaInformada** `I13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(RendaInformadaModificada);RendaInformadaModificada;IF(ISNUMBER(RMDDA);RMDDA;RMIInformada)){% endhighlight %}
 
 
@@ -371,7 +372,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **RendaInformadaModificada** `J10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RendaInformadaModificada** `J13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -383,7 +384,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **SalarioBeneficio** `I7`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **SalarioBeneficio** `I10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(SalarioBeneficioModificado);SalarioBeneficioModificado;IF(ISNUMBER(RMDDA);RMDDA;RMIInformada)){% endhighlight %}
 
 
@@ -396,7 +397,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **SalarioBeneficioModificado** `J7`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **SalarioBeneficioModificado** `J10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -405,3 +406,15 @@ dd/MM/yyyy
 
 
 > Valor do salário-de-benefício informado
+
+* * *
+
+##### **TemDerivado** `J4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=AND(ISNUMBER(DCBOriginario);ISNUMBER(EspecieDerivado)){% endhighlight %}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+

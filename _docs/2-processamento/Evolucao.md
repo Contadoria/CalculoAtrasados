@@ -18,7 +18,7 @@ order: 0
 * * *
 
 ##### **Coeficiente** `S:S`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Coeficiente)=1;"Coeficiente";IF(ROW(Coeficiente)<=TotalCompetencias+1;IF(ISNUMBER(CoeficienteModificado);CoeficienteModificado;IF(ISNUMBER(DIBDerivado);IF(Competencia>=EOMONTH(DIBDerivado;-1)+1;CoeficienteDerivado;CoeficienteOriginario);CoeficienteOriginario));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Coeficiente)=1;"Coeficiente";IF(ROW(Coeficiente)<=TotalCompetencias+1;IF(ISNUMBER(CoeficienteModificado);CoeficienteModificado;IF(TemDerivado;IF(Competencia>=EOMONTH(DIBDerivado;-1)+1;CoeficienteDerivado;CoeficienteOriginario);CoeficienteOriginario));""))){% endhighlight %}
 
 
 ~~~
@@ -263,7 +263,7 @@ de atualização mensais
 * * *
 
 ##### **JurosTaxaMensal** `AO:AO`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(JurosTaxaMensal)=1;"Taxa de Juros";IF(ROW(JurosTaxaMensal)<=TotalCompetencias+1;IF(ISNUMBER(JurosTaxaMensalModificada);JurosTaxaMensalModificada;(ROW(JurosTaxaMensal)>=LinhaCitacao)*IF(MID(CriterioJuros;1;1)="3";0,01;IF(MID(CriterioJuros;1;1)="2";0,005;{"";OFFSET(Juros;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)})));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(JurosTaxaMensal)=1;"Taxa de Juros";IF(ROW(JurosTaxaMensal)<=TotalCompetencias+1;IF(ISNUMBER(JurosTaxaMensalModificada);JurosTaxaMensalModificada;(ROW(JurosTaxaMensal)>=LinhaCitacao)*(ROW(JurosTaxaMensal)<LinhaAtualizacao)*IF(MID(CriterioJuros;1;1)="3";0,01;IF(MID(CriterioJuros;1;1)="2";0,005;{"";OFFSET(Juros;LinhaInicialTabelaIndices;0;TotalCompetencias+1)})));""))){% endhighlight %}
 
 
 ~~~
@@ -271,7 +271,9 @@ de atualização mensais
 ~~~
 
 
-> Matriz correspondente ao valor dos juros aplicados mês a mês de acordo com a opção escolhida
+> Matriz correspondente ao valor dos juros aplicados mês a mês de acordo com a opção escolhida.
+Busca da taxa de juros referente ao mês posterior à competência conforme Manual de Cálculos - item 4.3.2 (alterado em 23/10/2017)
+Percentual calculado apenas até o mês anterior à data da atualização (alterado em 08/11/2017)
 
 * * *
 
@@ -302,7 +304,7 @@ de atualização mensais
 * * *
 
 ##### **Piso** `C:C`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Piso)=1;"Piso";IF(ROW(Piso)<=TotalCompetencias+1;IF(ISNUMBER(PisoModificado);PisoModificado;{"";OFFSET(SalarioMinimo;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)});""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Piso)=1;"Piso";IF(ROW(Piso)<=TotalCompetencias+1;IF(ISNUMBER(PisoModificado);PisoModificado;{"";OFFSET(SalarioMinimo;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)*IF(EspecieOriginario=36;0,5;1)});""))){% endhighlight %}
 
 
 ~~~
@@ -311,6 +313,7 @@ de atualização mensais
 
 
 > Matriz correspondente aos valores dos pisos a serem considerados mês a mês
+Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
@@ -533,7 +536,7 @@ de atualização mensais
 * * *
 
 ##### **RendaApurada** `U:U`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(RendaApurada)=1;"Renda Apurada";IF(ROW(RendaApurada)<=TotalCompetencias+1;SalarioBeneficioLimitado*Coeficiente;""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(RendaApurada)=1;"Renda Apurada";IF(ROW(RendaApurada)<=TotalCompetencias+1;ROUNDDOWN(SalarioBeneficioLimitado*Coeficiente;2);""))){% endhighlight %}
 
 
 ~~~
@@ -676,7 +679,7 @@ de atualização mensais
 * * *
 
 ##### **TotalAbonoAlcada** `BB:BB`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalAbonoAlcada)=1;"Total Abono Alçada";IF(ROW(TotalAbonoAlcada)<=TotalCompetencias+1;ROUND(PrincipalAbono*FatorAtualizacaoAlcada;2);""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalAbonoAlcada)=1;"Total Abono Alçada";IF(ROW(TotalAbonoAlcada)<=TotalCompetencias+1;IF(FatorAtualizacaoAlcada<1;ROUND(PrincipalAbono;2);ROUND(PrincipalAbono*FatorAtualizacaoAlcada;2));""))){% endhighlight %}
 
 
 ~~~
@@ -684,7 +687,7 @@ de atualização mensais
 ~~~
 
 
-
+> Incluída restrição referente à redução do valor nominal (Alterado em 08/11/2017)
 
 * * *
 
@@ -754,7 +757,7 @@ de atualização mensais
 * * *
 
 ##### **TotalRendaAlcada** `AZ:AZ`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalRendaAlcada)=1;"Total Renda Alçada";IF(ROW(TotalRendaAlcada)<=TotalCompetencias+1;ROUND(PrincipalRenda*FatorAtualizacaoAlcada;2);""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalRendaAlcada)=1;"Total Renda Alçada";IF(ROW(TotalRendaAlcada)<=TotalCompetencias+1;IF(ROW(FatorAtualizacaoAlcada)>LinhaProtocolo-1;0;IF(FatorAtualizacaoAlcada<1;ROUND(PrincipalRenda;2);ROUND(PrincipalRenda*FatorAtualizacaoAlcada;2)));""))){% endhighlight %}
 
 
 ~~~
@@ -762,7 +765,7 @@ de atualização mensais
 ~~~
 
 
-
+> Incluída restrição referente à redução do valor nominal (Alterado em 08/11/2017)
 
 * * *
 
