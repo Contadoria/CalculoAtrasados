@@ -13,9 +13,8 @@ Este repositório hospeda o site com a documentação da planilha *CalculoAtrasa
 ### Como usar
 
 1. Peça para ser incluído no grupo de usuários.
-2. Vá até a pasta **<a href="https://drive.google.com/drive/folders/0B2B1B7RRK5HmS0I2clRTTTJiMXc" target="_blank">Distribuição</a>**.
-3. Abra a planilha.
-4. Selecione `Arquivo > Fazer uma cópia...`
+2. Instale o complemento **<a href="https://script.google.com/macros/s/AKfycbxE5JrFH8h-IK36NZ-8hFtpdUH03Pe9Zs0l2Ysi4O80TnJjE3E/exec" target="_blank">Planilhas da Contadoria</a>**.
+3. O tutorial para criação de uma nova planilha para encontra-se neste **<a href="https://contadoria.github.io/Tutoriais/planilha-tc/planilha-rmi/planilha-atrasados/Documento-criando-nova-planilha/" target="_blank">link</a>**.
 
 ### Créditos
 
