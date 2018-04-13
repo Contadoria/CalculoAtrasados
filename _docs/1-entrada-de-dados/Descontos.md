@@ -1,7 +1,7 @@
 ---
 title: Descontos
 category: Entrada
-order: 5
+order: 6
 ---
 
 ##### **CompetenciaDescontos** `C:C`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}

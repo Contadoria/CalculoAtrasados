@@ -1,7 +1,7 @@
 ---
 title: ParametrosDemonstrativos
 category: Processamento
-order: 3
+order: 2
 ---
 
 ##### **DadosObrigatoriosFaltantes** `A45`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}

@@ -1,7 +1,7 @@
 ---
 title: BeneficioDevido
 category: Entrada
-order: 2
+order: 3
 ---
 
 ##### **CoeficienteDerivado** `I12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
@@ -177,6 +177,18 @@ dd/MM/yyyy
 
 * * *
 
+##### **DataInicioAdicional25** `D22`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
 ##### **DataInicioDiferencas** `I8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(DataInicioDiferencasModificada);DataInicioDiferencasModificada;IF(ISNUMBER(DIBOriginario);DIBOriginario)){% endhighlight %}
 
@@ -245,6 +257,19 @@ VALUE_IN_RANGE ListaBeneficios!A:A
 
 * * *
 
+##### **EspecieDerivadoDescricao** `E18`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=IFERROR(INDEX(ListaBeneficios!A:B;MATCH(EspecieDerivado;ListaBeneficios!A:A;0);2);""){% endhighlight %}
+
+
+~~~
+0.###############
+~~~
+
+
+
+
+* * *
+
 ##### **EspecieOriginario** `D6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
@@ -258,6 +283,19 @@ VALUE_IN_RANGE ListaBeneficios!A:A
 ~~~
 
 > Código referente à espécie do benefício originário
+
+* * *
+
+##### **EspecieOriginarioDescricao** `E6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=IFERROR(INDEX(ListaBeneficios!A:B;MATCH(EspecieOriginario;ListaBeneficios!A:A;0);2);""){% endhighlight %}
+
+
+~~~
+0.###############
+~~~
+
+
+
 
 * * *
 

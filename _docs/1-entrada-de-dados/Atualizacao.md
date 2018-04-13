@@ -1,7 +1,7 @@
 ---
 title: Atualizacao
 category: Entrada
-order: 1
+order: 2
 ---
 
 ##### **CriterioCorrecao** `D9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
@@ -20,7 +20,7 @@ VALUE_IN_RANGE OpcoesCorrecao!A:A
 
 * * *
 
-##### **CriterioJuros** `D10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **CriterioJuros** `D11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -52,7 +52,8 @@ VALUE_IN_RANGE OpcoesReajuste!A:A
 
 * * *
 
-##### **DataAtualizacao** `D11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DataAtualizacao** `D13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=IF(ISNUMBER(DataAtualizacaoInformada);IF(VLOOKUP(EOMONTH(DataAtualizacaoInformada;-2)+1;{CompetenciaIndices\IF(MID(CriterioCorrecao;1;1)="1";IndiceAtualizacao;IndiceRes134)};2)<>0;DataAtualizacaoInformada;EOMONTH(DataAtualizacaoInformada;-2)+1);""){% endhighlight %}
 
 
 ~~~
@@ -65,6 +66,34 @@ DATE_IS_VALID_DATE
 ~~~
 
 > Indica a data de atualização do cálculo.
+
+* * *
+
+##### **DataAtualizacaoInformada** `D12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+~~~
+DATE_IS_VALID_DATE 
+~~~
+
+
+
+* * *
+
+##### **DataInicioIPCAE** `D10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+mm"/"yyyy
+~~~
+
+
+
 
 * * *
 
@@ -176,7 +205,7 @@ DATE_IS_VALID_DATE
 * * *
 
 ##### **HonorariosContratuaisPercentual** `I11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(ISNUMBER(HonorariosContratuaisPercentualModificado);HonorariosContratuaisPercentualModificado;0){% endhighlight %}
+{% highlight erlang %}=IF(ISNUMBER(HonorariosContratuaisPercentualModificado);HonorariosContratuaisPercentualModificado%;0){% endhighlight %}
 
 
 ~~~
@@ -193,7 +222,7 @@ DATE_IS_VALID_DATE
 
 
 ~~~
-0.00%
+#,##0.00
 ~~~
 
 
@@ -202,7 +231,7 @@ DATE_IS_VALID_DATE
 * * *
 
 ##### **HonorariosSucumbenciaisBaseIncidencia** `I7`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(ISNUMBER(HonorariosSucumbenciaisBaseIncidenciaModificada);HonorariosSucumbenciaisBaseIncidenciaModificada;SUMIFS(TotalMes;Competencia;"<"&EOMONTH(HonorariosSucumbenciaisDataApuracao;-1)+1)){% endhighlight %}
+{% highlight erlang %}=IF(ISNUMBER(HonorariosSucumbenciaisBaseIncidenciaModificada);HonorariosSucumbenciaisBaseIncidenciaModificada;SUMIFS(IF(PercentualAcordo;TotalMesAcordo;IF(RenunciaOpcao="Sim";TotalMesAposRenuncia;TotalMes));Competencia;"<"&EOMONTH(HonorariosSucumbenciaisDataApuracao;-1)+1)){% endhighlight %}
 
 
 ~~~
@@ -283,7 +312,7 @@ DATE_IS_VALID_DATE
 * * *
 
 ##### **HonorariosSucumbenciaisPercentual** `I5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(ISNUMBER(HonorariosSucumbenciaisPercentualModificado);HonorariosSucumbenciaisPercentualModificado;0){% endhighlight %}
+{% highlight erlang %}=IF(ISNUMBER(HonorariosSucumbenciaisPercentualModificado);HonorariosSucumbenciaisPercentualModificado%;0){% endhighlight %}
 
 
 ~~~
@@ -299,7 +328,7 @@ DATE_IS_VALID_DATE
 
 
 ~~~
-0.00%
+#,##0.00
 ~~~
 
 
@@ -316,3 +345,14 @@ DATE_IS_VALID_DATE
 
 
 > Indica o índice de limitação ao teto do salário de benefício, a ser reposto no termo da Lei nº 8.870/94 ou Lei nº 8.880/94.
+
+* * *
+
+##### **PercentualAcordo** `D17`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+0.00%
+~~~
+
+

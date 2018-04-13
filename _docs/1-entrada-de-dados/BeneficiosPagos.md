@@ -1,11 +1,11 @@
 ---
 title: BeneficiosPagos
 category: Entrada
-order: 3
+order: 4
 ---
 
 ##### **BeneficioRevisado** `H14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(MID(NaturezaAcao;1;1)="2";IF(AND(ISNUMBER(I3);ISNUMBER(I4);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(I3;I4;I6;I8;I9;I11;I12;I13<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)});{""\"";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(MID(NaturezaAcao;1;1)="2";IF(AND(ISNUMBER(DIBBeneficioRevisado);ISNUMBER(RMIBeneficioRevisado);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(DIBBeneficioRevisado;RMIBeneficioRevisado;DCBBeneficioRevisado;RMIBeneficioRevisadoDerivado;DCBBeneficioRevisadoDerivado;IndiceTetoBeneficioRevisado;EquivalenciaBeneficioRevisado;CalcularAbonoBeneficioRevisado<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)});{""\"";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
 
 
 ~~~
@@ -33,7 +33,7 @@ VALUE_IN_LIST Sim,Não
 
 * * *
 
-##### **CalcularAbonoOutroBeneficio1** `L13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **CalcularAbonoOutroBeneficio1** `O13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -49,7 +49,7 @@ VALUE_IN_LIST Sim,Não
 
 * * *
 
-##### **CalcularAbonoOutroBeneficio2** `O13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **CalcularAbonoOutroBeneficio10** `AP13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -65,7 +65,7 @@ VALUE_IN_LIST Sim,Não
 
 * * *
 
-##### **CalcularAbonoOutroBeneficio3** `R13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **CalcularAbonoOutroBeneficio2** `R13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -81,7 +81,7 @@ VALUE_IN_LIST Sim,Não
 
 * * *
 
-##### **CalcularAbonoOutroBeneficio4** `U13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **CalcularAbonoOutroBeneficio3** `U13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -97,7 +97,103 @@ VALUE_IN_LIST Sim,Não
 
 * * *
 
-##### **CalcularAbonoOutroBeneficio5** `X13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **CalcularAbonoOutroBeneficio4** `X13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+~~~
+VALUE_IN_LIST Sim,Não
+~~~
+
+
+
+* * *
+
+##### **CalcularAbonoOutroBeneficio5** `AA13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+~~~
+VALUE_IN_LIST Sim,Não
+~~~
+
+
+
+* * *
+
+##### **CalcularAbonoOutroBeneficio6** `AD13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+~~~
+VALUE_IN_LIST Sim,Não
+~~~
+
+
+
+* * *
+
+##### **CalcularAbonoOutroBeneficio7** `AG13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+~~~
+VALUE_IN_LIST Sim,Não
+~~~
+
+
+
+* * *
+
+##### **CalcularAbonoOutroBeneficio8** `AJ13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+~~~
+VALUE_IN_LIST Sim,Não
+~~~
+
+
+
+* * *
+
+##### **CalcularAbonoOutroBeneficio9** `AM13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+~~~
+VALUE_IN_LIST Sim,Não
+~~~
+
+
+
+* * *
+
+##### **CalcularAbonoTutela** `L13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -137,7 +233,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **DCBOutroBeneficio1** `L6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DCBDerivadoTutela** `L9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -149,7 +245,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **DCBOutroBeneficio2** `O6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DCBOutroBeneficio1** `O6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -161,7 +257,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **DCBOutroBeneficio3** `R6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DCBOutroBeneficio10** `AP6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -173,7 +269,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **DCBOutroBeneficio4** `U6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DCBOutroBeneficio2** `R6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -185,7 +281,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **DCBOutroBeneficio5** `X6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DCBOutroBeneficio3** `U6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -197,7 +293,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **DCBOutroBeneficioDerivado1** `L9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DCBOutroBeneficio4** `X6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -209,7 +305,19 @@ dd/MM/yyyy
 
 * * *
 
-##### **DCBOutroBeneficioDerivado2** `O9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DCBOutroBeneficio5** `AA6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/mm/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DCBOutroBeneficio6** `AD6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -221,7 +329,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **DCBOutroBeneficioDerivado3** `R9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DCBOutroBeneficio7** `AG6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -233,7 +341,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **DCBOutroBeneficioDerivado4** `U9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DCBOutroBeneficio8** `AJ6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -245,7 +353,139 @@ dd/MM/yyyy
 
 * * *
 
-##### **DCBOutroBeneficioDerivado5** `X9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DCBOutroBeneficio9** `AM6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DCBOutroBeneficioDerivado1** `O9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DCBOutroBeneficioDerivado10** `AP9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DCBOutroBeneficioDerivado2** `R9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DCBOutroBeneficioDerivado3** `U9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DCBOutroBeneficioDerivado4** `X9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DCBOutroBeneficioDerivado5** `AA9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DCBOutroBeneficioDerivado6** `AD9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DCBOutroBeneficioDerivado7** `AG9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DCBOutroBeneficioDerivado8** `AJ9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DCBOutroBeneficioDerivado9** `AM9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DCBTutela** `L6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -269,7 +509,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **DIBOutroBeneficio1** `L3`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DIBOutroBeneficio1** `O3`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -281,7 +521,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **DIBOutroBeneficio2** `O3`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DIBOutroBeneficio10** `AP3`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -293,7 +533,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **DIBOutroBeneficio3** `R3`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DIBOutroBeneficio2** `R3`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -305,7 +545,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **DIBOutroBeneficio4** `U3`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DIBOutroBeneficio3** `U3`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -317,7 +557,91 @@ dd/MM/yyyy
 
 * * *
 
-##### **DIBOutroBeneficio5** `X3`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DIBOutroBeneficio4** `X3`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DIBOutroBeneficio5** `AA3`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DIBOutroBeneficio6** `AD3`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DIBOutroBeneficio7** `AG3`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DIBOutroBeneficio8** `AJ3`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DIBOutroBeneficio9** `AM3`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DIBTutela** `L3`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DIPTutela** `L5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -341,7 +665,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **EquivalenciaOutroBeneficio1** `L12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **EquivalenciaOutroBeneficio1** `O12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -353,7 +677,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **EquivalenciaOutroBeneficio2** `O12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **EquivalenciaOutroBeneficio10** `AP12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -365,7 +689,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **EquivalenciaOutroBeneficio3** `R12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **EquivalenciaOutroBeneficio2** `R12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -377,7 +701,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **EquivalenciaOutroBeneficio4** `U12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **EquivalenciaOutroBeneficio3** `U12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -389,7 +713,79 @@ dd/MM/yyyy
 
 * * *
 
-##### **EquivalenciaOutroBeneficio5** `X12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **EquivalenciaOutroBeneficio4** `X12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00
+~~~
+
+
+
+
+* * *
+
+##### **EquivalenciaOutroBeneficio5** `AA12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00
+~~~
+
+
+
+
+* * *
+
+##### **EquivalenciaOutroBeneficio6** `AD12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00
+~~~
+
+
+
+
+* * *
+
+##### **EquivalenciaOutroBeneficio7** `AG12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00
+~~~
+
+
+
+
+* * *
+
+##### **EquivalenciaOutroBeneficio8** `AJ12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00
+~~~
+
+
+
+
+* * *
+
+##### **EquivalenciaOutroBeneficio9** `AM12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00
+~~~
+
+
+
+
+* * *
+
+##### **EquivalenciaTutela** `L12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -413,7 +809,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **IndiceTetoOutroBeneficio1** `L11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **IndiceTetoOutroBeneficio1** `O11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -425,7 +821,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **IndiceTetoOutroBeneficio2** `O11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **IndiceTetoOutroBeneficio10** `AP11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -437,7 +833,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **IndiceTetoOutroBeneficio3** `R11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **IndiceTetoOutroBeneficio2** `R11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -449,7 +845,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **IndiceTetoOutroBeneficio4** `U11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **IndiceTetoOutroBeneficio3** `U11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -461,7 +857,79 @@ dd/MM/yyyy
 
 * * *
 
-##### **IndiceTetoOutroBeneficio5** `X11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **IndiceTetoOutroBeneficio4** `X11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.0000
+~~~
+
+
+
+
+* * *
+
+##### **IndiceTetoOutroBeneficio5** `AA11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.0000
+~~~
+
+
+
+
+* * *
+
+##### **IndiceTetoOutroBeneficio6** `AD11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.0000
+~~~
+
+
+
+
+* * *
+
+##### **IndiceTetoOutroBeneficio7** `AG11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.0000
+~~~
+
+
+
+
+* * *
+
+##### **IndiceTetoOutroBeneficio8** `AJ11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.0000
+~~~
+
+
+
+
+* * *
+
+##### **IndiceTetoOutroBeneficio9** `AM11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.0000
+~~~
+
+
+
+
+* * *
+
+##### **IndiceTetoTutela** `L11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -474,7 +942,7 @@ dd/MM/yyyy
 * * *
 
 ##### **OutroBeneficioPago1** `N14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(O3);ISNUMBER(O4);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(O3;O4;O6;O8;O9;O11;O12;O13<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(DIBOutroBeneficio1);ISNUMBER(RMIOutroBeneficio1);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOutroBeneficio1;RMIOutroBeneficio1;DCBOutroBeneficio1;RMIOutroBeneficioDerivado1;DCBOutroBeneficioDerivado1;IndiceTetoOutroBeneficio1;EquivalenciaOutroBeneficio1;CalcularAbonoOutroBeneficio1<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
 
 
 ~~~
@@ -487,7 +955,7 @@ dd/MM/yyyy
 * * *
 
 ##### **OutroBeneficioPago10** `AO14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(AP3);ISNUMBER(AP4);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(AP3;AP4;AP6;AP8;AP9;AP11;AP12;AP13<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(DIBOutroBeneficio10);ISNUMBER(RMIOutroBeneficio10);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOutroBeneficio10;RMIOutroBeneficio10;DCBOutroBeneficio10;RMIOutroBeneficioDerivado10;DCBOutroBeneficioDerivado10;IndiceTetoOutroBeneficio10;EquivalenciaOutroBeneficio10;CalcularAbonoOutroBeneficio10<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
 
 
 ~~~
@@ -500,7 +968,7 @@ dd/MM/yyyy
 * * *
 
 ##### **OutroBeneficioPago2** `Q14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(R3);ISNUMBER(R4);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(R3;R4;R6;R8;R9;R11;R12;R13<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(DIBOutroBeneficio2);ISNUMBER(RMIOutroBeneficio2);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOutroBeneficio2;RMIOutroBeneficio2;DCBOutroBeneficio2;RMIOutroBeneficioDerivado2;DCBOutroBeneficioDerivado2;IndiceTetoOutroBeneficio2;EquivalenciaOutroBeneficio2;CalcularAbonoOutroBeneficio2<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
 
 
 ~~~
@@ -513,7 +981,7 @@ dd/MM/yyyy
 * * *
 
 ##### **OutroBeneficioPago3** `T14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(U3);ISNUMBER(U4);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(U3;U4;U6;U8;U9;U11;U12;U13<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(DIBOutroBeneficio3);ISNUMBER(RMIOutroBeneficio3);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOutroBeneficio3;RMIOutroBeneficio3;DCBOutroBeneficio3;RMIOutroBeneficioDerivado3;DCBOutroBeneficioDerivado3;IndiceTetoOutroBeneficio3;EquivalenciaOutroBeneficio3;CalcularAbonoOutroBeneficio3<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
 
 
 ~~~
@@ -526,7 +994,7 @@ dd/MM/yyyy
 * * *
 
 ##### **OutroBeneficioPago4** `W14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(X3);ISNUMBER(X4);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(X3;X4;X6;X8;X9;X11;X12;X13<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(DIBOutroBeneficio4);ISNUMBER(RMIOutroBeneficio4);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOutroBeneficio4;RMIOutroBeneficio4;DCBOutroBeneficio4;RMIOutroBeneficioDerivado4;DCBOutroBeneficioDerivado4;IndiceTetoOutroBeneficio4;EquivalenciaOutroBeneficio4;CalcularAbonoOutroBeneficio4<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
 
 
 ~~~
@@ -539,7 +1007,7 @@ dd/MM/yyyy
 * * *
 
 ##### **OutroBeneficioPago5** `Z14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(AA3);ISNUMBER(AA4);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(AA3;AA4;AA6;AA8;AA9;AA11;AA12;AA13<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(DIBOutroBeneficio5);ISNUMBER(RMIOutroBeneficio5);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOutroBeneficio5;RMIOutroBeneficio5;DCBOutroBeneficio5;RMIOutroBeneficioDerivado5;DCBOutroBeneficioDerivado5;IndiceTetoOutroBeneficio5;EquivalenciaOutroBeneficio5;CalcularAbonoOutroBeneficio5<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
 
 
 ~~~
@@ -552,7 +1020,7 @@ dd/MM/yyyy
 * * *
 
 ##### **OutroBeneficioPago6** `AC14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(AD3);ISNUMBER(AD4);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(AD3;AD4;AD6;AD8;AD9;AD11;AD12;AD13<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(DIBOutroBeneficio6);ISNUMBER(RMIOutroBeneficio6);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOutroBeneficio6;RMIOutroBeneficio6;DCBOutroBeneficio6;RMIOutroBeneficioDerivado6;DCBOutroBeneficioDerivado6;IndiceTetoOutroBeneficio6;EquivalenciaOutroBeneficio6;CalcularAbonoOutroBeneficio6<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
 
 
 ~~~
@@ -565,7 +1033,7 @@ dd/MM/yyyy
 * * *
 
 ##### **OutroBeneficioPago7** `AF14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(AG3);ISNUMBER(AG4);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(AG3;AG4;AG6;AG8;AG9;AG11;AG12;AG13<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(DIBOutroBeneficio7);ISNUMBER(RMIOutroBeneficio7);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOutroBeneficio7;RMIOutroBeneficio7;DCBOutroBeneficio7;RMIOutroBeneficioDerivado7;DCBOutroBeneficioDerivado7;IndiceTetoOutroBeneficio7;EquivalenciaOutroBeneficio7;CalcularAbonoOutroBeneficio7<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
 
 
 ~~~
@@ -578,7 +1046,7 @@ dd/MM/yyyy
 * * *
 
 ##### **OutroBeneficioPago8** `AI14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(AJ3);ISNUMBER(AJ4);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(AJ3;AJ4;AJ6;AJ8;AJ9;AJ11;AJ12;AJ13<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(DIBOutroBeneficio8);ISNUMBER(RMIOutroBeneficio8);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOutroBeneficio8;RMIOutroBeneficio8;DCBOutroBeneficio8;RMIOutroBeneficioDerivado8;DCBOutroBeneficioDerivado8;IndiceTetoOutroBeneficio8;EquivalenciaOutroBeneficio8;CalcularAbonoOutroBeneficio8<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
 
 
 ~~~
@@ -591,7 +1059,7 @@ dd/MM/yyyy
 * * *
 
 ##### **OutroBeneficioPago9** `AL14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(AM3);ISNUMBER(AM4);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(AM3;AM4;AM6;AM8;AM9;AM11;AM12;AM13<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(DIBOutroBeneficio9);ISNUMBER(RMIOutroBeneficio9);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOutroBeneficio9;RMIOutroBeneficio9;DCBOutroBeneficio9;RMIOutroBeneficioDerivado9;DCBOutroBeneficioDerivado9;IndiceTetoOutroBeneficio9;EquivalenciaOutroBeneficio9;CalcularAbonoOutroBeneficio9<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))};{"Obrigatório:"\"DIB e RMI";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})){% endhighlight %}
 
 
 ~~~
@@ -627,7 +1095,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **RMIOutroBeneficio1** `L4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RMIDerivadoTutela** `L8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -639,7 +1107,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **RMIOutroBeneficio2** `O4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RMIOutroBeneficio1** `O4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -651,7 +1119,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **RMIOutroBeneficio3** `R4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RMIOutroBeneficio10** `AP4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -663,7 +1131,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **RMIOutroBeneficio4** `U4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RMIOutroBeneficio2** `R4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -675,7 +1143,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **RMIOutroBeneficio5** `X4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RMIOutroBeneficio3** `U4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -687,7 +1155,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **RMIOutroBeneficioDerivado1** `L8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RMIOutroBeneficio4** `X4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -699,7 +1167,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **RMIOutroBeneficioDerivado2** `O8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RMIOutroBeneficio5** `AA4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -711,7 +1179,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **RMIOutroBeneficioDerivado3** `R8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RMIOutroBeneficio6** `AD4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -723,7 +1191,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **RMIOutroBeneficioDerivado4** `U8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RMIOutroBeneficio7** `AG4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -735,7 +1203,151 @@ dd/MM/yyyy
 
 * * *
 
-##### **RMIOutroBeneficioDerivado5** `X8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RMIOutroBeneficio8** `AJ4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **RMIOutroBeneficio9** `AM4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **RMIOutroBeneficioDerivado1** `O8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **RMIOutroBeneficioDerivado10** `AP8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **RMIOutroBeneficioDerivado2** `R8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **RMIOutroBeneficioDerivado3** `U8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **RMIOutroBeneficioDerivado4** `X8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **RMIOutroBeneficioDerivado5** `AA8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **RMIOutroBeneficioDerivado6** `AD8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **RMIOutroBeneficioDerivado7** `AG8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **RMIOutroBeneficioDerivado8** `AJ8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **RMIOutroBeneficioDerivado9** `AM8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **RMITutela** `L4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -748,7 +1360,7 @@ dd/MM/yyyy
 * * *
 
 ##### **TutelaAntecipada** `K14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(L3);ISNUMBER(L4);ISNUMBER(L5);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";(jef_CALCULAR_RMA_COM_EVOLUCAO(L3;L4;L6;L8;L9;L11;L12;L13<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))*IF(OFFSET(A15;0;0;COUNTA(CompetenciaIndices)-1)>=(EOMONTH(L5;-1)+1);1;0)-IF(OFFSET(A15;0;0;COUNTA(CompetenciaIndices)-1)>=(EOMONTH(L5;-1)+1);OFFSET(H15:I15;0;0;COUNTA(CompetenciaIndices)-1);0))*{IF(OFFSET(A15;0;0;COUNTA(CompetenciaIndices)-1)=(EOMONTH(L5;-1)+1);IF(EOMONTH(L3;0)=EOMONTH(L5;0);1;MAX(1;30-(DAY(L5)-1))/30);1)\SIGN(OFFSET(A15;0;0;COUNTA(CompetenciaIndices)-1))}};{"Obrigatório:"\"DIB, RMI e DIP";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})
+{% highlight erlang %}=ARRAYFORMULA(IF(AND(ISNUMBER(L3);ISNUMBER(RMITutela);ISNUMBER(DIBTutela);ISNUMBER(DIPTutela);ISNUMBER(DataAtualizacao));{"Renda"\"Abono";(jef_CALCULAR_RMA_COM_EVOLUCAO(DIBTutela;RMITutela;DCBTutela;RMIDerivadoTutela;DCBDerivadoTutela;IndiceTetoTutela;EquivalenciaTutela;CalcularAbonoTutela<>"Não";DataAtualizacao;OFFSET(A15:F15;0;0;COUNTA(CompetenciaIndices)-1))*IF(OFFSET(A15;0;0;COUNTA(CompetenciaIndices)-1)>=(EOMONTH(DIPTutela;-1)+1);1;0)-IF(OFFSET(A15;0;0;COUNTA(CompetenciaIndices)-1)>=(EOMONTH(DIPTutela;-1)+1);OFFSET(H15:I15;0;0;COUNTA(CompetenciaIndices)-1);0))*{IF(OFFSET(A15;0;0;COUNTA(CompetenciaIndices)-1)=(EOMONTH(DIPTutela;-1)+1);IF(EOMONTH(DIBTutela;0)=EOMONTH(DIPTutela;0);1;MAX(1;30-(DAY(L5)-1))/30);1)\SIGN(OFFSET(A15;0;0;COUNTA(CompetenciaIndices)-1))}};{"Obrigatório:"\"DIB, RMI e DIP";(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)\(OFFSET(CompetenciaIndices;1;0;COUNTA(CompetenciaIndices)-1)*0)})
 
 ){% endhighlight %}
 

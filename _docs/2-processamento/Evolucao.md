@@ -1,11 +1,11 @@
 ---
 title: Evolucao
 category: Processamento
-order: 0
+order: 1
 ---
 
-##### **Abono** `AB:AB`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Abono)=1;"Abono";IF(ROW(Abono)<=TotalCompetencias+1;RendaMensalEfetiva*ProporcaoAbono;""))){% endhighlight %}
+##### **Abono** `AC:AC`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Abono)=1;"Abono";IF(ROW(Abono)<=TotalCompetencias+1;RendaMensalEfetiva*ProporcaoAbono+IF(ProporcaoAbono>0;Adicional25*ProporcaoAbono;0);""))){% endhighlight %}
 
 
 ~~~
@@ -17,8 +17,21 @@ order: 0
 
 * * *
 
+##### **Adicional25** `Y:Y`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Adicional25)=1;"Adicional 25 Por Cento";IF(ROW(Adicional25)<=TotalCompetencias+2;IF(DataInicioAdicional25;IF(Competencia=EOMONTH(DataInicioAdicional25;-1)+1;Adicional25PrimeiraCompetencia;IF(Competencia>DataInicioAdicional25;ROUNDDOWN(RendaMensalEfetiva*0,25;2);0));0);""))){% endhighlight %}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
 ##### **Coeficiente** `S:S`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Coeficiente)=1;"Coeficiente";IF(ROW(Coeficiente)<=TotalCompetencias+1;IF(ISNUMBER(CoeficienteModificado);CoeficienteModificado;IF(TemDerivado;IF(Competencia>=EOMONTH(DIBDerivado;-1)+1;CoeficienteDerivado;CoeficienteOriginario);CoeficienteOriginario));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Coeficiente)=1;"Coeficiente";IF(ROW(Coeficiente)<=TotalCompetencias+2;IF(ISNUMBER(CoeficienteModificado);CoeficienteModificado;IF(TemDerivado;IF(Competencia>=EOMONTH(DIBDerivado;-1)+1;CoeficienteDerivado;CoeficienteOriginario);CoeficienteOriginario));""))){% endhighlight %}
 
 
 ~~~
@@ -40,7 +53,7 @@ order: 0
 * * *
 
 ##### **Competencia** `A:A`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Competencia)=1;"Competência";IF(ROW(Competencia)<=TotalCompetencias+1;EOMONTH(DIBOriginario;ROW(OFFSET(Competencia;0;0;TotalCompetencias+1))-3)+1;""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Competencia)=1;"Competência";IF(ROW(Competencia)<=TotalCompetencias+2;EOMONTH(DIBOriginario;ROW(OFFSET(Competencia;0;0;TotalCompetencias+2))-3)+1;""))){% endhighlight %}
 
 
 ~~~
@@ -53,7 +66,7 @@ mm/yyyy
 
 * * *
 
-##### **DescontoAbono** `AD:AD`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DescontoAbono** `AE:AE`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(DescontoAbono)=1;"Desconto Abono";IF(ROW(DescontoAbono)<=TotalCompetencias+1;OFFSET(DescontosTotalAbonoValor;LinhaInicialTabelaDescontos-2;0;TotalCompetencias+1)+(OFFSET(DescontosTotalAbonoPercentual;LinhaInicialTabelaDescontos-2;0;TotalCompetencias+1)*OFFSET(Abono;0;0;TotalCompetencias+1));""))){% endhighlight %}
 
 
@@ -66,8 +79,8 @@ mm/yyyy
 
 * * *
 
-##### **DescontoRenda** `AC:AC`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(DescontoRenda)=1;"Desconto Renda";IF(ROW(DescontoRenda)<=TotalCompetencias+1;OFFSET(DescontosTotalRendaValor;LinhaInicialTabelaDescontos-2;0;TotalCompetencias+1)+(OFFSET(DescontosTotalRendaPercentual;LinhaInicialTabelaDescontos-2;0;TotalCompetencias+1)*OFFSET(RendaMensalDevida;0;0;TotalCompetencias+1));""))){% endhighlight %}
+##### **DescontoRenda** `AD:AD`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(DescontoRenda)=1;"Desconto Renda";IF(ROW(DescontoRenda)<=TotalCompetencias+2;OFFSET(DescontosTotalRendaValor;LinhaInicialTabelaDescontos-2;0;TotalCompetencias+2)+(OFFSET(DescontosTotalRendaPercentual;LinhaInicialTabelaDescontos-2;0;TotalCompetencias+2)*OFFSET(RendaMensalDevida;0;0;TotalCompetencias+2));""))){% endhighlight %}
 
 
 ~~~
@@ -79,8 +92,8 @@ mm/yyyy
 
 * * *
 
-##### **FatorAtualizacao** `AK:AK`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(FatorAtualizacao)=1;"Fator Atualização";IF(ROW(FatorAtualizacao)<=TotalCompetencias+1;jef_INDICE_ACUMULADO(OFFSET(IndiceMensalAtualizacao;0;0;TotalCompetencias+1));""))){% endhighlight %}
+##### **FatorAtualizacao** `AL:AL`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(FatorAtualizacao)=1;"Fator Atualização";IF(ROW(FatorAtualizacao)<=TotalCompetencias+1;jef_INDICE_ACUMULADO(OFFSET(IndiceMensalAtualizacaoAjustado;0;0;TotalCompetencias+1));""))){% endhighlight %}
 
 
 ~~~
@@ -92,7 +105,7 @@ mm/yyyy
 
 * * *
 
-##### **FatorAtualizacaoAlcada** `AY:AY`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **FatorAtualizacaoAlcada** `AZ:AZ`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(FatorAtualizacaoAlcada)=1;"Fator Atual. Alçada";IF(ROW(FatorAtualizacaoAlcada)<=TotalCompetencias+1;IF(ROW(FatorAtualizacaoAlcada)>LinhaProtocolo-1;0;jef_INDICE_ACUMULADO(OFFSET(IndiceMensalAtualizacaoAlcada;0;0;TotalCompetencias+1)));""))){% endhighlight %}
 
 
@@ -106,7 +119,7 @@ mm/yyyy
 * * *
 
 ##### **FatorReajuste** `N:N`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(FatorReajuste)=1;"Fator Reajuste";IF(ROW(FatorReajuste)<=TotalCompetencias+1;IF(ISNUMBER(FatorReajusteModificado);FatorReajusteModificado;IF(Reajustar;IF(ReajusteArt58*ReajusteLei8870*ReajusteLei8880*IndicesReajuste=0;1;ReajusteArt58*ReajusteLei8870*ReajusteLei8880*IndicesReajuste);1));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(FatorReajuste)=1;"Fator Reajuste";IF(ROW(FatorReajuste)<=TotalCompetencias+2;IF(ISNUMBER(FatorReajusteModificado);FatorReajusteModificado;IF(Reajustar;IF(ReajusteArt58*ReajusteLei8870*ReajusteLei8880*IndicesReajuste=0;1;ReajusteArt58*ReajusteLei8870*ReajusteLei8880*IndicesReajuste);1));""))){% endhighlight %}
 
 
 ~~~
@@ -121,7 +134,7 @@ mm/yyyy
 * * *
 
 ##### **FatorReajusteModificado** `O:O`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(FatorReajusteModificado)=1;"Modificador";IF(ROW(FatorReajusteModificado)<=TotalCompetencias+1;{"";OFFSET(ModificadoresFatorReajuste;LinhaInicialTabelaModificadores-1;0;TotalCompetencias+1)};""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(FatorReajusteModificado)=1;"Modificador";IF(ROW(FatorReajusteModificado)<=TotalCompetencias+2;{"";OFFSET(ModificadoresFatorReajuste;LinhaInicialTabelaModificadores-1;0;TotalCompetencias+1)};""))){% endhighlight %}
 
 
 
@@ -129,8 +142,8 @@ mm/yyyy
 
 * * *
 
-##### **IndiceMensalAtualizacao** `AH:AH`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(IndiceMensalAtualizacao)=1;"Índice";IF(ROW(IndiceMensalAtualizacao)<=TotalCompetencias+1;IF(ISNUMBER(IndiceMensalAtualizacaoModificado);IndiceMensalAtualizacaoModificado; IF(MID(CriterioCorrecao;1;1)="2";{"";OFFSET(IndiceRes134;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)};{"";OFFSET(IndiceAtualizacao;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)}));""))){% endhighlight %}
+##### **IndiceMensalAtualizacao** `AI:AI`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(IndiceMensalAtualizacao)=1;"Índice";IF(ROW(IndiceMensalAtualizacao)<=TotalCompetencias+1;IF(ISNUMBER(IndiceMensalAtualizacaoModificado);IndiceMensalAtualizacaoModificado; {"";OFFSET(IF(MID(CriterioCorrecao;1;1)="2";IndiceRes134;IndiceAtualizacao);LinhaInicialTabelaIndices-1;0;TotalCompetencias-IF(DataAtualizacao=CompetenciaFinal;1;0));IF(DataAtualizacao=CompetenciaFinal;1)});""))){% endhighlight %}
 
 
 ~~~
@@ -143,8 +156,8 @@ de atualização mensais conforme opção escolhida
 
 * * *
 
-##### **IndiceMensalAtualizacaoAjustado** `AJ:AJ`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(IndiceMensalAtualizacaoAjustado)=1;"Índice Ajustado";IF(ROW(IndiceMensalAtualizacaoAjustado)<=TotalCompetencias+1;{"";OFFSET(AjusteMoeda;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)}*OFFSET(IndiceMensalAtualizacao;0;0;TotalCompetencias+1);""))){% endhighlight %}
+##### **IndiceMensalAtualizacaoAjustado** `AK:AK`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(IndiceMensalAtualizacaoAjustado)=1;"Índice Ajustado";IF(ROW(IndiceMensalAtualizacaoAjustado)<=TotalCompetencias+1;{"";OFFSET(AjusteMoeda;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)}*IF(ISNUMBER(DataInicioIPCAE);IF(Competencia<EOMONTH(DataInicioIPCAE;-1)+1;VLOOKUP(Competencia;{Competencia\IndiceMensalAtualizacao};2);VLOOKUP(Competencia;{CompetenciaIndices\IPCAE};2));VLOOKUP(Competencia;{Competencia\IndiceMensalAtualizacao};2));""))){% endhighlight %}
 
 
 ~~~
@@ -157,7 +170,7 @@ de atualização mensais, considerando os ajustes de moeda
 
 * * *
 
-##### **IndiceMensalAtualizacaoAlcada** `AX:AX`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **IndiceMensalAtualizacaoAlcada** `AY:AY`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(IndiceMensalAtualizacaoAlcada)=1;"Indices Alçada";IF(ROW(IndiceMensalAtualizacaoAlcada)<=TotalCompetencias+1;IF(ROW(IndiceMensalAtualizacaoAlcada)>LinhaProtocolo-1;0;IndiceMensalAtualizacao);""))){% endhighlight %}
 
 
@@ -170,7 +183,7 @@ de atualização mensais, considerando os ajustes de moeda
 
 * * *
 
-##### **IndiceMensalAtualizacaoModificado** `AI:AI`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **IndiceMensalAtualizacaoModificado** `AJ:AJ`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(IndiceMensalAtualizacaoModificado)=1;"Modificador";IF(ROW(IndiceMensalAtualizacaoModificado)<=TotalCompetencias+1;{"";OFFSET(ModificadoresIndiceMensalAtualizacao;LinhaInicialTabelaModificadores-1;0;TotalCompetencias+1)};""))){% endhighlight %}
 
 
@@ -185,7 +198,7 @@ de atualização mensais
 * * *
 
 ##### **IndicesReajuste** `M:M`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(IndicesReajuste)=1;"Índices";IF(ROW(IndicesReajuste)<=TotalCompetencias+1;IF(ROW(IndicesReajuste)=LinhaPrimeiraDataBase;1+INDEX(FatorProporcional;LinhaInicialTabelaIndices);1+({"";OFFSET(FatorIntegral;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)}*Reajustar));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(IndicesReajuste)=1;"Índices";IF(ROW(IndicesReajuste)<=TotalCompetencias+2;IF(ROW(IndicesReajuste)=LinhaPrimeiraDataBase;1+INDEX(FatorProporcional;LinhaInicialTabelaIndices);1+({"";OFFSET(FatorIntegral;LinhaInicialTabelaIndices-1;0;TotalCompetencias+2)}*Reajustar));""))){% endhighlight %}
 
 
 ~~~
@@ -197,7 +210,7 @@ de atualização mensais
 
 * * *
 
-##### **JurosAbono** `AS:AS`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **JurosAbono** `AT:AT`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(JurosAbono)=1;"Juros Abono";IF(ROW(JurosAbono)<=TotalCompetencias+1;ROUND(PrincipalAbonoAtualizado*JurosAcumulados;2);""))){% endhighlight %}
 
 
@@ -210,7 +223,7 @@ de atualização mensais
 
 * * *
 
-##### **JurosAbonoAlcada** `BC:BC`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **JurosAbonoAlcada** `BD:BD`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(JurosAbonoAlcada)=1;"Juros Abono Alçada";IF(ROW(JurosAbonoAlcada)<=TotalCompetencias+1;ROUND(TotalAbonoAlcada*0;2);""))){% endhighlight %}
 
 
@@ -223,7 +236,7 @@ de atualização mensais
 
 * * *
 
-##### **JurosAcumulados** `AQ:AQ`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **JurosAcumulados** `AR:AR`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(JurosAcumulados)=1;"Juros Acumulados";IF(ROW(JurosAcumulados)<=TotalCompetencias+1;jef_JUROS_ACUMULADOS(OFFSET(JurosTaxaMensal;0;0;TotalCompetencias+1));""))){% endhighlight %}
 
 
@@ -236,7 +249,7 @@ de atualização mensais
 
 * * *
 
-##### **JurosRenda** `AR:AR`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **JurosRenda** `AS:AS`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(JurosRenda)=1;"Juros Renda";IF(ROW(JurosRenda)<=TotalCompetencias+1;ROUND(PrincipalRendaAtualizado*JurosAcumulados;2);""))){% endhighlight %}
 
 
@@ -249,7 +262,7 @@ de atualização mensais
 
 * * *
 
-##### **JurosRendaAlcada** `BA:BA`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **JurosRendaAlcada** `BB:BB`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(JurosRendaAlcada)=1;"Juros Renda Alçada";IF(ROW(JurosRendaAlcada)<=TotalCompetencias+1;ROUND(TotalRendaAlcada*0;2);""))){% endhighlight %}
 
 
@@ -262,8 +275,8 @@ de atualização mensais
 
 * * *
 
-##### **JurosTaxaMensal** `AO:AO`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(JurosTaxaMensal)=1;"Taxa de Juros";IF(ROW(JurosTaxaMensal)<=TotalCompetencias+1;IF(ISNUMBER(JurosTaxaMensalModificada);JurosTaxaMensalModificada;(ROW(JurosTaxaMensal)>=LinhaCitacao)*(ROW(JurosTaxaMensal)<LinhaAtualizacao)*IF(MID(CriterioJuros;1;1)="3";0,01;IF(MID(CriterioJuros;1;1)="2";0,005;{"";OFFSET(Juros;LinhaInicialTabelaIndices;0;TotalCompetencias+1)})));""))){% endhighlight %}
+##### **JurosTaxaMensal** `AP:AP`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(JurosTaxaMensal)=1;"Taxa de Juros";IF(ROW(JurosTaxaMensal)<=TotalCompetencias+1;IF(ISNUMBER(JurosTaxaMensalModificada);JurosTaxaMensalModificada;IF(ISTEXT(CriterioJuros);(ROW(JurosTaxaMensal)>=LinhaCitacao)*(ROW(JurosTaxaMensal)<LinhaAtualizacao)*IF(MID(CriterioJuros;1;1)="3";0,01;IF(MID(CriterioJuros;1;1)="2";0,005;{"";OFFSET(Juros;LinhaInicialTabelaIndices;0;TotalCompetencias+1)}));0));""))){% endhighlight %}
 
 
 ~~~
@@ -277,7 +290,7 @@ Percentual calculado apenas até o mês anterior à data da atualização (alter
 
 * * *
 
-##### **JurosTaxaMensalModificada** `AP:AP`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **JurosTaxaMensalModificada** `AQ:AQ`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(JurosTaxaMensalModificada)=1;"Modificador";IF(ROW(JurosTaxaMensalModificada)<=TotalCompetencias+1;{"";OFFSET(ModificadoresJuros;LinhaInicialTabelaModificadores-1;0;TotalCompetencias+1)};""))){% endhighlight %}
 
 
@@ -304,7 +317,7 @@ Percentual calculado apenas até o mês anterior à data da atualização (alter
 * * *
 
 ##### **Piso** `C:C`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Piso)=1;"Piso";IF(ROW(Piso)<=TotalCompetencias+1;IF(ISNUMBER(PisoModificado);PisoModificado;{"";OFFSET(SalarioMinimo;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)*IF(EspecieOriginario=36;0,5;1)});""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Piso)=1;"Piso";IF(ROW(Piso)<=TotalCompetencias+2;IF(ISNUMBER(PisoModificado);PisoModificado;{"";OFFSET(SalarioMinimo;LinhaInicialTabelaIndices-1;0;TotalCompetencias+2)*IF(EspecieOriginario=36;0,5;1)});""))){% endhighlight %}
 
 
 ~~~
@@ -330,7 +343,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **PrincipalAbono** `AF:AF`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **PrincipalAbono** `AG:AG`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(PrincipalAbono)=1;"Principal Abono";IF(ROW(PrincipalAbono)<=TotalCompetencias+1;(Competencia<=(EOMONTH(DataFinalDiferencas;-1)+1))*(Competencia>=(MAX((EOMONTH(MarcoPrescricional;-1)+1);EOMONTH(DataInicioDiferencas;-1)+1)))*(Abono)-(Competencia<=(EOMONTH(DataFinalDiferencas;-1)+1))*(Competencia>=(MAX((EOMONTH(MarcoPrescricional;-1)+1);(EOMONTH(DataInicioDiferencas;-1)+1))))*IF(ISNUMBER(DescontoAbono);DescontoAbono;0);""))){% endhighlight %}
 
 
@@ -343,7 +356,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **PrincipalAbonoAtualizado** `AM:AM`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **PrincipalAbonoAtualizado** `AN:AN`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(PrincipalAbonoAtualizado)=1;"Princ. Abono Atual.";IF(ROW(PrincipalAbonoAtualizado)<=TotalCompetencias+1;IF(FatorAtualizacao<1;ROUND(PrincipalAbono;2);ROUND(PrincipalAbono*FatorAtualizacao;2));""))){% endhighlight %}
 
 
@@ -356,7 +369,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **PrincipalAlcada** `BD:BD`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **PrincipalAlcada** `BE:BE`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(PrincipalAlcada)=1;"Principal Alçada";IF(ROW(PrincipalAlcada)<=TotalCompetencias+1;IF(FatorAtualizacaoAlcada=0;0;IF(FatorAtualizacaoAlcada<1;PrincipalTotal;TotalRendaAlcada+TotalAbonoAlcada));""))){% endhighlight %}
 
 
@@ -369,7 +382,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **PrincipalRenda** `AE:AE`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **PrincipalRenda** `AF:AF`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(PrincipalRenda)=1;"Principal Renda";IF(ROW(PrincipalRenda)<=TotalCompetencias+1;(Competencia<=(EOMONTH(DataFinalDiferencas;-1)+1))*(Competencia>=(MAX((EOMONTH(MarcoPrescricional;-1)+1);(EOMONTH(DataInicioDiferencas;-1)+1))))*(RendaMensalDevida)-(Competencia<=(EOMONTH(DataFinalDiferencas;-1)+1))*(Competencia>=(MAX((EOMONTH(MarcoPrescricional;-1)+1);(EOMONTH(DataInicioDiferencas;-1)+1))))*IF(ISNUMBER(DescontoRenda);DescontoRenda;0);""))){% endhighlight %}
 
 
@@ -383,7 +396,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **PrincipalRendaAtualizado** `AL:AL`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **PrincipalRendaAtualizado** `AM:AM`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(PrincipalRendaAtualizado)=1;"Princ. Renda Atual.";IF(ROW(PrincipalRendaAtualizado)<=TotalCompetencias+1;IF(FatorAtualizacao<1;ROUND(PrincipalRenda;2);ROUND(PrincipalRenda*FatorAtualizacao;2));""))){% endhighlight %}
 
 
@@ -396,7 +409,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **PrincipalTotal** `AG:AG`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **PrincipalTotal** `AH:AH`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(PrincipalTotal)=1;"Principal Total";IF(ROW(PrincipalTotal)<=TotalCompetencias+1;PrincipalRenda+PrincipalAbono;""))){% endhighlight %}
 
 
@@ -409,7 +422,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **PrincipalTotalAtualizado** `AN:AN`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **PrincipalTotalAtualizado** `AO:AO`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(PrincipalTotalAtualizado)=1;"Principal Total Atual.";IF(ROW(PrincipalTotalAtualizado)<=TotalCompetencias+1;PrincipalRendaAtualizado+PrincipalAbonoAtualizado;""))){% endhighlight %}
 
 
@@ -422,8 +435,8 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **PrincipalTotalAtualizadoAposRenuncia** `BF:BF`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(PrincipalTotalAtualizadoAposRenuncia)=1;"Principal Total Atual com Renúncia";IF(ROW(PrincipalTotalAtualizadoAposRenuncia)<=TotalCompetencias+1;PrincipalTotalAtualizado*ProporcaoAposRenuncia;""))){% endhighlight %}
+##### **PrincipalTotalAtualizadoAcordo** `BJ:BJ`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(PrincipalTotalAtualizadoAcordo)=1;"Principal Total Atual Acordo";IF(ROW(PrincipalTotalAtualizadoAcordo)<=TotalCompetencias+1;ROUND(PercentualAcordo*IF(RenunciaOpcao="Sim";PrincipalTotalAtualizadoAposRenuncia;PrincipalTotalAtualizado);2);""))){% endhighlight %}
 
 
 ~~~
@@ -432,6 +445,19 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 
 
+
+* * *
+
+##### **PrincipalTotalAtualizadoAposRenuncia** `BG:BG`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(PrincipalTotalAtualizadoAposRenuncia)=1;"Principal Total Atual com Renúncia";IF(ROW(PrincipalTotalAtualizadoAposRenuncia)<=TotalCompetencias+1;ROUND(PrincipalTotalAtualizado*ProporcaoAposRenuncia;2);""))){% endhighlight %}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+> Arredondamento para duas casas (alterado em 15/02/18).
 
 * * *
 
@@ -448,7 +474,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **ProporcaoAposRenuncia** `BE:BE`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **ProporcaoAposRenuncia** `BF:BF`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(ProporcaoAposRenuncia)=1;"Proporção Após Renúncia";IF(ROW(ProporcaoAposRenuncia)<=TotalCompetencias+1; IF(EOMONTH(Competencia;0)<EOMONTH(Protocolo;0);PercentualVencidasAposRenuncia;1);""))){% endhighlight %}
 
 
@@ -474,8 +500,8 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **QuotaRendaMensal** `Z:Z`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(QuotaRendaMensal)=1;"Quota Percent.";IF(ROW(QuotaRendaMensal)<=TotalCompetencias+1;OFFSET(ModificadoresQuotaRendaMensal;LinhaInicialTabelaModificadores-2;0;TotalCompetencias+1);""))){% endhighlight %}
+##### **QuotaRendaMensal** `AA:AA`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(QuotaRendaMensal)=1;"Quota Percent.";IF(ROW(QuotaRendaMensal)<=TotalCompetencias+2;OFFSET(ModificadoresQuotaRendaMensal;LinhaInicialTabelaModificadores-2;0;TotalCompetencias+2);""))){% endhighlight %}
 
 
 ~~~
@@ -488,7 +514,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 * * *
 
 ##### **Reajustar** `I:I`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Reajustar)=1;"Reajustar";IF(ROW(Reajustar)<=TotalCompetencias+1;IF(ROW(Reajustar)=LinhaPrimeiraCompetencia;FALSE();IF(ROW(Reajustar)=LinhaReajusteLei8870;TRUE();{"";OFFSET(DataBase;LinhaInicialTabelaIndices-1;0;TotalCompetencias)}));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Reajustar)=1;"Reajustar";IF(ROW(Reajustar)<=TotalCompetencias+2;IF(ROW(Reajustar)=LinhaPrimeiraCompetencia;FALSE();IF(ROW(Reajustar)=LinhaReajusteLei8870;TRUE();{"";OFFSET(DataBase;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)}));""))){% endhighlight %}
 
 
 
@@ -497,7 +523,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 * * *
 
 ##### **ReajusteArt58** `J:J`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(ReajusteArt58)=1;"Art. 58 ADCT";IF(ROW(ReajusteArt58)<=TotalCompetencias+1;IF(ISNUMBER(RendaAtualArt58);IF(ROW(ReajusteArt58)<LinhaEquivalenciaSalarial;0;1);1);""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(ReajusteArt58)=1;"Art. 58 ADCT";IF(ROW(ReajusteArt58)<=TotalCompetencias+2;IF(ISNUMBER(RendaAtualArt58);IF(ROW(ReajusteArt58)<LinhaEquivalenciaSalarial;0;1);1);""))){% endhighlight %}
 
 
 ~~~
@@ -510,7 +536,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 * * *
 
 ##### **ReajusteLei8870** `K:K`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(ReajusteLei8870)=1;"Art. 26 Lei 8.870";IF(ROW(ReajusteLei8870)<=TotalCompetencias+1;IF(ROW(ReajusteLei8870)=LinhaReajusteLei8870;IndiceTeto;1);""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(ReajusteLei8870)=1;"Art. 26 Lei 8.870";IF(ROW(ReajusteLei8870)<=TotalCompetencias+2;IF(ROW(ReajusteLei8870)=LinhaReajusteLei8870;IndiceTeto;1);""))){% endhighlight %}
 
 
 ~~~
@@ -523,7 +549,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 * * *
 
 ##### **ReajusteLei8880** `L:L`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(ReajusteLei8880)=1;"Art. 21 Lei 8.880";IF(ROW(ReajusteLei8880)<=TotalCompetencias+1; IF(ROW(ReajusteLei8880)=LinhaReajusteLei8880;IndiceTeto;1);""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(ReajusteLei8880)=1;"Art. 21 Lei 8.880";IF(ROW(ReajusteLei8880)<=TotalCompetencias+2; IF(ROW(ReajusteLei8880)=LinhaReajusteLei8880;IndiceTeto;1);""))){% endhighlight %}
 
 
 ~~~
@@ -536,7 +562,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 * * *
 
 ##### **RendaApurada** `U:U`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(RendaApurada)=1;"Renda Apurada";IF(ROW(RendaApurada)<=TotalCompetencias+1;ROUNDDOWN(SalarioBeneficioLimitado*Coeficiente;2);""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(RendaApurada)=1;"Renda Apurada";IF(ROW(RendaApurada)<=TotalCompetencias+2;ROUNDDOWN(SalarioBeneficioLimitado*Coeficiente;2);""))){% endhighlight %}
 
 
 ~~~
@@ -549,7 +575,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 * * *
 
 ##### **RendaInformadaLimitada** `W:W`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(RendaInformadaLimitada)=1;"Renda Inform. Lim.";IF(ROW(RendaInformadaLimitada)<=TotalCompetencias+1;IF(RendaInformadaReajustada>Teto;Teto;IF(RendaInformadaReajustada<Piso;Piso;RendaInformadaReajustada));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(RendaInformadaLimitada)=1;"Renda Inform. Lim.";IF(ROW(RendaInformadaLimitada)<=TotalCompetencias+2;IF(RendaInformadaReajustada>Teto;Teto;IF(RendaInformadaReajustada<Piso;Piso;RendaInformadaReajustada));""))){% endhighlight %}
 
 
 ~~~
@@ -562,7 +588,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 * * *
 
 ##### **RendaInformadaReajustada** `V:V`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(RendaInformadaReajustada)=1;"Renda Inform. Reaj.";IF(ROW(RendaInformadaReajustada)<=TotalCompetencias+1;IF(ISNUMBER(RendaAtualArt58);IF(ROW(RendaInformadaReajustada)=2;RMIArt58;IF(ROW(RendaInformadaReajustada)<LinhaEquivalenciaSalarial-1;0;  jef_EVOLUCAO_RENDA(RendaAtualArt58;OFFSET(FatorReajuste;0;0;TotalCompetencias+1))));jef_EVOLUCAO_RENDA(RendaInformada;OFFSET(FatorReajuste;0;0;TotalCompetencias+1)));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(RendaInformadaReajustada)=1;"Renda Inform. Reaj.";IF(ROW(RendaInformadaReajustada)<=TotalCompetencias+2;IF(ISNUMBER(RendaAtualArt58);IF(ROW(RendaInformadaReajustada)=2;RMIArt58;IF(ROW(RendaInformadaReajustada)<LinhaEquivalenciaSalarial-1;0;  jef_EVOLUCAO_RENDA(RendaAtualArt58;OFFSET(FatorReajuste;0;0;TotalCompetencias+2))));jef_EVOLUCAO_RENDA(RendaInformada;OFFSET(FatorReajuste;0;0;TotalCompetencias+2)));""))){% endhighlight %}
 
 
 ~~~
@@ -574,8 +600,8 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **RendaMensalDevida** `Y:Y`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(RendaMensalDevida)=1;"Renda Devida";IF(ROW(RendaMensalDevida)<=TotalCompetencias+1;RendaMensalEfetiva*ProporcaoRenda;""))){% endhighlight %}
+##### **RendaMensalDevida** `Z:Z`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(RendaMensalDevida)=1;"Renda Devida";IF(ROW(RendaMensalDevida)<=TotalCompetencias+2;IF(ROW(RendaMensalDevida)=TotalCompetencias+2;RendaMensalEfetiva+Adicional25;(RendaMensalEfetiva*ProporcaoRenda)+Adicional25);""))){% endhighlight %}
 
 
 ~~~
@@ -588,7 +614,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 * * *
 
 ##### **RendaMensalEfetiva** `X:X`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(RendaMensalEfetiva)=1;"Renda Efetiva";IF(ROW(RendaMensalEfetiva)<=TotalCompetencias+1;IF(MID(CriterioReajuste;1;1)="1";RendaInformadaLimitada;IF(MID(CriterioReajuste;1;1)="2";RendaApurada;IF(Competencia<EOMONTH(DIBDerivado;-1)+1;RendaInformadaLimitada;IF(Competencia>EOMONTH(DIBDerivado;-1)+1;RendaApurada;RendaNaConversao))));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(RendaMensalEfetiva)=1;"Renda Efetiva";IF(ROW(RendaMensalEfetiva)<=TotalCompetencias+2;IF(MID(CriterioReajuste;1;1)="1";RendaInformadaLimitada;IF(MID(CriterioReajuste;1;1)="2";RendaApurada;IF(Competencia<EOMONTH(DIBDerivado;-1)+1;RendaInformadaLimitada;IF(Competencia>EOMONTH(DIBDerivado;-1)+1;RendaApurada;RendaNaConversao))));""))){% endhighlight %}
 
 
 ~~~
@@ -614,7 +640,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 * * *
 
 ##### **SalarioBeneficioLimitado** `R:R`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(SalarioBeneficioLimitado)=1;"Sal. Limitado";IF(ROW(SalarioBeneficioLimitado)<=TotalCompetencias+1;IF(SalarioBeneficioReajustado>Teto;Teto;IF(SalarioBeneficioReajustado<Piso;Piso;SalarioBeneficioReajustado));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(SalarioBeneficioLimitado)=1;"Sal. Limitado";IF(ROW(SalarioBeneficioLimitado)<=TotalCompetencias+2;IF(SalarioBeneficioReajustado>Teto;Teto;IF(SalarioBeneficioReajustado<Piso;Piso;SalarioBeneficioReajustado));""))){% endhighlight %}
 
 
 ~~~
@@ -627,7 +653,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 * * *
 
 ##### **SalarioBeneficioReajustado** `Q:Q`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(SalarioBeneficioReajustado)=1;"Sal. Reajustado";IF(ROW(SalarioBeneficioReajustado)<=TotalCompetencias+1;IF(ISNUMBER(RendaAtualArt58);IF(ROW(SalarioBeneficioReajustado)=2;RMIArt58;IF(ROW(SalarioBeneficioReajustado)<LinhaEquivalenciaSalarial-1;0;  jef_EVOLUCAO_RENDA(RendaAtualArt58;OFFSET(FatorReajuste;0;0;TotalCompetencias+1))));jef_EVOLUCAO_RENDA(SalarioBeneficio;OFFSET(FatorReajuste;0;0;TotalCompetencias+1)));""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(SalarioBeneficioReajustado)=1;"Sal. Reajustado";IF(ROW(SalarioBeneficioReajustado)<=TotalCompetencias+2;IF(ISNUMBER(RendaAtualArt58);IF(ROW(SalarioBeneficioReajustado)=2;RMIArt58;IF(ROW(SalarioBeneficioReajustado)<LinhaEquivalenciaSalarial-1;0;  jef_EVOLUCAO_RENDA(RendaAtualArt58;OFFSET(FatorReajuste;0;0;TotalCompetencias+2))));jef_EVOLUCAO_RENDA(SalarioBeneficio;OFFSET(FatorReajuste;0;0;TotalCompetencias+2)));""))){% endhighlight %}
 
 
 ~~~
@@ -640,7 +666,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 * * *
 
 ##### **Teto** `E:E`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Teto)=1;"Teto";IF(ROW(Teto)<=TotalCompetencias+1;IF(ISNUMBER(TetoModificado);TetoModificado;{"";OFFSET(TetoBeneficio;LinhaInicialTabelaIndices-1;0;TotalCompetencias+1)});""))){% endhighlight %}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(Teto)=1;"Teto";IF(ROW(Teto)<=TotalCompetencias+2;IF(ISNUMBER(TetoModificado);TetoModificado;{"";OFFSET(TetoBeneficio;LinhaInicialTabelaIndices-1;0;TotalCompetencias+2)});""))){% endhighlight %}
 
 
 ~~~
@@ -665,7 +691,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **TotalAbono** `AV:AV`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **TotalAbono** `AW:AW`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalAbono)=1;"Total Abono";IF(ROW(TotalAbono)<=TotalCompetencias+1;PrincipalAbonoAtualizado+JurosAbono;""))){% endhighlight %}
 
 
@@ -678,8 +704,8 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **TotalAbonoAlcada** `BB:BB`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalAbonoAlcada)=1;"Total Abono Alçada";IF(ROW(TotalAbonoAlcada)<=TotalCompetencias+1;IF(FatorAtualizacaoAlcada<1;ROUND(PrincipalAbono;2);ROUND(PrincipalAbono*FatorAtualizacaoAlcada;2));""))){% endhighlight %}
+##### **TotalAbonoAlcada** `BC:BC`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalAbonoAlcada)=1;"Total Abono Alçada";IF(ROW(TotalAbonoAlcada)<=TotalCompetencias+1;IF(ROW(FatorAtualizacaoAlcada)>LinhaProtocolo-1;0;IF(FatorAtualizacaoAlcada<1;ROUND(PrincipalAbono;2);ROUND(PrincipalAbono*FatorAtualizacaoAlcada;2)));""))){% endhighlight %}
 
 
 ~~~
@@ -688,10 +714,11 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 
 > Incluída restrição referente à redução do valor nominal (Alterado em 08/11/2017)
+Incluída restrição referente às parcelas posteriores à data do protocolo (Alterado em 21/02/2018)
 
 * * *
 
-##### **TotalJuros** `AT:AT`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **TotalJuros** `AU:AU`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalJuros)=1;"Total Juros";IF(ROW(TotalJuros)<=TotalCompetencias+1;JurosRenda+JurosAbono;""))){% endhighlight %}
 
 
@@ -704,8 +731,8 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **TotalJurosAposRenuncia** `BG:BG`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalJurosAposRenuncia)=1;"Juros Total Atualizado com Renúncia";IF(ROW(TotalJurosAposRenuncia)<=TotalCompetencias+1;TotalJuros*ProporcaoAposRenuncia;""))){% endhighlight %}
+##### **TotalJurosAcordo** `BK:BK`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalJurosAcordo)=1;"Juros Total Acordo";IF(ROW(TotalJurosAcordo)<=TotalCompetencias+1;ROUND(PercentualAcordo*IF(RenunciaOpcao="Sim";TotalJurosAposRenuncia;TotalJuros);2);""))){% endhighlight %}
 
 
 ~~~
@@ -717,7 +744,20 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **TotalMes** `AW:AW`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **TotalJurosAposRenuncia** `BH:BH`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalJurosAposRenuncia)=1;"Juros Total Atualizado com Renúncia";IF(ROW(TotalJurosAposRenuncia)<=TotalCompetencias+1;ROUND(TotalJuros*ProporcaoAposRenuncia;2);""))){% endhighlight %}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **TotalMes** `AX:AX`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalMes)=1;"Total Mês";IF(ROW(TotalMes)<=TotalCompetencias+1;TotalRenda+TotalAbono;""))){% endhighlight %}
 
 
@@ -730,7 +770,20 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **TotalMesAposRenuncia** `BH:BH`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **TotalMesAcordo** `BL:BL`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalMesAcordo)=1;"Total Mês Acordo";IF(ROW(TotalMesAcordo)<=TotalCompetencias+1;PrincipalTotalAtualizadoAcordo+TotalJurosAcordo;""))){% endhighlight %}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **TotalMesAposRenuncia** `BI:BI`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalMesAposRenuncia)=1;"Total Mês Após Renúncia";IF(ROW(TotalMesAposRenuncia)<=TotalCompetencias+1;PrincipalTotalAtualizadoAposRenuncia+TotalJurosAposRenuncia;""))){% endhighlight %}
 
 
@@ -743,7 +796,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **TotalRenda** `AU:AU`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **TotalRenda** `AV:AV`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalRenda)=1;"Total Renda";IF(ROW(TotalRenda)<=TotalCompetencias+1;PrincipalRendaAtualizado+JurosRenda;""))){% endhighlight %}
 
 
@@ -756,7 +809,7 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **TotalRendaAlcada** `AZ:AZ`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **TotalRendaAlcada** `BA:BA`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ARRAYFORMULA(IF(ROW(TotalRendaAlcada)=1;"Total Renda Alçada";IF(ROW(TotalRendaAlcada)<=TotalCompetencias+1;IF(ROW(FatorAtualizacaoAlcada)>LinhaProtocolo-1;0;IF(FatorAtualizacaoAlcada<1;ROUND(PrincipalRenda;2);ROUND(PrincipalRenda*FatorAtualizacaoAlcada;2)));""))){% endhighlight %}
 
 
@@ -769,8 +822,8 @@ Incluída opção para auxílio-acidente (provisório) (alterado em 30/10/17)
 
 * * *
 
-##### **ValorQuota** `AA:AA`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=ARRAYFORMULA(IF(ROW(ValorQuota)=1;"Valor da Quota";IF(ROW(ValorQuota)<=TotalCompetencias+1;RendaMensalDevida*IF(ISNUMBER(QuotaRendaMensal);QuotaRendaMensal;1);""))){% endhighlight %}
+##### **ValorQuota** `AB:AB`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=ARRAYFORMULA(IF(ROW(ValorQuota)=1;"Valor da Quota";IF(ROW(ValorQuota)<=TotalCompetencias+2;RendaMensalDevida*IF(ISNUMBER(QuotaRendaMensal);QuotaRendaMensal;1);""))){% endhighlight %}
 
 
 ~~~

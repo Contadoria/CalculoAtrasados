@@ -187,6 +187,8 @@ function jef_CONT_NUM_POR_LINHA(intervalo) {
 * @customfunction
 *
 * Função criada em 04/10/2017
+* Alterada em 23/10/2017: remoção de bug. Na primeira competência não há nunca reajuste.
+* Alterada em 08/11/2017: remoção de bug. Quando não há DCB, o último valor da renda deve corresponder ao valor integral (linhas 290 e 291).
 *
 */
 function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginario, RMIDerivado, DCBDerivado, indiceReposicaoTeto, equivalenciaSalarial, calcularAbono, dataAtualizacao, tabelaReajuste) {
@@ -291,8 +293,8 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
   **/
   var dataInicialDiferencas = aplicarArt58 ? new Date(1991, 11, 1) : new Date(DIBOriginario.getTime());
   var dataFinalDiferencas = temDerivado 
-  ? Utilidades.isDate(DCBDerivado) ? DCBDerivado : dataAtualizacao
-  : Utilidades.isDate(DCBOriginario) ? DCBOriginario : dataAtualizacao;
+  ? Utilidades.isDate(DCBDerivado) ? DCBDerivado : Utilidades.ultimoDiaDoMes(dataAtualizacao, 0)
+  : Utilidades.isDate(DCBOriginario) ? DCBOriginario : Utilidades.ultimoDiaDoMes(dataAtualizacao, 0);
   
   var competenciaInicial = Utilidades.primeiroDiaDoMes(dataInicialDiferencas, 0);
   var competenciaFinal = Utilidades.primeiroDiaDoMes(dataFinalDiferencas, 0);
@@ -380,7 +382,7 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
     
     if (competencia.valueOf() >= competenciaInicial.valueOf() && competencia.valueOf() <= competenciaFinal.valueOf()) {
       
-      if (dataBase === true) {
+      if (dataBase === true && competencia.valueOf() > competenciaInicial.valueOf()) { // nunca há reajuste na primeira competência
         
         if (competencia.valueOf() === primeiraDataBase.valueOf() && !aplicarArt58) {
           
@@ -435,14 +437,23 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
         var abono = 0;
       }      
       
-      if (competencia.valueOf() === competenciaInicial.valueOf()) {
+      /*
+      * Situação em que há apenas uma competência
+      */
+      
+      if (competenciaFinal.valueOf() === competenciaInicial.valueOf()) {
+        
+        renda = renda * proporcaoInicial;
+      
+      } else {
+        if (competencia.valueOf() === competenciaInicial.valueOf()) {
         renda = renda * proporcaoInicial;
       }
       
       if (competencia.valueOf() === competenciaFinal.valueOf()) {
         renda = renda * proporcaoFinal;
       }
-      
+      }
       return [renda, abono]
       
     } else {

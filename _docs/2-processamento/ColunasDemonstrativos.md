@@ -1,7 +1,7 @@
 ---
 title: ColunasDemonstrativos
 category: Processamento
-order: 2
+order: 3
 ---
 
 ##### **DemonstrativoAbono** `B:B`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
@@ -238,6 +238,7 @@ mm/yyyy
 
 ~~~
 0.00%
+0.0000%
 ~~~
 
 
@@ -251,7 +252,7 @@ mm/yyyy
 
 ~~~
 mm/yyyy
-#,##0.00;(#,##0.00);-
+#,##0.0000;(#,##0.0000);-
 ~~~
 
 
