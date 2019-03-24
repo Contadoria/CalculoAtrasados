@@ -1,10 +1,10 @@
 ---
 title: ParametrosEvolucao
 category: Processamento
-order: 0
+order: 1
 ---
 
-##### **AbonoMaior15Dias** `B22`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **AbonoMaior15Dias** `B23`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(LimitacaoCalculoAbono);LimitacaoCalculoAbono;DataFinalDiferencas)-DataReferenciaAbono>=15{% endhighlight %}
 
 
@@ -17,7 +17,7 @@ order: 0
 
 * * *
 
-##### **Adicional25PrimeiraCompetencia** `B32`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **Adicional25PrimeiraCompetencia** `B34`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF((MONTH(DataInicioAdicional25)=MONTH(DIBDerivado))*(YEAR(DataInicioAdicional25)=YEAR(DIBDerivado));IF(DAY(DataInicioAdicional25)>=DAY(DIBDerivado);VLOOKUP(EOMONTH(DataInicioAdicional25;-1)+1;{Competencia\RendaApurada};2)*0,25/30*MAX(30-DAY(DataInicioAdicional25)+1;1);VLOOKUP(EOMONTH(DataInicioAdicional25;-1)+1;{Competencia\RendaInformadaLimitada};2)*0,25/30*(DAY(DIBDerivado)-DAY(DataInicioAdicional25))+VLOOKUP(EOMONTH(DataInicioAdicional25;-1)+1;{Competencia\RendaApurada};2)*0,25/30*MAX(30-DAY(DIBDerivado)+1;1));ROUNDDOWN(IF(DataInicioAdicional25;VLOOKUP(EOMONTH(DataInicioAdicional25;-1)+1;{Competencia\RendaApurada};2)/30;"")*MAX(30-DAY(DataInicioAdicional25)+1;1)*0,25;2)){% endhighlight %}
 
 
@@ -43,7 +43,7 @@ order: 0
 
 * * *
 
-##### **CalcularAbono** `B16`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **CalcularAbono** `B17`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=AND(MID(EspecieOriginario;1;2)<>"87";MID(EspecieOriginario;1;2)<>"88";MID(EspecieOriginario;1;2)<>"95"){% endhighlight %}
 
 
@@ -93,7 +93,20 @@ Retificação para comparar o dia primeiro do mês (alterado em 30/11/2017)
 
 * * *
 
-##### **DataReferenciaAbono** `B18`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DataInicioIPCAE** `B36`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=IF(ISNUMBER(DataInicioIPCAEInformada);IF(CompetenciaInicial>DataInicioIPCAEInformada;CompetenciaInicial;IF(DAY(DataInicioIPCAEInformada)=1;DataInicioIPCAEInformada;EOMONTH(DataInicioIPCAEInformada;0)+1));""){% endhighlight %}
+
+
+~~~
+dd/MM/yyyy
+~~~
+
+
+
+
+* * *
+
+##### **DataReferenciaAbono** `B19`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=DataInicioDiferencas{% endhighlight %}
 
 
@@ -106,7 +119,20 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **HonorariosContratuaisExercicioCorrente** `E40`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **FatorAtualizacaoHonorarios** `E25`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=PRODUCT(FILTER(IndiceCondenatorias;CompetenciaIndices>=HonorariosSucumbenciaisDataApuracao;CompetenciaIndices<DataAtualizacao)){% endhighlight %}
+
+
+~~~
+#,##0.0000000000;(#,##0.0000000000)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **HonorariosContratuaisExercicioCorrente** `E41`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=HonorariosContratuaisValorTotal-HonorariosContratuaisExerciciosAnteriores{% endhighlight %}
 
 
@@ -119,7 +145,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **HonorariosContratuaisExerciciosAnteriores** `E39`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosContratuaisExerciciosAnteriores** `E40`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=ROUND((HonorariosContratuaisValorTotal/(MesesExerciciosAnteriores+MesesExercicioCorrente))*MesesExerciciosAnteriores;2){% endhighlight %}
 
 
@@ -132,7 +158,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **HonorariosContratuaisJuros** `E29`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosContratuaisJuros** `E30`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=HonorariosContratuaisValorTotal-HonorariosContratuaisPrincipal{% endhighlight %}
 
 
@@ -145,7 +171,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **HonorariosContratuaisPrincipal** `E28`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosContratuaisPrincipal** `E29`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(HonorariosContratuaisLimite>0;MIN(ROUND(HonorariosContratuaisBasePrincipal*HonorariosContratuaisPercentual;2);ROUND(HonorariosContratuaisBasePrincipal*HonorariosContratuaisPercentual*HonorariosContratuaisPercentualLimite;2));ROUND(HonorariosContratuaisBasePrincipal*HonorariosContratuaisPercentual;2)){% endhighlight %}
 
 
@@ -158,7 +184,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **HonorariosContratuaisValorTotal** `E30`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosContratuaisValorTotal** `E31`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(HonorariosContratuaisLimite>0;MIN(ROUND((HonorariosContratuaisBasePrincipal+HonorariosContratuaisBaseJuros)*HonorariosContratuaisPercentual;2);HonorariosContratuaisLimite);ROUND((HonorariosContratuaisBasePrincipal+HonorariosContratuaisBaseJuros)*HonorariosContratuaisPercentual;2)){% endhighlight %}
 
 
@@ -172,7 +198,7 @@ dd"/"mm"/"yyyy
 * * *
 
 ##### **HonorariosSucumbenciaisTotal** `E24`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(HonorariosSucumbenciaisLimite>0;MIN(HonorariosSucumbenciaisBaseIncidencia*HonorariosSucumbenciaisPercentual;HonorariosSucumbenciaisLimite);HonorariosSucumbenciaisBaseIncidencia*HonorariosSucumbenciaisPercentual){% endhighlight %}
+{% highlight erlang %}=IF(MID(OpcaoHonorarios;1;1)="3";HonorariosSucumbenciaisBaseIncidencia*FatorAtualizacaoHonorarios*HonorariosSucumbenciaisPercentual;IF(HonorariosSucumbenciaisLimite>0;MIN(HonorariosSucumbenciaisBaseIncidencia*HonorariosSucumbenciaisPercentual;HonorariosSucumbenciaisLimite);HonorariosSucumbenciaisBaseIncidencia*HonorariosSucumbenciaisPercentual)){% endhighlight %}
 
 
 ~~~
@@ -184,7 +210,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **JurosAbonoSoma** `B44`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **JurosAbonoSoma** `B47`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=SUM(JurosAbono){% endhighlight %}
 
 
@@ -197,7 +223,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **JurosRendaSoma** `B43`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **JurosRendaSoma** `B46`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=SUM(JurosRenda){% endhighlight %}
 
 
@@ -210,7 +236,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **JurosTotalSoma** `B45`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **JurosTotalSoma** `B48`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=SUM(TotalJuros){% endhighlight %}
 
 
@@ -223,8 +249,8 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **LimitacaoCalculoAbono** `B19`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(DIBDerivado;IF(ISNUMBER(DCBDerivado);DCBDerivado;"");IF(ISNUMBER(DCBOriginario);DCBOriginario;"")){% endhighlight %}
+##### **LimitacaoCalculoAbono** `B20`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=IF(MONTH(DataFinalDiferencas)=12;DataFinalDiferencas;IF(DIBDerivado;IF(ISNUMBER(DCBDerivado);DCBDerivado;"");IF(ISNUMBER(DCBOriginario);DCBOriginario;""))){% endhighlight %}
 
 
 ~~~
@@ -262,7 +288,20 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **LinhaEquivalenciaSalarial** `B37`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **LinhaConversao** `B10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=IF(ISNUMBER(DIBDerivado);MATCH(EOMONTH(DIBDerivado;-1)+1;Competencia;0);0){% endhighlight %}
+
+
+~~~
+0.###############
+~~~
+
+
+
+
+* * *
+
+##### **LinhaEquivalenciaSalarial** `B40`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IFERROR(MATCH(DATE(1992;1;1);Competencia;0);""){% endhighlight %}
 
 
@@ -275,7 +314,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **LinhaInicialTabelaDescontos** `B12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **LinhaInicialTabelaDescontos** `B13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=MATCH(CompetenciaInicial;CompetenciaDescontos;0){% endhighlight %}
 
 
@@ -288,7 +327,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **LinhaInicialTabelaIndices** `B10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **LinhaInicialTabelaIndices** `B11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=MATCH(CompetenciaInicial;CompetenciaIndices;0){% endhighlight %}
 
 
@@ -301,7 +340,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **LinhaInicialTabelaModificadores** `B11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **LinhaInicialTabelaModificadores** `B12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=MATCH(CompetenciaInicial;CompetenciaModificadores;0){% endhighlight %}
 
 
@@ -314,7 +353,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **LinhaPrimeiraCompetencia** `B25`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **LinhaPrimeiraCompetencia** `B26`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -326,7 +365,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **LinhaPrimeiraDataBase** `B26`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **LinhaPrimeiraDataBase** `B27`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISERR(MATCH(TRUE();Reajustar;0));;MATCH(TRUE();Reajustar;0)){% endhighlight %}
 
 
@@ -339,7 +378,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **LinhaPrimeiroAbono** `B20`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **LinhaPrimeiroAbono** `B21`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=MIN(ARRAYFORMULA(IF(LinhasAbono>0;LinhasAbono;""))){% endhighlight %}
 
 
@@ -365,7 +404,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **LinhaReajusteLei8870** `B27`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **LinhaReajusteLei8870** `B28`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(AND(ISNUMBER(IndiceTeto);DIBOriginario>=DATE(1991;4;5);DIBOriginario<=DATE(1993;12;31));IFERROR(MATCH(DATE(1994;4;1);Competencia;0);0);0){% endhighlight %}
 
 
@@ -378,20 +417,16 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **LinhaReajusteLei8880** `B28`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **LinhaReajusteLei8880** `B29`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(AND(ISNUMBER(IndiceTeto);DIBOriginario>=DATE(1994;1;1));LinhaPrimeiraDataBase;0){% endhighlight %}
 
-
-~~~
-0.###############
-~~~
 
 
 > Linha da aba Evolução correspondente ao mês de aplicação do índice de reposição ao que excedeu o teto conforme Lei 8.880/994 (primeiro reajuste do benefício)
 
 * * *
 
-##### **LinhaReferenciaAbono** `B17`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **LinhaReferenciaAbono** `B18`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=MATCH(EOMONTH(DataInicioDiferencas;-1)+1;Competencia;0)-1{% endhighlight %}
 
 
@@ -404,7 +439,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **MesesExercicioCorrente** `E36`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **MesesExercicioCorrente** `E37`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=COUNTIFS(Competencia;">="&DATE(YEAR(DataAtualizacao);1;1);PrincipalRenda;">0")+COUNTIFS(Competencia;">="&DATE(YEAR(DataAtualizacao);1;1);PrincipalAbono;">0"){% endhighlight %}
 
 
@@ -413,7 +448,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **MesesExerciciosAnteriores** `E33`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **MesesExerciciosAnteriores** `E34`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=COUNTIFS(Competencia;"<"&DATE(YEAR(DataAtualizacao);1;1);PrincipalRenda;">0")+COUNTIFS(Competencia;"<"&DATE(YEAR(DataAtualizacao);1;1);PrincipalAbono;">0"){% endhighlight %}
 
 
@@ -474,7 +509,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **ParcelaLiquidaExercicioCorrente** `E42`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **ParcelaLiquidaExercicioCorrente** `E43`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=TotalExercicioCorrente-HonorariosContratuaisExercicioCorrente{% endhighlight %}
 
 
@@ -487,7 +522,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **ParcelaLiquidaExerciciosAnteriores** `E41`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **ParcelaLiquidaExerciciosAnteriores** `E42`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=TotalExerciciosAnteriores-HonorariosContratuaisExerciciosAnteriores{% endhighlight %}
 
 
@@ -526,7 +561,7 @@ dd"/"mm"/"yyyy
 
 * * *
 
-##### **ParcelaRenunciaExerciciosAnteriores** `E34`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **ParcelaRenunciaExerciciosAnteriores** `E35`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(YEAR(Protocolo)=YEAR(DataAtualizacao);0;ParcelaRenunciaAtualizada){% endhighlight %}
 
 
@@ -571,7 +606,7 @@ Em 08/02/2018
 * * *
 
 ##### **PrestacoesVencidasAjuizamentoAposRenuncia** `E10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(AlcadaAjuizamento<PrestacoesVincendasAjuizamento;0;IF(ValorDaCausa>=AlcadaAjuizamento;AlcadaAjuizamento-PrestacoesVincendasAjuizamento;PrestacoesVencidasAjuizamento)){% endhighlight %}
+{% highlight erlang %}=IF(AlcadaAjuizamento<PrestacoesVincendasAjuizamento;0;IF(ValorDaCausa>=AlcadaAjuizamento;IF(MID(CriterioAlcada;1;1)="2";AlcadaAjuizamento;AlcadaAjuizamento-PrestacoesVincendasAjuizamento);PrestacoesVencidasAjuizamento)){% endhighlight %}
 
 
 ~~~
@@ -597,7 +632,7 @@ Em 23/01/2018
 
 * * *
 
-##### **PrincipalAbonoSoma** `B41`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **PrincipalAbonoSoma** `B44`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=SUM(PrincipalAbonoAtualizado){% endhighlight %}
 
 
@@ -610,7 +645,7 @@ Em 23/01/2018
 
 * * *
 
-##### **PrincipalRendaSoma** `B40`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **PrincipalRendaSoma** `B43`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=SUM(PrincipalRendaAtualizado){% endhighlight %}
 
 
@@ -623,7 +658,7 @@ Em 23/01/2018
 
 * * *
 
-##### **PrincipalTotalSoma** `B42`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **PrincipalTotalSoma** `B45`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=SUM(PrincipalTotalAtualizado){% endhighlight %}
 
 
@@ -636,7 +671,7 @@ Em 23/01/2018
 
 * * *
 
-##### **ProporcaoFinal** `B14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **ProporcaoFinal** `B15`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(TotalCompetenciasDiferencas=1;((MIN(30;DAY(DataFinalDiferencas))-DAY(DataInicioDiferencas))+1)/30;IF(MONTH(EOMONTH(DataFinalDiferencas;0))=2;IF(DAY(DataFinalDiferencas)>27;1;MIN(30;DAY(DataFinalDiferencas))/30);MIN(30;DAY(DataFinalDiferencas))/30)){% endhighlight %}
 
 
@@ -649,7 +684,7 @@ Em 23/01/2018
 
 * * *
 
-##### **ProporcaoInicial** `B13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **ProporcaoInicial** `B14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(TotalCompetenciasDiferencas=1;((MIN(30;DAY(DataFinalDiferencas))-DAY(DataInicioDiferencas))+1)/30;MAX(1;30-(DAY(DataInicioDiferencas)-1))/30){% endhighlight %}
 
 
@@ -662,7 +697,7 @@ Em 23/01/2018
 
 * * *
 
-##### **ProporcaoInicioBeneficioDerivado** `B15`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **ProporcaoInicioBeneficioDerivado** `B16`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(DIBDerivado);((MIN(30;DAY(DIBDerivado))/30)*IF(ISNUMBER(CoeficienteOriginario);CoeficienteOriginario;1))+((MAX(1;30-(DAY(DIBDerivado-1)))/30)*IF(ISNUMBER(CoeficienteDerivado);CoeficienteDerivado;1));1){% endhighlight %}
 
 
@@ -675,8 +710,8 @@ Em 23/01/2018
 
 * * *
 
-##### **ProporcaoPrimeiroAbono** `B23`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=MIN(1;(((LinhaPrimeiroAbono-LinhaReferenciaAbono)-IF(DAY(DataReferenciaAbono)<=16;0;1)-IF(LinhaPrimeiroAbono=UltimaLinhaAbono;IF(DAY(LimitacaoCalculoAbono)>=16;0;1);0))/12)*AbonoMaior15Dias){% endhighlight %}
+##### **ProporcaoPrimeiroAbono** `B24`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=MIN(1;(((LinhaPrimeiroAbono-LinhaReferenciaAbono)-IF(DAY(DataReferenciaAbono)<=16;0;1)-IF(LinhaPrimeiroAbono=UltimaLinhaAbono;IF(DAY(LimitacaoCalculoAbono)>=15;0;1);0))/12)*AbonoMaior15Dias){% endhighlight %}
 
 
 ~~~
@@ -688,7 +723,7 @@ Em 23/01/2018
 
 * * *
 
-##### **ProporcaoUltimoAbono** `B24`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **ProporcaoUltimoAbono** `B25`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=((UltimaLinhaAbono-MAX(LARGE(filter(LinhasAbono;LinhasAbono<>UltimaLinhaAbono);1);LinhaReferenciaAbono)-IF(DAY(LimitacaoCalculoAbono)>=15;0;1))/12)*AbonoMaior15Dias{% endhighlight %}
 
 
@@ -701,8 +736,8 @@ Em 23/01/2018
 
 * * *
 
-##### **RMA** `B33`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=INDEX(RendaMensalEfetiva;MATCH(EOMONTH(DataFinalDiferencas;-1)+1;Competencia;0)){% endhighlight %}
+##### **RMA** `B35`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=INDEX(IF(MID(CriterioReajuste;1;1)="1";RendaInformadaLimitada;RendaApurada);MATCH(EOMONTH(DataFinalDiferencas;-1)+1;Competencia;0)){% endhighlight %}
 
 
 ~~~
@@ -714,7 +749,7 @@ Em 23/01/2018
 
 * * *
 
-##### **RMIDerivado** `B30`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RMIDerivado** `B31`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(DIBDerivado);INDEX(RendaApurada;MATCH(EOMONTH(DIBDerivado;-1)+1;Competencia;0));""){% endhighlight %}
 
 
@@ -728,7 +763,7 @@ Em 23/01/2018
 
 * * *
 
-##### **RMIOriginario** `B29`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RMIOriginario** `B30`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=INDEX(RendaMensalEfetiva;MATCH(EOMONTH(DIBOriginario;-1)+1;Competencia;0)){% endhighlight %}
 
 
@@ -741,7 +776,7 @@ Em 23/01/2018
 
 * * *
 
-##### **RendaAtualArt58** `B36`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RendaAtualArt58** `B39`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(EquivalenciaArt58);EquivalenciaArt58*INDEX(SalarioMinimo;MATCH(DATE(1991;12;1);CompetenciaIndices;0));""){% endhighlight %}
 
 
@@ -754,8 +789,8 @@ Em 23/01/2018
 
 * * *
 
-##### **RendaNaConversao** `B31`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(ISNUMBER(DIBDerivado);(((INDEX(RendaInformadaLimitada;MATCH(EOMONTH(DIBDerivado;-1)+1;Competencia;0)))/30)*DAY(DCBOriginario))+((RMIDerivado/30)*MAX(30-DAY(DIBDerivado)+1;1));""){% endhighlight %}
+##### **RendaNaConversao** `B32`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=IF(ISNUMBER(DIBDerivado);IF(DAY(DIBDerivado)=1;RMIDerivado;(((INDEX(RendaInformadaLimitada;MATCH(EOMONTH(DIBDerivado;-1)+1;Competencia;0)))/30)*DAY(DCBOriginario))+((RMIDerivado/30)*MAX(30-DAY(DIBDerivado)+1;1)));""){% endhighlight %}
 
 
 ~~~
@@ -767,7 +802,24 @@ Em 23/01/2018
 
 * * *
 
-##### **RenunciaExerciciosAnteriores** `E34`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **RendaNaConversaoProporcional** `B33`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=IF((MONTH(DataInicioDiferencas)=MONTH(DIBDerivado))*(YEAR(DataInicioDiferencas)=YEAR(DIBDerivado));IF(DAY(DataInicioDiferencas)>=DAY(DIBDerivado);
+VLOOKUP(EOMONTH(DataInicioDiferencas;-1)+1;{Competencia\RendaApurada};2)/30*MAX(30-DAY(DataInicioDiferencas)+1;1);VLOOKUP(EOMONTH(DataInicioDiferencas;-1)+1;
+{Competencia\RendaInformadaLimitada};2)/30*(DAY(DIBDerivado)-DAY(DataInicioDiferencas))+VLOOKUP(EOMONTH(DataInicioDiferencas;-1)+1;
+{Competencia\RendaApurada};2)/30*MAX(30-DAY(DIBDerivado)+1;1));VLOOKUP(EOMONTH(DIBDerivado;-1)+1;
+{Competencia\RendaMensalEfetiva};2)){% endhighlight %}
+
+
+~~~
+#,##0.00;(#,##0.00)[Red];-
+~~~
+
+
+
+
+* * *
+
+##### **RenunciaExerciciosAnteriores** `E35`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(YEAR(Protocolo)=YEAR(DataAtualizacao);0;ParcelaRenunciaAtualizada){% endhighlight %}
 
 
@@ -780,7 +832,7 @@ Em 23/01/2018
 
 * * *
 
-##### **TotalAbonoSoma** `B47`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **TotalAbonoSoma** `B50`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=SUM(TotalAbono){% endhighlight %}
 
 
@@ -834,7 +886,7 @@ Retificação para comparar o dia primeiro do mês (alterado em 30/11/2017)
 
 * * *
 
-##### **TotalExercicioCorrente** `E38`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **TotalExercicioCorrente** `E39`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(RenunciaOpcao="Sim";SUMIF(Competencia;">="&DATE(YEAR(DataAtualizacao);1;1);IF(ISNUMBER(PercentualAcordo);TotalMesAcordo;TotalMesAposRenuncia));SUMIF(Competencia;">="&DATE(YEAR(DataAtualizacao);1;1);IF(ISNUMBER(PercentualAcordo);TotalMesAcordo;TotalMes))){% endhighlight %}
 
 
@@ -848,7 +900,7 @@ Computados valores negativos para (alteração em 30/10/17)
 
 * * *
 
-##### **TotalExerciciosAnteriores** `E35`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **TotalExerciciosAnteriores** `E36`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(RenunciaOpcao="Sim";SUMIF(Competencia;"<"&DATE(YEAR(DataAtualizacao);1;1);IF(ISNUMBER(PercentualAcordo);TotalMesAcordo;TotalMesAposRenuncia));SUMIF(Competencia;"<"&DATE(YEAR(DataAtualizacao);1;1);IF(ISNUMBER(PercentualAcordo);TotalMesAcordo;TotalMes))){% endhighlight %}
 
 
@@ -862,7 +914,7 @@ Computados valores negativos para (alteração em 30/10/17)
 
 * * *
 
-##### **TotalGeral** `B48`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **TotalGeral** `B51`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=SUM(TotalMes){% endhighlight %}
 
 
@@ -875,7 +927,7 @@ Computados valores negativos para (alteração em 30/10/17)
 
 * * *
 
-##### **TotalRendaSoma** `B46`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **TotalRendaSoma** `B49`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=SUM(TotalRenda){% endhighlight %}
 
 
@@ -888,7 +940,7 @@ Computados valores negativos para (alteração em 30/10/17)
 
 * * *
 
-##### **UltimaLinhaAbono** `B21`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **UltimaLinhaAbono** `B22`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=MAX(ARRAYFORMULA(IF(LinhasAbono>0;LinhasAbono;""))){% endhighlight %}
 
 
@@ -901,7 +953,7 @@ Computados valores negativos para (alteração em 30/10/17)
 
 * * *
 
-##### **ValorCondenacaoAposRenuncia** `B49`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **ValorCondenacaoAposRenuncia** `B52`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=SUM(TotalMesAposRenuncia){% endhighlight %}
 
 

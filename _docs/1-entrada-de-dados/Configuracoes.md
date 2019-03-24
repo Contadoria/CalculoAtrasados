@@ -118,7 +118,10 @@ VALUE_IN_RANGE ListaJuizos!C:C
 * * *
 
 ##### **UrlPlanilha** `D4`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=jef_URL(Demonstrativo!D37){% endhighlight %}
 
+
+~~~
+0.###############
+~~~
 
 

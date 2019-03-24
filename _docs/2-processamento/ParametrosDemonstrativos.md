@@ -56,8 +56,21 @@ order: 2
 
 * * *
 
+##### **ObservacoesModificadores** `A14:B21`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=JOIN(CHAR(10);FILTER(OFFSET(ModificadoresObservacoes;5;0);OFFSET(ModificadoresObservacoes;5;0)<>"")){% endhighlight %}
+
+
+~~~
+0.###############
+~~~
+
+
+
+
+* * *
+
 ##### **TextoObservacoes** `A34`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(MostrarObservacoesAutomaticas="Sim";IF(ISTEXT(CONCATENATE(Observacoes1));"Modificadores:"&CHAR(10)&CONCATENATE(Observacoes1)&CHAR(10)&CHAR(10);"")&IF(ISTEXT(CONCATENATE(ObservacoesDescontos));"Descontos:"&CHAR(10)&CONCATENATE(ObservacoesDescontos)&CHAR(10)&CHAR(10);"");"")&IF(ISTEXT(CONCATENATE(ObservacoesFinais));"Observações finais:"&CHAR(10)&ObservacoesFinais;""){% endhighlight %}
+{% highlight erlang %}=IF(MostrarObservacoesAutomaticas="Sim";IF(ISTEXT(CONCATENATE(ObservacoesModificadores));"Modificadores:"&CHAR(10)&CONCATENATE(ObservacoesModificadores)&CHAR(10)&CHAR(10);"")&IF(ISTEXT(CONCATENATE(ObservacoesDescontos));"Descontos:"&CHAR(10)&CONCATENATE(ObservacoesDescontos)&CHAR(10)&CHAR(10);"");"")&IF(ISTEXT(CONCATENATE(ObservacoesFinais));"Observações finais:"&CHAR(10)&ObservacoesFinais;""){% endhighlight %}
 
 
 ~~~

@@ -85,7 +85,7 @@ DATE_IS_VALID_DATE
 
 * * *
 
-##### **DataInicioIPCAE** `D10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **DataInicioIPCAEInformada** `D10`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -97,7 +97,7 @@ mm"/"yyyy
 
 * * *
 
-##### **HonorariosContratuaisBaseJuros** `I14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosContratuaisBaseJuros** `I15`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(HonorariosContratuaisBaseJurosModificada);HonorariosContratuaisBaseJurosModificada;SUMIFS(TotalJuros;Competencia;"<"&EOMONTH(HonorariosContratuaisDataApuracao;-1)+1)){% endhighlight %}
 
 
@@ -111,7 +111,7 @@ A função "FIMMÊS(HonorariosContratuaisDataApuração;-1)" permite apurar valo
 
 * * *
 
-##### **HonorariosContratuaisBaseJurosModificada** `J14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosContratuaisBaseJurosModificada** `J15`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -123,7 +123,7 @@ A função "FIMMÊS(HonorariosContratuaisDataApuração;-1)" permite apurar valo
 
 * * *
 
-##### **HonorariosContratuaisBasePrincipal** `I13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosContratuaisBasePrincipal** `I14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(HonorariosContratuaisBasePrincipalModificada);HonorariosContratuaisBasePrincipalModificada;SUMIFS(PrincipalTotalAtualizado;Competencia;"<"&EOMONTH(HonorariosContratuaisDataApuracao;-1)+1)){% endhighlight %}
 
 
@@ -138,7 +138,7 @@ A função "FIMMÊS(HonorariosContratuaisDataApuração;-1)" permite apurar valo
 
 * * *
 
-##### **HonorariosContratuaisBasePrincipalModificada** `J13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosContratuaisBasePrincipalModificada** `J14`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -150,7 +150,7 @@ A função "FIMMÊS(HonorariosContratuaisDataApuração;-1)" permite apurar valo
 
 * * *
 
-##### **HonorariosContratuaisDataApuracao** `I12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosContratuaisDataApuracao** `I13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(HonorariosContratuaisDataApuracaoModificada);HonorariosContratuaisDataApuracaoModificada;DataAtualizacao){% endhighlight %}
 
 
@@ -163,7 +163,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **HonorariosContratuaisDataApuracaoModificada** `J12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosContratuaisDataApuracaoModificada** `J13`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -179,7 +179,7 @@ DATE_IS_VALID_DATE
 
 * * *
 
-##### **HonorariosContratuaisLimite** `I15`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosContratuaisLimite** `I16`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(HonorariosContratuaisLimiteModificado);HonorariosContratuaisLimiteModificado;0){% endhighlight %}
 
 
@@ -192,7 +192,7 @@ DATE_IS_VALID_DATE
 
 * * *
 
-##### **HonorariosContratuaisLimiteModificado** `J15`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosContratuaisLimiteModificado** `J16`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -204,7 +204,7 @@ DATE_IS_VALID_DATE
 
 * * *
 
-##### **HonorariosContratuaisPercentual** `I11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosContratuaisPercentual** `I12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(HonorariosContratuaisPercentualModificado);HonorariosContratuaisPercentualModificado%;0){% endhighlight %}
 
 
@@ -218,7 +218,7 @@ DATE_IS_VALID_DATE
 
 * * *
 
-##### **HonorariosContratuaisPercentualModificado** `J11`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosContratuaisPercentualModificado** `J12`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -230,8 +230,8 @@ DATE_IS_VALID_DATE
 
 * * *
 
-##### **HonorariosSucumbenciaisBaseIncidencia** `I7`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(ISNUMBER(HonorariosSucumbenciaisBaseIncidenciaModificada);HonorariosSucumbenciaisBaseIncidenciaModificada;SUMIFS(IF(PercentualAcordo;TotalMesAcordo;IF(RenunciaOpcao="Sim";TotalMesAposRenuncia;TotalMes));Competencia;"<"&EOMONTH(HonorariosSucumbenciaisDataApuracao;-1)+1)){% endhighlight %}
+##### **HonorariosSucumbenciaisBaseIncidencia** `I8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=IF(ISNUMBER(HonorariosSucumbenciaisBaseIncidenciaModificada);HonorariosSucumbenciaisBaseIncidenciaModificada;IF(MID(OpcaoHonorarios;1;1)="3";ValorDaCausa;SUMIFS(IF(PercentualAcordo;TotalMesAcordo;IF(RenunciaOpcao="Sim";TotalMesAposRenuncia;TotalMes));Competencia;"<"&EOMONTH(HonorariosSucumbenciaisDataApuracao;-1)+1))){% endhighlight %}
 
 
 ~~~
@@ -245,7 +245,7 @@ A função "FIMMÊS(HonorariosSucumbenciaisDataApuração;-1)" permite apurar va
 
 * * *
 
-##### **HonorariosSucumbenciaisBaseIncidenciaModificada** `J7`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosSucumbenciaisBaseIncidenciaModificada** `J8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -257,8 +257,8 @@ A função "FIMMÊS(HonorariosSucumbenciaisDataApuração;-1)" permite apurar va
 
 * * *
 
-##### **HonorariosSucumbenciaisDataApuracao** `I6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
-{% highlight erlang %}=IF(ISNUMBER(HonorariosSucumbenciaisDataApuracaoModificada);HonorariosSucumbenciaisDataApuracaoModificada;DataAtualizacao){% endhighlight %}
+##### **HonorariosSucumbenciaisDataApuracao** `I7`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+{% highlight erlang %}=IF(ISNUMBER(HonorariosSucumbenciaisDataApuracaoModificada);EOMONTH(HonorariosSucumbenciaisDataApuracaoModificada;-1)+1;IF(MID(OpcaoHonorarios;1;1)="3";EOMONTH(Protocolo;-1)+1;DataAtualizacao)){% endhighlight %}
 
 
 ~~~
@@ -270,7 +270,7 @@ dd/MM/yyyy
 
 * * *
 
-##### **HonorariosSucumbenciaisDataApuracaoModificada** `J6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosSucumbenciaisDataApuracaoModificada** `J7`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -286,7 +286,7 @@ DATE_IS_VALID_DATE
 
 * * *
 
-##### **HonorariosSucumbenciaisLimite** `I8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosSucumbenciaisLimite** `I9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(HonorariosSucumbenciaisLimiteModificado);HonorariosSucumbenciaisLimiteModificado;0){% endhighlight %}
 
 
@@ -299,7 +299,7 @@ DATE_IS_VALID_DATE
 
 * * *
 
-##### **HonorariosSucumbenciaisLimiteModificado** `J8`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosSucumbenciaisLimiteModificado** `J9`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -311,7 +311,7 @@ DATE_IS_VALID_DATE
 
 * * *
 
-##### **HonorariosSucumbenciaisPercentual** `I5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosSucumbenciaisPercentual** `I6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 {% highlight erlang %}=IF(ISNUMBER(HonorariosSucumbenciaisPercentualModificado);HonorariosSucumbenciaisPercentualModificado%;0){% endhighlight %}
 
 
@@ -324,7 +324,7 @@ DATE_IS_VALID_DATE
 
 * * *
 
-##### **HonorariosSucumbenciaisPercentualModificado** `J5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+##### **HonorariosSucumbenciaisPercentualModificado** `J6`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
 
 
 ~~~
@@ -345,6 +345,22 @@ DATE_IS_VALID_DATE
 
 
 > Indica o índice de limitação ao teto do salário de benefício, a ser reposto no termo da Lei nº 8.870/94 ou Lei nº 8.880/94.
+
+* * *
+
+##### **OpcaoHonorarios** `J5`{: style="background-color: lightgrey; color: black; border-radius: 5px; padding:3px;"}
+
+
+~~~
+#,##0.00
+~~~
+
+
+~~~
+VALUE_IN_RANGE OpcoesHonorarios!A:A
+~~~
+
+
 
 * * *
 

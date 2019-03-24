@@ -188,7 +188,11 @@ function jef_CONT_NUM_POR_LINHA(intervalo) {
 *
 * Função criada em 04/10/2017
 * Alterada em 23/10/2017: remoção de bug. Na primeira competência não há nunca reajuste.
-* Alterada em 08/11/2017: remoção de bug. Quando não há DCB, o último valor da renda deve corresponder ao valor integral (linhas 290 e 291).
+* Alterada em 08/11/2017: remoção de bug. Quando não há DCB, o último valor da renda deve corresponder ao valor integral.
+* Alterada em 23/05/2018: ajuste na forma de cálculo dos benefícios do "buraco negro", introduzindo a sistemática de "guardar o teto" que foi
+* adotada pelo INSS até a cessação dos efeitos financeiros do art. 144 da Lei nº 8.213/91.
+* Alterada em 29/05/2018: resolvido bug referente aos casos de benefício derivado, para que as rendas subsequentes
+* à primeira observem a nova RMI.
 *
 */
 function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginario, RMIDerivado, DCBDerivado, indiceReposicaoTeto, equivalenciaSalarial, calcularAbono, dataAtualizacao, tabelaReajuste) {
@@ -278,6 +282,10 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
   *
   **/
   
+  var promulgacaoCF88 = new Date(1988,9,6,0,0,0,0);
+  var efeitosLei8213 = new Date(1991,3,5);
+  var marcoFinalArt144 = new Date(1992,5,1,0,0,0,0); // data em que cessam os efeitos financeiros do art. 144 da Lei nº 8.213/91
+  
   var temDerivado = Utilidades.isNumber(RMIDerivado) && Utilidades.isDate(DCBOriginario);
 
   /*
@@ -285,7 +293,14 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
   * da CF/88, ou seja, 05/10/1988. Assim, se o benefício foi concedido até essa data, inclusive, a equivalência
   * salarial deve ser aplicada.
   **/
-  var aplicarArt58 = Utilidades.isNumber(equivalenciaSalarial) && DIBOriginario.valueOf() < new Date(1988, 9, 6)
+  var aplicarArt58 = Utilidades.isNumber(equivalenciaSalarial) && DIBOriginario.valueOf() < promulgacaoCF88.valueOf();
+  
+  var guardarTeto = function(competencia) {
+    var posteriorCF = DIBOriginario.valueOf() >= promulgacaoCF88.valueOf();
+    var buracoNegro = DIBOriginario.valueOf() < efeitosLei8213.valueOf();
+    var periodoAbrangencia = competencia.valueOf() < marcoFinalArt144.valueOf();
+    return posteriorCF && buracoNegro && periodoAbrangencia;
+  }
   
   /*
   * No caso de aplicação do art. 58 do ADCT, adota-se como termo inicial a competência 12/1991
@@ -366,12 +381,15 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
       return linha[0].valueOf() === competenciaInicial.valueOf();
     });
     var salarioMinimo = linhaCompetenciaInicial[0][4]; // O salário mínimo está na quinta coluna da tabela
-    var RMA = salarioMinimo * equivalenciaSalarial;
+    var RMI = salarioMinimo * equivalenciaSalarial;
     
   } else {
-    var RMA = RMIOriginario;
+    var RMI = RMIOriginario;
   }
   
+  var baseReajuste = RMI;
+  var RMA = RMI;
+
   return tabelaReajuste.map(function(linha, idx) {
     
     var competencia = linha[0];
@@ -386,17 +404,13 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
         
         if (competencia.valueOf() === primeiraDataBase.valueOf() && !aplicarArt58) {
           
-          var renda = parseFloat(RMA * indiceProporcional * indiceReposicaoTeto).toString().replace(/(\d*\.\d{2})(\d*.)/, '$1');
+          baseReajuste = parseFloat(baseReajuste * indiceProporcional * indiceReposicaoTeto).toString().replace(/(\d*\.\d{2})(\d*.)/, '$1');
           
         } else {
           
-          var renda = parseFloat(RMA * indiceIntegral).toString().replace(/(\d*\.\d{2})(\d*.)/, '$1');
+          baseReajuste = parseFloat(baseReajuste * indiceIntegral).toString().replace(/(\d*\.\d{2})(\d*.)/, '$1');
           
         }
-        
-      } else {
-        
-        var renda = RMA;
         
       }
       
@@ -404,8 +418,8 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
         /*
         * Na primeira competência do benefício derivado, é necessário aplicar a proporcionalidade
         **/
-        var renda = ((renda / 30) * DCBOriginario.getDate()) + ((RMIDerivado / 30) * Math.max(30 - (DCBOriginario.getDate()), 1));
-        RMA = RMIDerivado;
+        RMA = ((baseReajuste / 30) * DCBOriginario.getDate()) + ((RMIDerivado / 30) * Math.max(30 - (DCBOriginario.getDate()), 1));
+        baseReajuste = RMIDerivado; // necessário para que o valor se altere nas competências subsequentes
       } else {
         /*
         * Esse critério de aplicação dos limites mínimo e máximo, aparentemente incosistente
@@ -414,12 +428,13 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
         *   mês a mês
         * - se o benefício é superior ao teto, a própria renda mensal é limitada e o valor excedente é descartado
         **/
-        if (renda < piso) {
-          RMA = renda;
-          renda = piso;
+        if (baseReajuste < piso) {
+          RMA = piso;
         } else {
-          renda = Math.min(teto, renda);
-          RMA = renda;
+          RMA = Math.min(teto, baseReajuste);
+          if (!guardarTeto(competencia)) {
+            baseReajuste = Math.min(teto, baseReajuste);
+          }
         }
       }
       
@@ -427,11 +442,11 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
       
       if (calcularAbono && calcularAbonoNaCompetencia) {
         if (Utilidades.isDate(dataUltimoAbono) && competencia.valueOf() === Utilidades.primeiroDiaDoMes(dataUltimoAbono).valueOf()) {
-          var abono = renda * proporcaoUltimoAbono;
+          var abono = RMA * proporcaoUltimoAbono;
         } else if (competencia.valueOf() === Utilidades.primeiroDiaDoMes(dataPrimeiroAbono).valueOf()) {
-          var abono = renda * proporcaoPrimeiroAbono;
+          var abono = RMA * proporcaoPrimeiroAbono;
         } else {
-          var abono = renda;
+          var abono = RMA;
         }
       } else {
         var abono = 0;
@@ -443,18 +458,18 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
       
       if (competenciaFinal.valueOf() === competenciaInicial.valueOf()) {
         
-        renda = renda * proporcaoInicial;
-      
+        RMA = RMA * proporcaoInicial;
+        
       } else {
         if (competencia.valueOf() === competenciaInicial.valueOf()) {
-        renda = renda * proporcaoInicial;
+          RMA = RMA * proporcaoInicial;
+        }
+        
+        if (competencia.valueOf() === competenciaFinal.valueOf()) {
+          RMA = RMA * proporcaoFinal;
+        }
       }
-      
-      if (competencia.valueOf() === competenciaFinal.valueOf()) {
-        renda = renda * proporcaoFinal;
-      }
-      }
-      return [renda, abono]
+      return [RMA, abono]
       
     } else {
       
@@ -464,28 +479,25 @@ function jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginar
   });
 }
 
-
 function testarCalculoRMA() {
   try {
-    var planilha = SpreadsheetApp.getActiveSpreadsheet();
-    var pagina = planilha.getSheetByName('BeneficiosPagos');
-    var DIBOriginario = pagina.getRange('H3').getValue();
-    var RMIOriginario = pagina.getRange('H4').getValue();
-    var DCBOriginario = pagina.getRange('H5').getValue();
-    var RMIDerivado = pagina.getRange('H7').getValue();
-    var DCBDerivado = pagina.getRange('H8').getValue();
-    var indiceReposicao = pagina.getRange('H10').getValue();
-    var equivalencia = pagina.getRange('H11').getValue(); 
-    var abono = true;
-    var dataAtualizacao = planilha.getRangeByName('DataAtualizacao').getValue();
-    var tabela = pagina.getRange('A13:F13').offset(0, 0, 636).getValues();
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var DIBOriginario = ss.getRangeByName('DIBBeneficioRevisado').getValue();
+    var RMIOriginario = ss.getRangeByName('RMIBeneficioRevisado').getValue();
+    var DCBOriginario = ss.getRangeByName('DCBBeneficioRevisado').getValue();
+    var RMIDerivado = ss.getRangeByName('RMIBeneficioRevisadoDerivado').getValue();
+    var DCBDerivado = ss.getRangeByName('DCBBeneficioRevisadoDerivado').getValue();
+    var indiceReposicaoTeto = ss.getRangeByName('IndiceTetoBeneficioRevisado').getValue();
+    var equivalenciaSalarial = ss.getRangeByName('EquivalenciaBeneficioRevisado').getValue();
+    var calcularAbono = ss.getRangeByName('CalcularAbonoBeneficioRevisado').getValue() !== 'Não';
+    var dataAtualizacao = ss.getRangeByName('DataAtualizacao').getValue();
+    var tabelaReajuste = ss.getRangeByName('BeneficiosPagos!A15:F658').getValues();
     try {
-      var resultado = jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario,RMIOriginario,DCBOriginario,RMIDerivado,DCBDerivado, indiceReposicao, equivalencia, abono, dataAtualizacao, tabela);
-      Logger.log(resultado)
+      var resultado = jef_CALCULAR_RMA_COM_EVOLUCAO(DIBOriginario, RMIOriginario, DCBOriginario, RMIDerivado, DCBDerivado, indiceReposicaoTeto, equivalenciaSalarial, calcularAbono, dataAtualizacao, tabelaReajuste);
+      Logger.log(resultado);
     } catch (e) {
       Logger.log(e)
     }
-    
   } catch (e) {
     Logger.log(e.message)
     Logger.log(e.stack)
